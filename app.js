@@ -86,9 +86,8 @@ function selectMode(mode) {
     // 显示地图相关UI
     document.getElementById('top-bar').style.display = 'flex';
     document.getElementById('map-type-switch').style.display = 'block';
-    document.getElementById('locate-btn').style.display = 'flex';
+    document.getElementById('right-controls').style.display = 'flex';
     document.getElementById('legend').style.display = 'block';
-    document.getElementById('clear-highlight-btn').style.display = 'flex';
     
     // 更新切换按钮文字
     const btnText = mode === 'middle' ? '切小学' : '切中学';
@@ -124,8 +123,9 @@ function showModeSelector() {
     // 隐藏地图相关UI
     document.getElementById('top-bar').style.display = 'none';
     document.getElementById('map-type-switch').style.display = 'none';
-    document.getElementById('locate-btn').style.display = 'none';
+    document.getElementById('right-controls').style.display = 'none';
     document.getElementById('legend').style.display = 'none';
+    document.getElementById('selected-schools-panel').classList.remove('visible');
     
     // 隐藏清除高亮按钮
     const clearBtn = document.getElementById('clear-highlight-btn');
@@ -172,6 +172,12 @@ function switchMode() {
     const clearBtn = document.getElementById('clear-highlight-btn');
     if (clearBtn) {
         clearBtn.classList.remove('visible');
+    }
+    
+    // 隐藏选中学校列表面板
+    const panel = document.getElementById('selected-schools-panel');
+    if (panel) {
+        panel.classList.remove('visible');
     }
     
     // 切换模式
@@ -359,20 +365,45 @@ function initMap() {
  * 处理地图点击事件
  */
 function handleMapClick(event) {
-    const feature = AppState.map.forEachFeatureAtPixel(event.pixel, function(feature) {
-        return feature;
+    // 获取点击位置下的所有学区特征（处理重叠情况）
+    const features = [];
+    AppState.map.forEachFeatureAtPixel(event.pixel, function(feature) {
+        features.push(feature);
+        return false; // 继续遍历，获取所有特征
     }, {
         layerFilter: function(layer) {
             return layer === AppState.districtLayer;
         }
     });
     
-    if (feature) {
+    if (features.length === 0) {
+        return;
+    }
+    
+    // 获取唯一的学校列表
+    const clickedSchools = [];
+    const schoolIds = new Set();
+    
+    features.forEach(feature => {
         const schoolId = feature.get('schoolId');
-        const school = AppState.schools.find(s => s.id === schoolId);
-        if (school) {
-            selectSchool(school, feature);
+        if (!schoolIds.has(schoolId)) {
+            schoolIds.add(schoolId);
+            const school = AppState.schools.find(s => s.id === schoolId);
+            if (school) {
+                clickedSchools.push(school);
+            }
         }
+    });
+    
+    if (clickedSchools.length === 1) {
+        // 如果只点击到一个学区，直接选中
+        selectSchool(clickedSchools[0]);
+    } else if (clickedSchools.length > 1) {
+        // 如果点击到多个重叠学区，依次添加它们
+        clickedSchools.forEach(school => {
+            selectSchool(school);
+        });
+        showToast(`已添加 ${clickedSchools.length} 个学区`);
     }
 }
 
@@ -693,46 +724,126 @@ function flyToSchool(schoolId) {
 /**
  * 选择学校（高亮显示）
  */
-function selectSchool(school, feature) {
+function selectSchool(school) {
     // 将该学校添加到高亮集合
     if (!AppState.highlightedSchools) {
-        AppState.highlightedSchools = new Set();
+        AppState.highlightedSchools = new Map(); // 使用Map来存储学校对象
     }
     
     const schoolId = school.id;
     
-    // 如果已经高亮，先移除再重新高亮（刷新状态）
+    // 如果已经高亮，则不再重复添加
     if (AppState.highlightedSchools.has(schoolId)) {
-        AppState.highlightedSchools.delete(schoolId);
+        showToast(`${school.name} 已在选中列表中`);
+        return;
     }
-    AppState.highlightedSchools.add(schoolId);
     
-    // 高亮当前学校
-    const color = feature.get('color');
-    feature.setStyle(new ol.style.Style({
-        fill: new ol.style.Fill({
-            color: hexToRgba(color, 0.5)
-        }),
-        stroke: new ol.style.Stroke({
-            color: color,
-            width: 3
-        })
-    }));
+    // 添加到高亮集合
+    AppState.highlightedSchools.set(schoolId, school);
     
-    // 保存高亮特征引用
-    feature.set('highlighted', true);
+    // 高亮该学校的所有特征（处理MultiPolygon情况）
+    const allFeatures = AppState.districtSource.getFeatures();
+    const schoolFeatures = allFeatures.filter(f => f.get('schoolId') === schoolId);
     
-    // 飞移到学区
-    const extent = feature.getGeometry().getExtent();
-    AppState.map.getView().fit(extent, {
-        padding: [100, 100, 150, 100],
-        duration: 500
+    const color = school.color;
+    schoolFeatures.forEach(feature => {
+        feature.setStyle(new ol.style.Style({
+            fill: new ol.style.Fill({
+                color: hexToRgba(color, 0.5)
+            }),
+            stroke: new ol.style.Stroke({
+                color: color,
+                width: 3
+            })
+        }));
+        feature.set('highlighted', true);
     });
+    
+    // 保存学校特征引用
+    school.highlightedFeatures = schoolFeatures;
+    
+    // 飞移到学区（使用第一个特征的范围）
+    if (schoolFeatures.length > 0) {
+        const extent = schoolFeatures[0].getGeometry().getExtent();
+        AppState.map.getView().fit(extent, {
+            padding: [100, 100, 150, 100],
+            duration: 500
+        });
+    }
+    
+    // 更新UI
+    updateSelectedSchoolsPanel();
     
     // 显示清除高亮按钮
     const clearBtn = document.getElementById('clear-highlight-btn');
     if (clearBtn) {
         clearBtn.classList.add('visible');
+    }
+}
+
+/**
+ * 更新选中学校列表面板
+ */
+function updateSelectedSchoolsPanel() {
+    const panel = document.getElementById('selected-schools-panel');
+    const list = document.getElementById('selected-schools-list');
+    const count = document.getElementById('selected-count');
+    
+    if (!AppState.highlightedSchools || AppState.highlightedSchools.size === 0) {
+        panel.classList.remove('visible');
+        return;
+    }
+    
+    // 更新数量
+    count.textContent = AppState.highlightedSchools.size;
+    
+    // 更新列表
+    list.innerHTML = '';
+    AppState.highlightedSchools.forEach((school, schoolId) => {
+        const item = document.createElement('div');
+        item.className = 'selected-school-item';
+        item.innerHTML = `
+            <div class="selected-school-color" style="background: ${school.color}"></div>
+            <span class="selected-school-name">${school.name}</span>
+            <button class="selected-school-remove" onclick="removeSelectedSchool('${schoolId}')" title="移除">×</button>
+        `;
+        item.onclick = function(e) {
+            if (e.target.classList.contains('selected-school-remove')) return;
+            flyToSchool(schoolId);
+        };
+        list.appendChild(item);
+    });
+    
+    panel.classList.add('visible');
+}
+
+/**
+ * 从选中列表中移除学校
+ */
+function removeSelectedSchool(schoolId) {
+    const school = AppState.highlightedSchools.get(schoolId);
+    if (!school) return;
+    
+    // 移除高亮样式
+    if (school.highlightedFeatures) {
+        school.highlightedFeatures.forEach(feature => {
+            feature.setStyle(null);
+            feature.set('highlighted', false);
+        });
+    }
+    
+    // 从集合中移除
+    AppState.highlightedSchools.delete(schoolId);
+    
+    // 更新UI
+    updateSelectedSchoolsPanel();
+    
+    // 如果没有选中的学校了，隐藏清除按钮
+    if (AppState.highlightedSchools.size === 0) {
+        const clearBtn = document.getElementById('clear-highlight-btn');
+        if (clearBtn) {
+            clearBtn.classList.remove('visible');
+        }
     }
 }
 
@@ -777,6 +888,12 @@ function clearAllHighlights() {
     const clearBtn = document.getElementById('clear-highlight-btn');
     if (clearBtn) {
         clearBtn.classList.remove('visible');
+    }
+    
+    // 隐藏选中学校列表面板
+    const panel = document.getElementById('selected-schools-panel');
+    if (panel) {
+        panel.classList.remove('visible');
     }
     
     showToast('已清除所有高亮');
