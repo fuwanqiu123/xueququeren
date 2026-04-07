@@ -118,7 +118,7 @@
         .ol-zoom {
             left: auto !important;
             right: 15px !important;
-            bottom: 100px !important;
+            bottom: 180px !important;
             top: auto !important;
         }
         
@@ -126,11 +126,21 @@
             background: white !important;
             color: #333 !important;
             border-radius: 50% !important;
-            width: 40px !important;
-            height: 40px !important;
-            font-size: 18px !important;
-            margin-bottom: 8px !important;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+            width: 44px !important;
+            height: 44px !important;
+            font-size: 20px !important;
+            margin-bottom: 10px !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15) !important;
+        }
+        
+        /* 编辑模式下的点样式 - 更大更适合移动端 */
+        .ol_modify--point {
+            width: 24px !important;
+            height: 24px !important;
+            background: #667eea !important;
+            border: 3px solid white !important;
+            border-radius: 50% !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
         }
         
         .ol-attribution {
@@ -202,6 +212,7 @@
             max-height: 300px;
             overflow-y: auto;
             display: none;
+            z-index: 1001;
         }
         
         .search-dropdown.active {
@@ -307,23 +318,23 @@
         .right-controls {
             position: absolute;
             right: 15px;
-            bottom: 100px;
+            bottom: 180px;
             z-index: 1000;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
             align-items: flex-end;
         }
         
         /* 定位按钮 */
         .locate-btn {
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             background: white;
             border: none;
             box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-            font-size: 20px;
+            font-size: 22px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -358,6 +369,48 @@
             display: flex;
         }
         
+        /* 编辑模式按钮 */
+        .edit-mode-btn {
+            padding: 10px 16px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            font-size: 14px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            gap: 6px;
+            color: white;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+        
+        .edit-mode-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .edit-mode-btn.visible {
+            display: flex;
+        }
+        
+        /* 导入按钮 */
+        .import-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: white;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
         /* 选中学校列表面板 */
         .selected-schools-panel {
             position: absolute;
@@ -367,8 +420,8 @@
             background: rgba(255, 255, 255, 0.95);
             border-radius: 12px;
             box-shadow: 0 2px 15px rgba(0,0,0,0.15);
-            max-width: 200px;
-            max-height: 250px;
+            max-width: 240px;
+            max-height: 280px;
             display: none;
             flex-direction: column;
             overflow: hidden;
@@ -405,13 +458,14 @@
         .selected-school-item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 6px 8px;
+            gap: 6px;
+            padding: 8px;
             border-radius: 6px;
             cursor: pointer;
             font-size: 12px;
             margin-bottom: 4px;
             transition: background 0.2s ease;
+            min-width: 0;
         }
         
         .selected-school-item:hover {
@@ -435,16 +489,38 @@
             overflow: hidden;
             text-overflow: ellipsis;
             color: #333;
+            min-width: 0;
+            font-size: 13px;
+        }
+        
+        .selected-school-edit {
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+        }
+        
+        .selected-school-edit:active {
+            transform: scale(0.9);
         }
         
         .selected-school-remove {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            border-radius: 4px;
             background: #ff6b6b;
             color: white;
             border: none;
-            font-size: 10px;
+            font-size: 12px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -452,22 +528,122 @@
             flex-shrink: 0;
         }
         
+        /* 编辑工具栏 */
+        .edit-toolbar {
+            position: absolute;
+            top: 80px;
+            left: 15px;
+            right: 15px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.15);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            padding: 15px;
+            gap: 12px;
+        }
+        
+        .edit-toolbar.visible {
+            display: flex;
+        }
+        
+        .edit-toolbar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .edit-toolbar-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .edit-toolbar-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .edit-toolbar-hint {
+            background: #fff9e6;
+            border: 1px solid #ffd93d;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 13px;
+            color: #856404;
+            line-height: 1.5;
+        }
+        
+        .edit-toolbar-hint strong {
+            color: #e65100;
+        }
+        
+        .edit-toolbar-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .edit-toolbar-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        
+        .edit-toolbar-btn.cancel {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .edit-toolbar-btn.save {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .edit-toolbar-btn.export {
+            background: linear-gradient(135deg, #42b883 0%, #35495e 100%);
+            color: white;
+        }
+        
         /* 移动端适配 */
         @media (max-width: 480px) {
             .selected-schools-panel {
                 top: auto;
-                bottom: 220px;
+                bottom: 280px;
                 left: 15px;
-                max-width: 180px;
+                max-width: 220px;
                 max-height: 200px;
             }
             
             .right-controls {
-                bottom: 80px;
+                bottom: 180px;
             }
             
             .ol-zoom {
-                bottom: 80px !important;
+                bottom: 180px !important;
+            }
+            
+            .edit-toolbar {
+                top: auto;
+                bottom: 20px;
+                left: 10px;
+                right: 10px;
             }
         }
         
@@ -706,7 +882,90 @@
         
         .toast.active {
             opacity: 1;
-            transform: translate(-(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        /* 确认对话框 */
+        .confirm-dialog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10002;
+            padding: 20px;
+        }
+        
+        .confirm-dialog.visible {
+            display: flex;
+        }
+        
+        .confirm-dialog-content {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 340px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .confirm-dialog-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .confirm-dialog-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+        }
+        
+        .confirm-dialog-message {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .confirm-dialog-filename {
+            background: #f5f5f5;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 20px;
+            word-break: break-all;
+        }
+        
+        .confirm-dialog-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .confirm-dialog-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: none;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .confirm-dialog-btn.cancel {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .confirm-dialog-btn.confirm {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
         }
         
         /* 学校标签样式 */
@@ -730,6 +989,11 @@
             font-weight: 500;
             white-space: nowrap;
             pointer-events: none;
+        }
+        
+        /* 导入的文件输入框隐藏 */
+        .file-input {
+            display: none;
         }
     </style>
 </head>
@@ -780,10 +1044,35 @@
             <div class="selected-schools-list" id="selected-schools-list"></div>
         </div>
         
+        <!-- 编辑工具栏 -->
+        <div class="edit-toolbar" id="edit-toolbar">
+            <div class="edit-toolbar-header">
+                <div class="edit-toolbar-title">
+                    <span>✏️</span>
+                    <span id="edit-school-name">编辑学区</span>
+                </div>
+                <button class="edit-toolbar-close" onclick="cancelEdit()">✕</button>
+            </div>
+            <div class="edit-toolbar-hint">
+                <strong>⚠️ 重要提醒：</strong><br>
+                • 拖动<strong>蓝点</strong>可调整边界形状<br>
+                • 编辑完成后<strong>必须导出</strong>保存！<br>
+                • 点击"导出"按钮下载 GeoJSON 文件
+            </div>
+            <div class="edit-toolbar-actions">
+                <button class="edit-toolbar-btn cancel" onclick="cancelEdit()">取消</button>
+                <button class="edit-toolbar-btn export" onclick="exportEditedDistrict()">📥 导出保存</button>
+            </div>
+        </div>
+        
         <!-- 右侧功能按钮容器 -->
         <div class="right-controls" id="right-controls" style="display: none;">
             <!-- 定位按钮 -->
             <button class="locate-btn" id="locate-btn" onclick="fitToBounds()" title="全览">🗺️</button>
+            
+            <!-- 导入按钮 -->
+            <button class="import-btn" id="import-btn" onclick="triggerImport()" title="导入GeoJSON">📤</button>
+            <input type="file" id="file-input" class="file-input" accept=".geojson,.json" onchange="handleFileImport(event)">
             
             <!-- 清除高亮按钮 -->
             <button class="clear-highlight-btn" id="clear-highlight-btn" onclick="clearAllHighlights()" title="取消所有高亮">
@@ -813,6 +1102,20 @@
         
         <!-- 提示消息 -->
         <div class="toast" id="toast"></div>
+        
+        <!-- 确认对话框 -->
+        <div class="confirm-dialog" id="confirm-dialog">
+            <div class="confirm-dialog-content">
+                <div class="confirm-dialog-icon" id="confirm-icon">⚠️</div>
+                <div class="confirm-dialog-title" id="confirm-title">确认导出</div>
+                <div class="confirm-dialog-message" id="confirm-message">请确认要导出此学区的GeoJSON文件吗？</div>
+                <div class="confirm-dialog-filename" id="confirm-filename" style="display: none;"></div>
+                <div class="confirm-dialog-actions">
+                    <button class="confirm-dialog-btn cancel" id="confirm-cancel" onclick="closeConfirmDialog()">取消</button>
+                    <button class="confirm-dialog-btn confirm" id="confirm-ok" onclick="">确认</button>
+                </div>
+            </div>
+        </div>
     </div>
     
     <!-- OpenLayers 8.2.0 - 使用国内 CDN -->

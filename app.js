@@ -47,7 +47,28 @@ const AppState = {
     colorIndex: 0,
     
     // 选中特征的样式
-    selectedFeature: null
+    selectedFeature: null,
+    
+    // ============================================
+    // 编辑相关状态
+    // ============================================
+    // 是否处于编辑模式
+    isEditing: false,
+    
+    // 当前正在编辑的学校
+    editingSchool: null,
+    
+    // 当前正在编辑的特征
+    editingFeature: null,
+    
+    // 修改交互实例
+    modifyInteraction: null,
+    
+    // 编辑前的原始几何（用于取消）
+    originalGeometry: null,
+    
+    // 导入的学区（临时显示）
+    importedFeatures: []
 };
 
 // ============================================
@@ -802,13 +823,42 @@ function updateSelectedSchoolsPanel() {
     AppState.highlightedSchools.forEach((school, schoolId) => {
         const item = document.createElement('div');
         item.className = 'selected-school-item';
-        item.innerHTML = `
-            <div class="selected-school-color" style="background: ${school.color}"></div>
-            <span class="selected-school-name">${school.name}</span>
-            <button class="selected-school-remove" onclick="removeSelectedSchool('${schoolId}')" title="移除">×</button>
-        `;
+        
+        // 使用字符串拼接避免引号问题
+        const colorDiv = document.createElement('div');
+        colorDiv.className = 'selected-school-color';
+        colorDiv.style.background = school.color;
+        
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'selected-school-name';
+        nameSpan.textContent = school.name;
+        
+        const editBtn = document.createElement('button');
+        editBtn.className = 'selected-school-edit';
+        editBtn.title = '编辑学区';
+        editBtn.innerHTML = '✏️';
+        editBtn.onclick = function(e) {
+            e.stopPropagation();
+            startEditSchool(schoolId);
+        };
+        
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'selected-school-remove';
+        removeBtn.title = '移除';
+        removeBtn.textContent = '×';
+        removeBtn.onclick = function(e) {
+            e.stopPropagation();
+            removeSelectedSchool(schoolId);
+        };
+        
+        item.appendChild(colorDiv);
+        item.appendChild(nameSpan);
+        item.appendChild(editBtn);
+        item.appendChild(removeBtn);
+        
         item.onclick = function(e) {
-            if (e.target.classList.contains('selected-school-remove')) return;
+            if (e.target.classList.contains('selected-school-remove') || 
+                e.target.classList.contains('selected-school-edit')) return;
             flyToSchool(schoolId);
         };
         list.appendChild(item);
@@ -1110,3 +1160,476 @@ document.addEventListener('click', function(e) {
         document.getElementById('search-dropdown').classList.remove('active');
     }
 });
+
+// ============================================
+// 学区编辑功能
+// ============================================
+
+/**
+ * 开始编辑学区
+ */
+function startEditSchool(schoolId) {
+    if (AppState.isEditing) {
+        showToast('请先完成当前编辑');
+        return;
+    }
+    
+    const school = AppState.schools.find(s => s.id === schoolId);
+    if (!school) {
+        showToast('未找到该学校');
+        return;
+    }
+    
+    // 确保学校已高亮
+    if (!AppState.highlightedSchools || !AppState.highlightedSchools.has(schoolId)) {
+        selectSchool(school);
+    }
+    
+    // 获取该学校的特征
+    const schoolFeatures = AppState.districtSource.getFeatures().filter(
+        f => f.get('schoolId') === schoolId
+    );
+    
+    if (schoolFeatures.length === 0) {
+        showToast('未找到该学区的地理数据');
+        return;
+    }
+    
+    // 使用第一个特征进行编辑（如果是MultiPolygon，编辑第一个）
+    const feature = schoolFeatures[0];
+    
+    // 保存原始几何用于取消
+    AppState.originalGeometry = feature.getGeometry().clone();
+    
+    // 设置编辑状态
+    AppState.isEditing = true;
+    AppState.editingSchool = school;
+    AppState.editingFeature = feature;
+    
+    // 显示编辑工具栏
+    document.getElementById('edit-school-name').textContent = `编辑: ${school.name}`;
+    document.getElementById('edit-toolbar').classList.add('visible');
+    
+    // 创建修改交互（移动端友好的大触摸点）
+    createModifyInteraction(feature);
+    
+    // 切换到适合编辑的缩放级别
+    const extent = feature.getGeometry().getExtent();
+    AppState.map.getView().fit(extent, {
+        padding: [150, 150, 250, 150],
+        duration: 500,
+        maxZoom: 16
+    });
+    
+    // 隐藏选中学校列表面板
+    document.getElementById('selected-schools-panel').classList.remove('visible');
+    
+    showToast('拖动蓝点调整边界形状');
+}
+
+/**
+ * 创建修改交互
+ */
+function createModifyInteraction(feature) {
+    // 创建一个新的矢量源用于编辑
+    const editSource = new ol.source.Vector({
+        features: [feature]
+    });
+    
+    // 创建修改交互 - 移动端优化的样式
+    AppState.modifyInteraction = new ol.interaction.Modify({
+        source: editSource,
+        style: new ol.style.Style({
+            // 顶点样式 - 大圆点便于触摸
+            image: new ol.style.Circle({
+                radius: 12,
+                fill: new ol.style.Fill({
+                    color: '#667eea'
+                }),
+                stroke: new ol.style.Stroke({
+                    color: '#ffffff',
+                    width: 3
+                })
+            }),
+            // 线段样式
+            stroke: new ol.style.Stroke({
+                color: '#667eea',
+                width: 3
+            }),
+            // 虚拟顶点样式（线段中间添加新点的位置）
+            fill: new ol.style.Fill({
+                color: 'rgba(102, 126, 234, 0.5)'
+            })
+        }),
+        // 插入顶点条件 - 双击或长按
+        insertVertexCondition: function(event) {
+            return ol.events.condition.doubleClick(event);
+        },
+        // 删除顶点条件 - Alt+点击
+        deleteCondition: function(event) {
+            return ol.events.condition.altKeyOnly(event) && 
+                   ol.events.condition.singleClick(event);
+        }
+    });
+    
+    // 添加修改事件监听
+    AppState.modifyInteraction.on('modifyend', function(evt) {
+        console.log('修改完成');
+        showToast('边界已修改，请记得导出保存！');
+    });
+    
+    AppState.map.addInteraction(AppState.modifyInteraction);
+    
+    // 更改光标样式
+    AppState.map.getTargetElement().style.cursor = 'crosshair';
+}
+
+/**
+ * 取消编辑
+ */
+function cancelEdit() {
+    if (!AppState.isEditing || !AppState.editingFeature) {
+        return;
+    }
+    
+    // 恢复原始几何
+    if (AppState.originalGeometry) {
+        AppState.editingFeature.setGeometry(AppState.originalGeometry);
+    }
+    
+    // 移除修改交互
+    if (AppState.modifyInteraction) {
+        AppState.map.removeInteraction(AppState.modifyInteraction);
+        AppState.modifyInteraction = null;
+    }
+    
+    // 重置编辑状态
+    AppState.isEditing = false;
+    AppState.editingSchool = null;
+    AppState.editingFeature = null;
+    AppState.originalGeometry = null;
+    
+    // 隐藏编辑工具栏
+    document.getElementById('edit-toolbar').classList.remove('visible');
+    
+    // 恢复光标样式
+    AppState.map.getTargetElement().style.cursor = '';
+    
+    // 显示选中学校列表面板
+    updateSelectedSchoolsPanel();
+    
+    showToast('已取消编辑');
+}
+
+/**
+ * 导出编辑后的学区
+ */
+function exportEditedDistrict() {
+    if (!AppState.isEditing || !AppState.editingFeature) {
+        showToast('当前没有正在编辑的学区');
+        return;
+    }
+    
+    const school = AppState.editingSchool;
+    const geometry = AppState.editingFeature.getGeometry();
+    
+    // 创建GeoJSON格式器
+    const format = new ol.format.GeoJSON();
+    
+    // 转换为GeoJSON几何
+    const geojsonGeometry = format.writeGeometry(geometry, {
+        featureProjection: 'EPSG:3857',
+        dataProjection: 'EPSG:4326'
+    });
+    
+    // 构建完整的GeoJSON对象
+    const geojson = {
+        type: 'FeatureCollection',
+        features: [{
+            type: 'Feature',
+            properties: {
+                name: school.name,
+                school_name: school.name,
+                district: school.district,
+                address: school.address,
+                code: school.code,
+                id: school.id,
+                edit_time: new Date().toISOString()
+            },
+            geometry: JSON.parse(geojsonGeometry)
+        }]
+    };
+    
+    // 生成文件名
+    const filename = `${school.name}_学区_${new Date().toISOString().slice(0, 10)}.geojson`;
+    
+    // 显示确认对话框
+    showConfirmDialog(
+        '确认导出',
+        `即将导出 "${school.name}" 的学区边界`,
+        filename,
+        function() {
+            // 确认导出
+            downloadGeoJSON(geojson, filename);
+            
+            // 结束编辑模式但保留修改
+            finishEditWithoutRestore();
+            
+            showToast('导出成功！请记得把文件交给教育局工作人员');
+        }
+    );
+}
+
+/**
+ * 完成编辑但不恢复原始状态（导出后调用）
+ */
+function finishEditWithoutRestore() {
+    // 移除修改交互
+    if (AppState.modifyInteraction) {
+        AppState.map.removeInteraction(AppState.modifyInteraction);
+        AppState.modifyInteraction = null;
+    }
+    
+    // 重置编辑状态
+    AppState.isEditing = false;
+    AppState.editingSchool = null;
+    AppState.editingFeature = null;
+    AppState.originalGeometry = null;
+    
+    // 隐藏编辑工具栏
+    document.getElementById('edit-toolbar').classList.remove('visible');
+    
+    // 恢复光标样式
+    AppState.map.getTargetElement().style.cursor = '';
+    
+    // 显示选中学校列表面板
+    updateSelectedSchoolsPanel();
+}
+
+/**
+ * 下载GeoJSON文件
+ */
+function downloadGeoJSON(geojson, filename) {
+    const blob = new Blob([JSON.stringify(geojson, null, 2)], {
+        type: 'application/geo+json'
+    });
+    
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+// ============================================
+// 导入功能
+// ============================================
+
+/**
+ * 触发文件选择
+ */
+function triggerImport() {
+    document.getElementById('file-input').click();
+}
+
+/**
+ * 处理文件导入
+ */
+function handleFileImport(event) {
+    const file = event.target.files[0];
+    if (!file) {
+        return;
+    }
+    
+    // 验证文件类型
+    if (!file.name.endsWith('.geojson') && !file.name.endsWith('.json')) {
+        showToast('请选择 .geojson 或 .json 文件');
+        event.target.value = '';
+        return;
+    }
+    
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+        try {
+            const geojson = JSON.parse(e.target.result);
+            importDistrict(geojson, file.name);
+        } catch (error) {
+            showToast('文件解析失败: ' + error.message);
+            console.error('导入错误:', error);
+        }
+    };
+    
+    reader.onerror = function() {
+        showToast('文件读取失败');
+    };
+    
+    reader.readAsText(file);
+    
+    // 清空文件输入，允许重复选择同一文件
+    event.target.value = '';
+}
+
+/**
+ * 导入学区并高亮显示
+ */
+function importDistrict(geojson, filename) {
+    try {
+        // 验证GeoJSON格式
+        if (!geojson.type || !geojson.features || !Array.isArray(geojson.features)) {
+            showToast('无效的GeoJSON格式');
+            return;
+        }
+        
+        // 清除之前的导入
+        clearImportedDistricts();
+        
+        // 读取特征
+        const format = new ol.format.GeoJSON();
+        const features = format.readFeatures(geojson, {
+            featureProjection: 'EPSG:3857'
+        });
+        
+        if (features.length === 0) {
+            showToast('未找到有效的地理数据');
+            return;
+        }
+        
+        // 生成导入学区的颜色（醒目的橙色）
+        const importColor = '#FF9500';
+        
+        // 设置导入特征的样式和高亮
+        features.forEach((feature, index) => {
+            // 从GeoJSON属性中获取学校名称
+            const properties = geojson.features[index]?.properties || {};
+            const schoolName = properties.name || properties.school_name || filename.replace('.geojson', '');
+            
+            feature.set('imported', true);
+            feature.set('name', schoolName);
+            feature.set('color', importColor);
+            
+            // 设置高亮样式
+            feature.setStyle(new ol.style.Style({
+                fill: new ol.style.Fill({
+                    color: hexToRgba(importColor, 0.5)
+                }),
+                stroke: new ol.style.Stroke({
+                    color: importColor,
+                    width: 4,
+                    lineDash: [10, 5]
+                })
+            }));
+        });
+        
+        // 添加到学区源
+        AppState.districtSource.addFeatures(features);
+        AppState.importedFeatures = features;
+        
+        // 获取学校名称
+        const schoolName = features[0].get('name');
+        
+        // 缩放到导入的学区
+        const extent = features[0].getGeometry().getExtent();
+        AppState.map.getView().fit(extent, {
+            padding: [100, 100, 150, 100],
+            duration: 500
+        });
+        
+        // 显示清除高亮按钮
+        const clearBtn = document.getElementById('clear-highlight-btn');
+        if (clearBtn) {
+            clearBtn.classList.add('visible');
+        }
+        
+        showToast(`已导入并高亮: ${schoolName}`);
+        
+        // 显示确认对话框提示用户可以验证
+        setTimeout(() => {
+            showConfirmDialog(
+                '导入验证',
+                `"${schoolName}" 已成功导入并高亮显示`,
+                null,
+                function() {
+                    closeConfirmDialog();
+                },
+                '确定',
+                '取消'
+            );
+        }, 800);
+        
+    } catch (error) {
+        showToast('导入失败: ' + error.message);
+        console.error('导入错误:', error);
+    }
+}
+
+/**
+ * 清除导入的学区
+ */
+function clearImportedDistricts() {
+    if (AppState.importedFeatures && AppState.importedFeatures.length > 0) {
+        AppState.importedFeatures.forEach(feature => {
+            AppState.districtSource.removeFeature(feature);
+        });
+        AppState.importedFeatures = [];
+    }
+}
+
+// ============================================
+// 确认对话框
+// ============================================
+
+/**
+ * 显示确认对话框
+ */
+function showConfirmDialog(title, message, filename, onConfirm, confirmText, cancelText) {
+    const dialog = document.getElementById('confirm-dialog');
+    
+    document.getElementById('confirm-title').textContent = title;
+    document.getElementById('confirm-message').textContent = message;
+    
+    // 设置文件名显示
+    const filenameEl = document.getElementById('confirm-filename');
+    if (filename) {
+        filenameEl.textContent = `文件名: ${filename}`;
+        filenameEl.style.display = 'block';
+    } else {
+        filenameEl.style.display = 'none';
+    }
+    
+    // 设置按钮文字
+    const okBtn = document.getElementById('confirm-ok');
+    const cancelBtn = document.getElementById('confirm-cancel');
+    
+    okBtn.textContent = confirmText || '确认';
+    cancelBtn.textContent = cancelText || '取消';
+    
+    // 绑定确认事件
+    okBtn.onclick = function() {
+        closeConfirmDialog();
+        if (onConfirm) onConfirm();
+    };
+    
+    dialog.classList.add('visible');
+}
+
+/**
+ * 关闭确认对话框
+ */
+function closeConfirmDialog() {
+    const dialog = document.getElementById('confirm-dialog');
+    dialog.classList.remove('visible');
+}
+
+// 覆盖原有的 clearAllHighlights 函数，添加清除导入功能
+const originalClearAllHighlights = clearAllHighlights;
+clearAllHighlights = function() {
+    // 先清除导入的学区
+    clearImportedDistricts();
+    
+    // 调用原有的清除高亮函数
+    originalClearAllHighlights();
+};
