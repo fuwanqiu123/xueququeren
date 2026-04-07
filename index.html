@@ -583,8 +583,18 @@
             line-height: 1.5;
         }
         
+        .edit-toolbar-hint.delete-mode {
+            background: #ffe6e6;
+            border-color: #ff6b6b;
+            color: #c92a2a;
+        }
+        
         .edit-toolbar-hint strong {
             color: #e65100;
+        }
+        
+        .edit-toolbar-hint.delete-mode strong {
+            color: #c92a2a;
         }
         
         .edit-toolbar-actions {
@@ -618,6 +628,16 @@
         
         .edit-toolbar-btn.export {
             background: linear-gradient(135deg, #42b883 0%, #35495e 100%);
+            color: white;
+        }
+        
+        .edit-toolbar-btn.delete-toggle {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+            color: white;
+        }
+        
+        .edit-toolbar-btn.delete-toggle.active {
+            background: linear-gradient(135deg, #51cf66 0%, #37b24d 100%);
             color: white;
         }
         
@@ -1053,14 +1073,20 @@
                 </div>
                 <button class="edit-toolbar-close" onclick="cancelEdit()">✕</button>
             </div>
-            <div class="edit-toolbar-hint">
+            <div class="edit-toolbar-hint" id="edit-hint-normal">
                 <strong>⚠️ 重要提醒：</strong><br>
                 • 拖动<strong>蓝点</strong>可调整边界形状<br>
-                • 编辑完成后<strong>必须导出</strong>保存！<br>
-                • 点击"导出"按钮下载 GeoJSON 文件
+                • <strong>双击</strong>边界线可添加新顶点<br>
+                • 点击下方"删除顶点"按钮可删除顶点
+            </div>
+            <div class="edit-toolbar-hint delete-mode" id="edit-hint-delete" style="display: none;">
+                <strong>🗑️ 删除模式</strong><br>
+                • 点击<strong>红点</strong>即可删除该顶点<br>
+                • 删除完成后记得点击"完成删除"
             </div>
             <div class="edit-toolbar-actions">
                 <button class="edit-toolbar-btn cancel" onclick="cancelEdit()">取消</button>
+                <button class="edit-toolbar-btn delete-toggle" id="delete-mode-btn" onclick="toggleDeleteMode()">🗑️ 删除顶点</button>
                 <button class="edit-toolbar-btn export" onclick="exportEditedDistrict()">📥 导出保存</button>
             </div>
         </div>

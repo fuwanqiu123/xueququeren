@@ -386,6 +386,11 @@ function initMap() {
  * 处理地图点击事件
  */
 function handleMapClick(event) {
+    // 编辑状态下禁用地图点击选择功能，避免误操作
+    if (AppState.isEditing) {
+        return;
+    }
+    
     // 获取点击位置下的所有学区特征（处理重叠情况）
     const features = [];
     AppState.map.forEachFeatureAtPixel(event.pixel, function(feature) {
@@ -1236,52 +1241,95 @@ function createModifyInteraction(feature) {
         features: [feature]
     });
     
+    // 删除模式状态
+    AppState.isDeleteMode = false;
+    
     // 创建修改交互 - 移动端优化的样式
     AppState.modifyInteraction = new ol.interaction.Modify({
         source: editSource,
-        style: new ol.style.Style({
-            // 顶点样式 - 大圆点便于触摸
-            image: new ol.style.Circle({
-                radius: 12,
-                fill: new ol.style.Fill({
-                    color: '#667eea'
+        style: function(feature) {
+            // 根据是否删除模式返回不同样式
+            const isDeleteMode = AppState.isDeleteMode;
+            return new ol.style.Style({
+                // 顶点样式 - 大圆点便于触摸
+                image: new ol.style.Circle({
+                    radius: isDeleteMode ? 14 : 12,
+                    fill: new ol.style.Fill({
+                        color: isDeleteMode ? '#ff6b6b' : '#667eea'
+                    }),
+                    stroke: new ol.style.Stroke({
+                        color: '#ffffff',
+                        width: 3
+                    })
                 }),
+                // 线段样式
                 stroke: new ol.style.Stroke({
-                    color: '#ffffff',
-                    width: 3
+                    color: isDeleteMode ? '#ff6b6b' : '#667eea',
+                    width: isDeleteMode ? 4 : 3
                 })
-            }),
-            // 线段样式
-            stroke: new ol.style.Stroke({
-                color: '#667eea',
-                width: 3
-            }),
-            // 虚拟顶点样式（线段中间添加新点的位置）
-            fill: new ol.style.Fill({
-                color: 'rgba(102, 126, 234, 0.5)'
-            })
-        }),
-        // 插入顶点条件 - 双击或长按
+            });
+        },
+        // 插入顶点条件 - 双击添加新点（仅在非删除模式下）
         insertVertexCondition: function(event) {
+            // 删除模式下不添加顶点
+            if (AppState.isDeleteMode) return false;
             return ol.events.condition.doubleClick(event);
         },
-        // 删除顶点条件 - Alt+点击
+        // 删除顶点条件 - 在删除模式下，单击顶点即可删除
         deleteCondition: function(event) {
-            return ol.events.condition.altKeyOnly(event) && 
-                   ol.events.condition.singleClick(event);
+            return AppState.isDeleteMode && ol.events.condition.singleClick(event);
         }
     });
     
     // 添加修改事件监听
     AppState.modifyInteraction.on('modifyend', function(evt) {
-        console.log('修改完成');
-        showToast('边界已修改，请记得导出保存！');
+        if (AppState.isDeleteMode) {
+            console.log('顶点已删除');
+            showToast('顶点已删除');
+        } else {
+            console.log('修改完成');
+            showToast('边界已修改，请记得导出保存！');
+        }
     });
     
     AppState.map.addInteraction(AppState.modifyInteraction);
     
     // 更改光标样式
     AppState.map.getTargetElement().style.cursor = 'crosshair';
+}
+
+/**
+ * 切换删除模式
+ */
+function toggleDeleteMode() {
+    if (!AppState.isEditing) return;
+    
+    AppState.isDeleteMode = !AppState.isDeleteMode;
+    
+    const deleteBtn = document.getElementById('delete-mode-btn');
+    const normalHint = document.getElementById('edit-hint-normal');
+    const deleteHint = document.getElementById('edit-hint-delete');
+    
+    if (AppState.isDeleteMode) {
+        // 进入删除模式
+        deleteBtn.textContent = '✓ 完成删除';
+        deleteBtn.classList.add('active');
+        normalHint.style.display = 'none';
+        deleteHint.style.display = 'block';
+        showToast('删除模式：点击红点删除顶点');
+    } else {
+        // 退出删除模式
+        deleteBtn.textContent = '🗑️ 删除顶点';
+        deleteBtn.classList.remove('active');
+        normalHint.style.display = 'block';
+        deleteHint.style.display = 'none';
+        showToast('已退出删除模式');
+    }
+    
+    // 刷新修改交互以更新样式
+    if (AppState.modifyInteraction) {
+        AppState.modifyInteraction.changed();
+    }
 }
 
 /**
@@ -1308,6 +1356,18 @@ function cancelEdit() {
     AppState.editingSchool = null;
     AppState.editingFeature = null;
     AppState.originalGeometry = null;
+    AppState.isDeleteMode = false;
+    
+    // 重置UI状态
+    const deleteBtn = document.getElementById('delete-mode-btn');
+    const normalHint = document.getElementById('edit-hint-normal');
+    const deleteHint = document.getElementById('edit-hint-delete');
+    if (deleteBtn) {
+        deleteBtn.textContent = '🗑️ 删除顶点';
+        deleteBtn.classList.remove('active');
+    }
+    if (normalHint) normalHint.style.display = 'block';
+    if (deleteHint) deleteHint.style.display = 'none';
     
     // 隐藏编辑工具栏
     document.getElementById('edit-toolbar').classList.remove('visible');
@@ -1395,6 +1455,18 @@ function finishEditWithoutRestore() {
     AppState.editingSchool = null;
     AppState.editingFeature = null;
     AppState.originalGeometry = null;
+    AppState.isDeleteMode = false;
+    
+    // 重置UI状态
+    const deleteBtn = document.getElementById('delete-mode-btn');
+    const normalHint = document.getElementById('edit-hint-normal');
+    const deleteHint = document.getElementById('edit-hint-delete');
+    if (deleteBtn) {
+        deleteBtn.textContent = '🗑️ 删除顶点';
+        deleteBtn.classList.remove('active');
+    }
+    if (normalHint) normalHint.style.display = 'block';
+    if (deleteHint) deleteHint.style.display = 'none';
     
     // 隐藏编辑工具栏
     document.getElementById('edit-toolbar').classList.remove('visible');
