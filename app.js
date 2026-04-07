@@ -234,7 +234,10 @@ function createTiandituSource(layerType) {
     };
     
     const layerName = layerMap[layerType] || layerType;
-    const key = TiandituKeyManager.getCurrentKey();
+    let key = TiandituKeyManager.getCurrentKey();
+    
+    // 记录使用量，并在接近上限时自动轮换
+    key = TiandituKeyManager.recordUsage(key);
     
     // 使用urls数组形式，支持多个子域
     const urls = [];
@@ -242,11 +245,45 @@ function createTiandituSource(layerType) {
         urls.push(`https://t${i}.tianditu.gov.cn/${layerName}/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=${layerType}&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&tk=${key}`);
     }
     
-    return new ol.source.XYZ({
+    const source = new ol.source.XYZ({
         urls: urls,
         maxZoom: CONFIG.maxZoom,
         attributions: '© 天地图'
     });
+    
+    // 监听瓦片加载错误，自动轮换Key
+    let errorCount = 0;
+    const MAX_ERRORS = 5; // 连续错误5次后切换Key
+    
+    source.on('tileloaderror', function(event) {
+        errorCount++;
+        console.warn(`[天地图] 瓦片加载错误 (${errorCount}/${MAX_ERRORS}):`, event.tile.getKey());
+        
+        if (errorCount >= MAX_ERRORS) {
+            console.warn('[天地图] 连续多次加载失败，触发Key轮换');
+            errorCount = 0;
+            
+            // 切换到下一个Key并刷新所有图层
+            const newKey = TiandituKeyManager.getNextKey();
+            if (newKey) {
+                showToast('天地图Key已自动轮换，继续加载...');
+                
+                // 延迟刷新，避免频繁切换
+                setTimeout(() => {
+                    refreshTiandituSources();
+                }, 1000);
+            }
+        }
+    });
+    
+    source.on('tileloadend', function() {
+        // 加载成功时重置错误计数
+        if (errorCount > 0) {
+            errorCount = 0;
+        }
+    });
+    
+    return source;
 }
 
 /**
@@ -459,6 +496,46 @@ function refreshTiandituSources() {
     AppState.baseLayers.imgLabel.setSource(createTiandituSource('cia'));
     
     console.log('[地图源] 已刷新天地图瓦片源');
+}
+
+/**
+ * 手动轮换到下一个天地图Key
+ * 用户可以在浏览器控制台调用此函数
+ */
+function rotateTiandituKey() {
+    const oldKey = TiandituKeyManager.getCurrentKey();
+    const newKey = TiandituKeyManager.getNextKey();
+    
+    console.log('[KEY轮换] 手动触发');
+    console.log('[KEY轮换] 旧Key:', oldKey.substring(0, 8) + '...');
+    console.log('[KEY轮换] 新Key:', newKey.substring(0, 8) + '...');
+    
+    // 刷新地图源
+    refreshTiandituSources();
+    
+    // 显示状态
+    const status = TiandituKeyManager.getStatus();
+    showToast(`Key已轮换 (${status.currentIndex + 1}/${status.totalKeys})`);
+    
+    return status;
+}
+
+/**
+ * 查看天地图Key使用状态
+ * 用户可以在浏览器控制台调用此函数
+ */
+function checkTiandituKeyStatus() {
+    const status = TiandituKeyManager.getStatus();
+    
+    console.log('===== 天地图Key状态 =====');
+    console.log(`总Key数: ${status.totalKeys}`);
+    console.log(`当前Key索引: ${status.currentIndex + 1}`);
+    console.log(`当前Key: ${status.currentKey}`);
+    console.log(`已失效Key数: ${status.failedCount}`);
+    console.log('使用统计:', status.usageStats);
+    console.log('========================');
+    
+    return status;
 }
 
 /**
