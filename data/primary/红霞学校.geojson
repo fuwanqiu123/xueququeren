@@ -32,8 +32,16 @@
               27.816196375647323
             ],
             [
-              112.93611912646637,
-              27.81599948982212
+              112.93539533774053,
+              27.815927238599414
+            ],
+            [
+              112.93551306597575,
+              27.814692511542702
+            ],
+            [
+              112.93569430230684,
+              27.812532815935896
             ],
             [
               112.9356662338659,
@@ -83,13 +91,20 @@
         ]
       },
       "properties": {
-        "sourceFileId": "file_1773302170201_1",
-        "sourceFileName": "新建文件_2026-03-12T07-56-10.geojson",
+        "sourceFileId": "file_1775627444262_55_g1",
+        "sourceFileName": "红霞学校.geojson",
         "name": "红霞学校",
-        "id": "polygon_1773302573953",
-        "sourceFile": "新建文件_2026-03-12T07-56-10.geojson"
+        "id": "imported_1775627444262_55_0_g1",
+        "sourceFile": "红霞学校.geojson",
+        "sourceGroupId": 1,
+        "isAssistFeature": false
       },
-      "id": "polygon_1773302573953"
+      "id": "imported_1775627444262_55_0_g1"
     }
-  ]
+  ],
+  "properties": {
+    "fileName": "红霞学校.geojson",
+    "exportTime": "2026/4/8 15:24:04",
+    "isStarred": false
+  }
 }
