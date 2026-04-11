@@ -103,15 +103,15 @@
         ]
       },
       "properties": {
-        "sourceFileId": "file_1775116086010_g1",
+        "sourceFileId": "file_1775789831781_74_g1",
         "sourceFileName": "风车坪建元学校.geojson",
         "name": "风车坪建元学校",
-        "id": "polygon_1773302330456_imported_1775116086010_g1",
+        "id": "imported_1775789831781_74_0_g1",
         "sourceFile": "风车坪建元学校.geojson",
         "sourceGroupId": 1,
         "isAssistFeature": false
       },
-      "id": "polygon_1773302330456_imported_1775116086010_g1"
+      "id": "imported_1775789831781_74_0_g1"
     },
     {
       "type": "Feature",
@@ -231,15 +231,15 @@
         ]
       },
       "properties": {
-        "sourceFileId": "file_1775116086010_g1",
+        "sourceFileId": "file_1775789831781_74_g1",
         "sourceFileName": "风车坪建元学校.geojson",
         "name": "风车坪建元学校",
-        "id": "polygon_1773302766251_imported_1775116086010_g1",
+        "id": "imported_1775789831781_74_1_g1",
         "sourceFile": "风车坪建元学校.geojson",
         "sourceGroupId": 1,
         "isAssistFeature": false
       },
-      "id": "polygon_1773302766251_imported_1775116086010_g1"
+      "id": "imported_1775789831781_74_1_g1"
     },
     {
       "type": "Feature",
@@ -271,15 +271,15 @@
         ]
       },
       "properties": {
-        "sourceFileId": "file_1775116086010_g1",
+        "sourceFileId": "file_1775789831781_74_g1",
         "sourceFileName": "风车坪建元学校.geojson",
         "name": "风车坪建元学校",
-        "id": "polygon_1773303081426_imported_1775116086011_g1",
+        "id": "imported_1775789831781_74_2_g1",
         "sourceFile": "风车坪建元学校.geojson",
         "sourceGroupId": 1,
         "isAssistFeature": false
       },
-      "id": "polygon_1773303081426_imported_1775116086011_g1"
+      "id": "imported_1775789831781_74_2_g1"
     },
     {
       "type": "Feature",
@@ -339,15 +339,15 @@
         ]
       },
       "properties": {
-        "sourceFileId": "file_1775116086010_g1",
+        "sourceFileId": "file_1775789831781_74_g1",
         "sourceFileName": "风车坪建元学校.geojson",
         "name": "风车坪建元学校",
-        "id": "polygon_1773303234169_imported_1775116086011_g1",
+        "id": "imported_1775789831781_74_3_g1",
         "sourceFile": "风车坪建元学校.geojson",
         "sourceGroupId": 1,
         "isAssistFeature": false
       },
-      "id": "polygon_1773303234169_imported_1775116086011_g1"
+      "id": "imported_1775789831781_74_3_g1"
     },
     {
       "type": "Feature",
@@ -391,15 +391,15 @@
         ]
       },
       "properties": {
-        "sourceFileId": "file_1775116086010_g1",
+        "sourceFileId": "file_1775789831781_74_g1",
         "sourceFileName": "风车坪建元学校.geojson",
         "name": "风车坪建元学校",
-        "id": "polygon_1773303259809_imported_1775116086011_g1",
+        "id": "imported_1775789831781_74_4_g1",
         "sourceFile": "风车坪建元学校.geojson",
         "sourceGroupId": 1,
         "isAssistFeature": false
       },
-      "id": "polygon_1773303259809_imported_1775116086011_g1"
+      "id": "imported_1775789831781_74_4_g1"
     },
     {
       "type": "Feature",
@@ -416,16 +416,48 @@
               27.905145318122663
             ],
             [
+              112.89822985228344,
+              27.904680207464423
+            ],
+            [
               112.89815452049028,
               27.905527466279835
             ],
             [
-              112.9068089785805,
-              27.9061448120042
+              112.89744583807268,
+              27.907929408971825
             ],
             [
-              112.90735396948122,
-              27.90611471094539
+              112.89763496172138,
+              27.90915834594753
+            ],
+            [
+              112.89812251825894,
+              27.909191379420633
+            ],
+            [
+              112.90173678219047,
+              27.909436256738076
+            ],
+            [
+              112.90386185975728,
+              27.909264374146204
+            ],
+            [
+              112.90492500719732,
+              27.90689193427984
+            ],
+            [
+              112.90562774804346,
+              27.906622825864403
+            ],
+            [
+              112.90696295565111,
+              27.907626803850434
+            ],
+            [
+              112.90798751332647,
+              27.907309057002195
             ],
             [
               112.9091081589429,
@@ -483,15 +515,15 @@
         ]
       },
       "properties": {
-        "sourceFileId": "file_1775116086010_g1",
+        "sourceFileId": "file_1775789831781_74_g1",
         "sourceFileName": "风车坪建元学校.geojson",
         "name": "风车坪建元学校",
-        "id": "polygon_1773304019723_imported_1775116086011_g1",
+        "id": "imported_1775789831781_74_5_g1",
         "sourceFile": "风车坪建元学校.geojson",
         "sourceGroupId": 1,
         "isAssistFeature": false
       },
-      "id": "polygon_1773304019723_imported_1775116086011_g1"
+      "id": "imported_1775789831781_74_5_g1"
     },
     {
       "type": "Feature",
@@ -583,20 +615,20 @@
         ]
       },
       "properties": {
-        "sourceFileId": "file_1775116086010_g1",
+        "sourceFileId": "file_1775789831781_74_g1",
         "sourceFileName": "风车坪建元学校.geojson",
         "name": "风车坪建元学校",
-        "id": "polygon_1773304192639_imported_1775116086011_g1",
+        "id": "imported_1775789831781_74_6_g1",
         "sourceFile": "风车坪建元学校.geojson",
         "sourceGroupId": 1,
         "isAssistFeature": false
       },
-      "id": "polygon_1773304192639_imported_1775116086011_g1"
+      "id": "imported_1775789831781_74_6_g1"
     }
   ],
   "properties": {
     "fileName": "风车坪建元学校.geojson",
-    "exportTime": "2026/4/2 15:53:34",
+    "exportTime": "2026/4/10 11:36:12",
     "isStarred": false
   }
 }
