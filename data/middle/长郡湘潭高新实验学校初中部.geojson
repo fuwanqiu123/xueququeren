@@ -40,8 +40,12 @@
               27.84850438136479
             ],
             [
-              112.98133918011064,
-              27.843902351059157
+              112.97611647253889,
+              27.848639897726144
+            ],
+            [
+              112.97590024430771,
+              27.843644062738917
             ],
             [
               112.96921042189777,
@@ -287,20 +291,20 @@
         ]
       },
       "properties": {
-        "sourceFileId": "file_1776043853136_22_g1",
+        "sourceFileId": "file_1776073180492_22_g1",
         "sourceFileName": "长郡湘潭高新实验学校初中部.geojson",
         "name": "长郡湘潭高新实验学校初中部",
-        "id": "imported_1776043853136_22_0_g1",
+        "id": "imported_1776073180492_22_0_g1",
         "sourceFile": "长郡湘潭高新实验学校初中部.geojson",
         "sourceGroupId": 1,
         "isAssistFeature": false
       },
-      "id": "imported_1776043853136_22_0_g1"
+      "id": "imported_1776073180492_22_0_g1"
     }
   ],
   "properties": {
     "fileName": "长郡湘潭高新实验学校初中部.geojson",
-    "exportTime": "2026/4/13 10:08:05",
+    "exportTime": "2026/4/13 18:33:52",
     "isStarred": false
   }
 }
