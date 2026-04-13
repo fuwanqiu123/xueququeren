@@ -1667,64 +1667,20 @@
         ]
       },
       "properties": {
-        "sourceFileId": "file_1775723813280_19_g1",
+        "sourceFileId": "file_1776043853135_19_g1",
         "sourceFileName": "湘锰中学.geojson",
         "name": "湘锰中学",
-        "id": "imported_1775723813280_19_0_g1",
+        "id": "imported_1776043853135_19_0_g1",
         "sourceFile": "湘锰中学.geojson",
         "sourceGroupId": 1,
         "isAssistFeature": false
       },
-      "id": "imported_1775723813280_19_0_g1"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              112.78955154637346,
-              27.99914623407429
-            ],
-            [
-              112.78365306007902,
-              27.99380095083187
-            ],
-            [
-              112.79219034287358,
-              27.98626228034307
-            ],
-            [
-              112.79839927581511,
-              27.99099114436882
-            ],
-            [
-              112.79576047931496,
-              27.994554788884813
-            ],
-            [
-              112.78955154637346,
-              27.99914623407429
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "sourceFileId": "file_1775723813280_19_g1",
-        "sourceFileName": "湘锰中学.geojson",
-        "name": "湘锰中学",
-        "id": "imported_1775723813281_19_1_g1",
-        "sourceFile": "湘锰中学.geojson",
-        "sourceGroupId": 1,
-        "isAssistFeature": false
-      },
-      "id": "imported_1775723813281_19_1_g1"
+      "id": "imported_1776043853135_19_0_g1"
     }
   ],
   "properties": {
     "fileName": "湘锰中学.geojson",
-    "exportTime": "2026/4/9 17:07:05",
+    "exportTime": "2026/4/13 10:08:10",
     "isStarred": false
   }
 }
