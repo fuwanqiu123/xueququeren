@@ -216,8 +216,12 @@
               27.84850438136479
             ],
             [
-              112.98133918011064,
-              27.843902351059157
+              112.9761101629895,
+              27.848674754849895
+            ],
+            [
+              112.97602351686301,
+              27.84370768441704
             ],
             [
               112.97424495610899,
@@ -243,20 +247,20 @@
         ]
       },
       "properties": {
-        "sourceFileId": "file_1776073180488_9_g1",
+        "sourceFileId": "file_1776128362163_9_g1",
         "sourceFileName": "湘潭市七中.geojson",
         "sourceGroupId": 1,
         "name": "湘潭市七中",
-        "id": "imported_1776073180488_9_0_g1",
+        "id": "imported_1776128362163_9_0_g1",
         "sourceFile": "湘潭市七中.geojson",
         "isAssistFeature": false
       },
-      "id": "imported_1776073180488_9_0_g1"
+      "id": "imported_1776128362163_9_0_g1"
     }
   ],
   "properties": {
     "fileName": "湘潭市七中.geojson",
-    "exportTime": "2026/4/13 18:28:21",
+    "exportTime": "2026/4/14 09:14:47",
     "isStarred": false
   }
 }
