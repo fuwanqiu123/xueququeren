@@ -916,8 +916,12 @@
               27.91565940319977
             ],
             [
-              112.83274413166951,
-              27.92835860497057
+              112.83115669568629,
+              27.921976183058774
+            ],
+            [
+              112.83249709889465,
+              27.927897829001736
             ],
             [
               112.83450770370723,
@@ -1667,20 +1671,20 @@
         ]
       },
       "properties": {
-        "sourceFileId": "file_1776043853135_19_g1",
+        "sourceFileId": "file_1776222677147_19_g1",
         "sourceFileName": "湘锰中学.geojson",
         "name": "湘锰中学",
-        "id": "imported_1776043853135_19_0_g1",
+        "id": "imported_1776222677147_19_0_g1",
         "sourceFile": "湘锰中学.geojson",
         "sourceGroupId": 1,
         "isAssistFeature": false
       },
-      "id": "imported_1776043853135_19_0_g1"
+      "id": "imported_1776222677147_19_0_g1"
     }
   ],
   "properties": {
     "fileName": "湘锰中学.geojson",
-    "exportTime": "2026/4/13 10:08:10",
+    "exportTime": "2026/4/15 11:43:47",
     "isStarred": false
   }
 }
