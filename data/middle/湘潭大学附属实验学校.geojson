@@ -531,14 +531,15 @@
         ]
       },
       "properties": {
-        "sourceFileId": "file_1776042483569_1_g1",
-        "sourceFileName": "新建学区_组1_2026-04-13T01-08-03.geojson",
+        "sourceFileId": "file_1776268849376_8_g1",
+        "sourceFileName": "湘潭大学附属实验学校.geojson",
         "sourceGroupId": 1,
         "name": "湘潭大学附属实验学校",
-        "id": "polygon_1776043357310",
-        "sourceFile": "新建学区_组1_2026-04-13T01-08-03.geojson"
+        "id": "imported_1776268849376_8_0_g1",
+        "sourceFile": "湘潭大学附属实验学校.geojson",
+        "isAssistFeature": false
       },
-      "id": "polygon_1776043357310"
+      "id": "imported_1776268849376_8_0_g1"
     },
     {
       "type": "Feature",
@@ -590,14 +591,15 @@
         ]
       },
       "properties": {
-        "sourceFileId": "file_1776042483569_1_g1",
-        "sourceFileName": "新建学区_组1_2026-04-13T01-08-03.geojson",
+        "sourceFileId": "file_1776268849376_8_g1",
+        "sourceFileName": "湘潭大学附属实验学校.geojson",
         "sourceGroupId": 1,
         "name": "湘潭大学附属实验学校",
-        "id": "polygon_1776043443430",
-        "sourceFile": "新建学区_组1_2026-04-13T01-08-03.geojson"
+        "id": "imported_1776268849376_8_1_g1",
+        "sourceFile": "湘潭大学附属实验学校.geojson",
+        "isAssistFeature": false
       },
-      "id": "polygon_1776043443430"
+      "id": "imported_1776268849376_8_1_g1"
     },
     {
       "type": "Feature",
@@ -653,19 +655,20 @@
         ]
       },
       "properties": {
-        "sourceFileId": "file_1776042483569_1_g1",
-        "sourceFileName": "新建学区_组1_2026-04-13T01-08-03.geojson",
+        "sourceFileId": "file_1776268849376_8_g1",
+        "sourceFileName": "湘潭大学附属实验学校.geojson",
         "sourceGroupId": 1,
         "name": "湘潭大学附属实验学校",
-        "id": "polygon_1776043460576",
-        "sourceFile": "新建学区_组1_2026-04-13T01-08-03.geojson"
+        "id": "imported_1776268849376_8_2_g1",
+        "sourceFile": "湘潭大学附属实验学校.geojson",
+        "isAssistFeature": false
       },
-      "id": "polygon_1776043460576"
+      "id": "imported_1776268849376_8_2_g1"
     }
   ],
   "properties": {
-    "fileName": "新建学区_组1_2026-04-13T01-08-03.geojson",
-    "exportTime": "2026/4/13 09:24:34",
+    "fileName": "湘潭大学附属实验学校.geojson",
+    "exportTime": "2026/4/16 00:06:13",
     "isStarred": false
   }
 }
