@@ -504,12 +504,12 @@
               27.940090008747177
             ],
             [
-              112.77631893861019,
-              27.938627551404153
+              112.77594408476732,
+              27.940170934670917
             ],
             [
-              112.775002269255,
-              27.93930296831408
+              112.77459498773874,
+              27.94006111087387
             ],
             [
               112.77283760864069,
@@ -739,20 +739,20 @@
         ]
       },
       "properties": {
-        "sourceFileId": "file_1775987214834_66_g1",
+        "sourceFileId": "file_1776232600570_66_g1",
         "sourceFileName": "长龙学校.geojson",
         "name": "长龙学校",
-        "id": "imported_1775987214834_66_0_g1",
+        "id": "imported_1776232600570_66_0_g1",
         "sourceFile": "长龙学校.geojson",
         "sourceGroupId": 1,
         "isAssistFeature": false
       },
-      "id": "imported_1775987214834_66_0_g1"
+      "id": "imported_1776232600570_66_0_g1"
     }
   ],
   "properties": {
     "fileName": "长龙学校.geojson",
-    "exportTime": "2026/4/12 21:50:07",
+    "exportTime": "2026/4/15 14:09:15",
     "isStarred": false
   }
 }
