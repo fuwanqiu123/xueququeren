@@ -744,9 +744,13 @@ function assignAdjacentColors() {
     const order = Array.from({length: schoolData.length}, (_, i) => i);
     order.sort((a, b) => adjacency.get(b).size - adjacency.get(a).size);
     
-    // 重置颜色映射
+    // 重置颜色映射，并统计每种颜色的全局使用次数
     AppState.colorMap = {};
     const assignedColors = new Map(); // schoolIndex -> color
+    const globalColorUsage = new Map(); // color -> usage count
+    for (const c of CONFIG.districtColors) {
+        globalColorUsage.set(c, 0);
+    }
     
     for (const idx of order) {
         const neighbors = adjacency.get(idx);
@@ -758,17 +762,21 @@ function assignAdjacentColors() {
             }
         }
         
-        // 找一个与所有邻居都不冲突的颜色
+        // 在所有不与邻居冲突的颜色中，优先选全局使用次数最少的
+        // 这样可以迫使算法均匀使用所有颜色，地图看起来更丰富多彩
         let color = null;
+        let minUsage = Infinity;
         for (const candidate of CONFIG.districtColors) {
             if (!usedColors.has(candidate)) {
-                color = candidate;
-                break;
+                const usage = globalColorUsage.get(candidate);
+                if (usage < minUsage) {
+                    minUsage = usage;
+                    color = candidate;
+                }
             }
         }
         
-        // 如果所有颜色都被邻居用了（理论上平面图4色定理保证不会，
-        // 但 bbox 相交可能有伪邻居），选冲突最少的一个
+        // 如果所有颜色都被邻居用了，选与最少邻居冲突的颜色
         if (!color) {
             const colorCounts = new Map();
             for (const c of CONFIG.districtColors) {
@@ -790,6 +798,7 @@ function assignAdjacentColors() {
         }
         
         assignedColors.set(idx, color);
+        globalColorUsage.set(color, globalColorUsage.get(color) + 1);
         schoolData[idx].school.color = color;
         AppState.colorMap[schoolData[idx].school.id] = color;
     }
