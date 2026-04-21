@@ -110,6 +110,12 @@ function selectMode(mode) {
     document.getElementById('right-controls').style.display = 'flex';
     document.getElementById('legend').style.display = 'block';
     
+    // 显示全览按钮（教育局查看模式默认始终显示）
+    const clearBtn = document.getElementById('clear-highlight-btn');
+    if (clearBtn) {
+        clearBtn.classList.add('visible');
+    }
+    
     // 更新切换按钮文字
     const btnText = mode === 'middle' ? '切小学' : '切中学';
     document.getElementById('mode-switch-btn').textContent = btnText;
@@ -188,18 +194,6 @@ function switchMode() {
     // 清空搜索
     document.getElementById('search-input').value = '';
     document.getElementById('search-dropdown').classList.remove('active');
-    
-    // 隐藏清除高亮按钮
-    const clearBtn = document.getElementById('clear-highlight-btn');
-    if (clearBtn) {
-        clearBtn.classList.remove('visible');
-    }
-    
-    // 隐藏选中学校列表面板
-    const panel = document.getElementById('selected-schools-panel');
-    if (panel) {
-        panel.classList.remove('visible');
-    }
     
     // 切换模式
     AppState.currentMode = newMode;
@@ -336,18 +330,19 @@ function initMap() {
     // 创建学区源
     AppState.districtSource = new ol.source.Vector();
     
-    // 创建学区图层 - 初始淡化样式
+    // 创建学区图层 - 默认全局着色显示
     AppState.districtLayer = new ol.layer.Vector({
         source: AppState.districtSource,
         style: function(feature) {
-            // 初始淡化样式 - 透明度高、边框细、颜色淡
+            // 根据学校颜色全局着色，透明度适中便于宏观查看重叠区域
+            const color = feature.get('color') || '#667eea';
             return new ol.style.Style({
                 fill: new ol.style.Fill({
-                    color: 'rgba(200, 200, 200, 0.15)'
+                    color: hexToRgba(color, 0.3)
                 }),
                 stroke: new ol.style.Stroke({
-                    color: 'rgba(150, 150, 150, 0.4)',
-                    width: 1
+                    color: color,
+                    width: 2
                 })
             });
         },
@@ -420,7 +415,7 @@ function initMap() {
 }
 
 /**
- * 处理地图点击事件
+ * 处理地图点击事件 - 教育局查看模式：点击显示学校详情
  */
 function handleMapClick(event) {
     // 编辑状态下禁用地图点击选择功能，避免误操作
@@ -440,6 +435,8 @@ function handleMapClick(event) {
     });
     
     if (features.length === 0) {
+        // 点击空白处关闭信息面板
+        document.getElementById('info-panel').classList.remove('active');
         return;
     }
     
@@ -458,15 +455,20 @@ function handleMapClick(event) {
         }
     });
     
-    if (clickedSchools.length === 1) {
-        // 如果只点击到一个学区，直接选中
-        selectSchool(clickedSchools[0]);
-    } else if (clickedSchools.length > 1) {
-        // 如果点击到多个重叠学区，依次添加它们
-        clickedSchools.forEach(school => {
-            selectSchool(school);
+    // 显示信息面板，展示点击到的所有学校
+    showInfoPanel(clickedSchools);
+    
+    // 飞移到第一个学校的范围
+    if (clickedSchools.length > 0 && clickedSchools[0].features && clickedSchools[0].features.length > 0) {
+        const extent = clickedSchools[0].features[0].getGeometry().getExtent();
+        AppState.map.getView().fit(extent, {
+            padding: [100, 100, 250, 100],
+            duration: 500
         });
-        showToast(`已添加 ${clickedSchools.length} 个学区`);
+    }
+    
+    if (clickedSchools.length > 1) {
+        showToast(`该位置涉及 ${clickedSchools.length} 个学区`);
     }
 }
 
@@ -585,8 +587,11 @@ async function loadData() {
         // 加载学区数据
         await loadDistricts();
         
-        // 适配视图
+        // 适配视图到所有学区范围（教育局查看模式：默认全览）
         fitToBounds();
+        
+        // 渲染学校列表面板
+        updateSelectedSchoolsPanel();
         
         showToast('数据加载完成');
     } catch (error) {
@@ -675,8 +680,121 @@ async function loadDistrictFiles(basePath, fileList) {
     const results = await Promise.all(loadPromises);
     AppState.schools = results.filter(s => s !== null);
     
+    // 根据空间相邻关系重新分配颜色，确保相邻学区颜色不同
+    assignAdjacentColors();
+    
+    // 根据相邻关系重新分配颜色
+    assignAdjacentColors();
+    
     // 渲染学区
     renderDistricts();
+}
+
+/**
+ * 根据空间相邻关系为学区分配颜色，确保相邻多边形颜色不同
+ * 使用贪心着色算法，按约束度（邻居数量）降序处理
+ */
+function assignAdjacentColors() {
+    if (AppState.schools.length === 0) return;
+    
+    const format = new ol.format.GeoJSON();
+    
+    // 为每个学校读取 features 并计算 bbox，用于相交检测
+    const schoolData = AppState.schools.map(school => {
+        const features = format.readFeatures(school.geojson, {
+            featureProjection: 'EPSG:3857'
+        });
+        return {
+            school: school,
+            extents: features.map(f => f.getGeometry().getExtent())
+        };
+    });
+    
+    // 构建邻接图：index -> Set(相邻学校的index)
+    const adjacency = new Map();
+    for (let i = 0; i < schoolData.length; i++) {
+        adjacency.set(i, new Set());
+    }
+    
+    // O(n²) 检测 bbox 相交（相邻的学区 bbox 必然相交）
+    for (let i = 0; i < schoolData.length; i++) {
+        for (let j = i + 1; j < schoolData.length; j++) {
+            const a = schoolData[i];
+            const b = schoolData[j];
+            let isAdjacent = false;
+            
+            for (const extA of a.extents) {
+                for (const extB of b.extents) {
+                    if (ol.extent.intersects(extA, extB)) {
+                        isAdjacent = true;
+                        break;
+                    }
+                }
+                if (isAdjacent) break;
+            }
+            
+            if (isAdjacent) {
+                adjacency.get(i).add(j);
+                adjacency.get(j).add(i);
+            }
+        }
+    }
+    
+    // 贪心着色：按度数（邻居数量）降序排序，约束多的先处理
+    const order = Array.from({length: schoolData.length}, (_, i) => i);
+    order.sort((a, b) => adjacency.get(b).size - adjacency.get(a).size);
+    
+    // 重置颜色映射
+    AppState.colorMap = {};
+    const assignedColors = new Map(); // schoolIndex -> color
+    
+    for (const idx of order) {
+        const neighbors = adjacency.get(idx);
+        const usedColors = new Set();
+        
+        for (const neighborIdx of neighbors) {
+            if (assignedColors.has(neighborIdx)) {
+                usedColors.add(assignedColors.get(neighborIdx));
+            }
+        }
+        
+        // 找一个与所有邻居都不冲突的颜色
+        let color = null;
+        for (const candidate of CONFIG.districtColors) {
+            if (!usedColors.has(candidate)) {
+                color = candidate;
+                break;
+            }
+        }
+        
+        // 如果所有颜色都被邻居用了（理论上平面图4色定理保证不会，
+        // 但 bbox 相交可能有伪邻居），选冲突最少的一个
+        if (!color) {
+            const colorCounts = new Map();
+            for (const c of CONFIG.districtColors) {
+                colorCounts.set(c, 0);
+            }
+            for (const neighborIdx of neighbors) {
+                if (assignedColors.has(neighborIdx)) {
+                    const c = assignedColors.get(neighborIdx);
+                    colorCounts.set(c, colorCounts.get(c) + 1);
+                }
+            }
+            let minCount = Infinity;
+            for (const [c, count] of colorCounts) {
+                if (count < minCount) {
+                    minCount = count;
+                    color = c;
+                }
+            }
+        }
+        
+        assignedColors.set(idx, color);
+        schoolData[idx].school.color = color;
+        AppState.colorMap[schoolData[idx].school.id] = color;
+    }
+    
+    console.log('[颜色分配] 相邻分析完成，共', AppState.schools.length, '所学校');
 }
 
 /**
@@ -741,11 +859,14 @@ function renderDistricts() {
         // 保存特征引用
         school.features = features;
         
-        // 计算中心点用于标签
-        if (features.length > 0) {
-            const extent = features[0].getGeometry().getExtent();
+        // 为每个面（MultiPolygon的每个子面）计算中心点并创建标签
+        school.labelFeatures = [];
+        features.forEach((feature, idx) => {
+            const extent = feature.getGeometry().getExtent();
             const center = ol.extent.getCenter(extent);
-            school.center = ol.proj.toLonLat(center);
+            if (idx === 0) {
+                school.center = ol.proj.toLonLat(center);
+            }
             
             // 创建标签特征
             const labelFeature = new ol.Feature({
@@ -755,8 +876,10 @@ function renderDistricts() {
             });
             
             AppState.labelLayer.getSource().addFeature(labelFeature);
-            school.labelFeature = labelFeature;
-        }
+            school.labelFeatures.push(labelFeature);
+        });
+        // 兼容旧代码：保留第一个标签的引用
+        school.labelFeature = school.labelFeatures[0];
     });
 }
 
@@ -825,88 +948,50 @@ function flyToSchool(schoolId) {
 // ============================================
 
 /**
- * 选择学校（高亮显示）
+ * 选择学校（定位并显示详情）
+ * 教育局查看模式下：学区默认已全局着色，点击仅用于定位和信息展示
  */
 function selectSchool(school) {
-    // 将该学校添加到高亮集合
-    if (!AppState.highlightedSchools) {
-        AppState.highlightedSchools = new Map(); // 使用Map来存储学校对象
-    }
-    
-    const schoolId = school.id;
-    
-    // 如果已经高亮，则不再重复添加
-    if (AppState.highlightedSchools.has(schoolId)) {
-        showToast(`${school.name} 已在选中列表中`);
-        return;
-    }
-    
-    // 添加到高亮集合
-    AppState.highlightedSchools.set(schoolId, school);
-    
-    // 高亮该学校的所有特征（处理MultiPolygon情况）
-    const allFeatures = AppState.districtSource.getFeatures();
-    const schoolFeatures = allFeatures.filter(f => f.get('schoolId') === schoolId);
-    
-    const color = school.color;
-    schoolFeatures.forEach(feature => {
-        feature.setStyle(new ol.style.Style({
-            fill: new ol.style.Fill({
-                color: hexToRgba(color, 0.5)
-            }),
-            stroke: new ol.style.Stroke({
-                color: color,
-                width: 3
-            })
-        }));
-        feature.set('highlighted', true);
-    });
-    
-    // 保存学校特征引用
-    school.highlightedFeatures = schoolFeatures;
-    
     // 飞移到学区（使用第一个特征的范围）
-    if (schoolFeatures.length > 0) {
-        const extent = schoolFeatures[0].getGeometry().getExtent();
+    if (school.features && school.features.length > 0) {
+        const extent = school.features[0].getGeometry().getExtent();
         AppState.map.getView().fit(extent, {
-            padding: [100, 100, 150, 100],
+            padding: [100, 100, 200, 100],
             duration: 500
         });
     }
     
-    // 更新UI
-    updateSelectedSchoolsPanel();
-    
-    // 显示清除高亮按钮
-    const clearBtn = document.getElementById('clear-highlight-btn');
-    if (clearBtn) {
-        clearBtn.classList.add('visible');
-    }
+    // 显示该学校信息
+    showInfoPanel([school]);
 }
 
 /**
- * 更新选中学校列表面板
+ * 更新学校列表面板 - 教育局查看模式：显示所有学校，支持过滤
  */
 function updateSelectedSchoolsPanel() {
     const panel = document.getElementById('selected-schools-panel');
     const list = document.getElementById('selected-schools-list');
     const count = document.getElementById('selected-count');
     
-    if (!AppState.highlightedSchools || AppState.highlightedSchools.size === 0) {
-        panel.classList.remove('visible');
-        return;
+    // 获取过滤关键词
+    const filterInput = document.getElementById('school-list-filter');
+    const filterText = filterInput ? filterInput.value.trim().toLowerCase() : '';
+    
+    // 过滤并排序学校列表
+    let displaySchools = AppState.schools.slice().sort((a, b) => a.name.localeCompare(b.name, 'zh-CN'));
+    if (filterText) {
+        displaySchools = displaySchools.filter(s => s.name.toLowerCase().includes(filterText));
     }
     
-    // 更新数量
-    count.textContent = AppState.highlightedSchools.size;
+    // 更新数量显示：当前显示数 / 总数
+    count.textContent = `${displaySchools.length}/${AppState.schools.length}`;
     
     // 更新列表
     list.innerHTML = '';
-    AppState.highlightedSchools.forEach((school, schoolId) => {
+    displaySchools.forEach(school => {
         const item = document.createElement('div');
         item.className = 'selected-school-item';
         
-        // 使用字符串拼接避免引号问题
         const colorDiv = document.createElement('div');
         colorDiv.className = 'selected-school-color';
         colorDiv.style.background = school.color;
@@ -921,27 +1006,16 @@ function updateSelectedSchoolsPanel() {
         editBtn.innerHTML = '✏️';
         editBtn.onclick = function(e) {
             e.stopPropagation();
-            startEditSchool(schoolId);
-        };
-        
-        const removeBtn = document.createElement('button');
-        removeBtn.className = 'selected-school-remove';
-        removeBtn.title = '移除';
-        removeBtn.textContent = '×';
-        removeBtn.onclick = function(e) {
-            e.stopPropagation();
-            removeSelectedSchool(schoolId);
+            startEditSchool(school.id);
         };
         
         item.appendChild(colorDiv);
         item.appendChild(nameSpan);
         item.appendChild(editBtn);
-        item.appendChild(removeBtn);
         
         item.onclick = function(e) {
-            if (e.target.classList.contains('selected-school-remove') || 
-                e.target.classList.contains('selected-school-edit')) return;
-            flyToSchool(schoolId);
+            if (e.target.classList.contains('selected-school-edit')) return;
+            flyToSchool(school.id);
         };
         list.appendChild(item);
     });
@@ -950,85 +1024,95 @@ function updateSelectedSchoolsPanel() {
 }
 
 /**
- * 从选中列表中移除学校
+ * 从选中列表中移除学校（教育局查看模式下已弃用，保留兼容）
  */
 function removeSelectedSchool(schoolId) {
-    const school = AppState.highlightedSchools.get(schoolId);
-    if (!school) return;
-    
-    // 移除高亮样式
-    if (school.highlightedFeatures) {
-        school.highlightedFeatures.forEach(feature => {
-            feature.setStyle(null);
-            feature.set('highlighted', false);
-        });
-    }
-    
-    // 从集合中移除
-    AppState.highlightedSchools.delete(schoolId);
-    
-    // 更新UI
-    updateSelectedSchoolsPanel();
-    
-    // 如果没有选中的学校了，隐藏清除按钮
-    if (AppState.highlightedSchools.size === 0) {
-        const clearBtn = document.getElementById('clear-highlight-btn');
-        if (clearBtn) {
-            clearBtn.classList.remove('visible');
-        }
-    }
+    // 教育局查看模式下学区默认全局着色，不再需要移除高亮逻辑
+    console.log('[兼容] removeSelectedSchool 已弃用');
 }
 
 /**
- * 显示信息面板
+ * 显示信息面板 - 支持多所学校（重叠区域）
+ * @param {Array} schools - 学校对象数组
  */
-function showInfoPanel(school) {
-    document.getElementById('info-name').textContent = school.name;
-    document.getElementById('info-district').innerHTML = `📍 ${school.district}`;
-    document.getElementById('info-address').textContent = school.address;
-    document.getElementById('info-code').textContent = school.code;
+function showInfoPanel(schools) {
+    if (!schools || schools.length === 0) return;
     
-    // 根据模式设置图标颜色
-    const iconEl = document.getElementById('info-icon');
-    iconEl.style.background = school.color;
+    // 存储当前显示的学校列表，用于切换
+    AppState.currentInfoSchools = schools;
+    AppState.currentInfoIndex = 0;
+    
+    // 渲染信息面板
+    renderInfoPanel();
     
     document.getElementById('info-panel').classList.add('active');
 }
 
 /**
- * 清除所有高亮
+ * 渲染信息面板内容
  */
-function clearAllHighlights() {
-    // 重置所有特征的样式为默认淡化样式
-    if (AppState.districtSource) {
-        const features = AppState.districtSource.getFeatures();
-        features.forEach(feature => {
-            feature.setStyle(null);  // 清除自定义样式，恢复图层默认样式
-            feature.set('highlighted', false);
+function renderInfoPanel() {
+    const schools = AppState.currentInfoSchools;
+    const index = AppState.currentInfoIndex || 0;
+    const school = schools[index];
+    
+    if (!school) return;
+    
+    // 学校名称和切换指示器
+    const nameEl = document.getElementById('info-name');
+    if (schools.length > 1) {
+        nameEl.textContent = `${school.name} (${index + 1}/${schools.length})`;
+    } else {
+        nameEl.textContent = school.name;
+    }
+    
+    document.getElementById('info-district').innerHTML = `📍 ${school.district}`;
+    document.getElementById('info-address').textContent = school.address || '-';
+    document.getElementById('info-code').textContent = school.code || '-';
+    
+    // 图标颜色
+    const iconEl = document.getElementById('info-icon');
+    iconEl.style.background = school.color;
+    
+    // 多学校切换按钮显示/隐藏
+    const prevBtn = document.getElementById('info-prev');
+    const nextBtn = document.getElementById('info-next');
+    if (prevBtn) prevBtn.style.display = schools.length > 1 ? 'flex' : 'none';
+    if (nextBtn) nextBtn.style.display = schools.length > 1 ? 'flex' : 'none';
+}
+
+/**
+ * 切换到信息面板中的上一个/下一个学校
+ */
+function switchInfoSchool(direction) {
+    const schools = AppState.currentInfoSchools;
+    if (!schools || schools.length <= 1) return;
+    
+    let index = AppState.currentInfoIndex || 0;
+    index += direction;
+    if (index < 0) index = schools.length - 1;
+    if (index >= schools.length) index = 0;
+    
+    AppState.currentInfoIndex = index;
+    renderInfoPanel();
+    
+    // 飞移到对应的学校
+    const school = schools[index];
+    if (school.features && school.features.length > 0) {
+        const extent = school.features[0].getGeometry().getExtent();
+        AppState.map.getView().fit(extent, {
+            padding: [100, 100, 250, 100],
+            duration: 500
         });
     }
-    
-    // 清空高亮集合
-    if (AppState.highlightedSchools) {
-        AppState.highlightedSchools.clear();
-    }
-    
-    AppState.selectedSchool = null;
-    AppState.selectedFeature = null;
-    
-    // 隐藏清除高亮按钮
-    const clearBtn = document.getElementById('clear-highlight-btn');
-    if (clearBtn) {
-        clearBtn.classList.remove('visible');
-    }
-    
-    // 隐藏选中学校列表面板
-    const panel = document.getElementById('selected-schools-panel');
-    if (panel) {
-        panel.classList.remove('visible');
-    }
-    
-    showToast('已清除所有高亮');
+}
+
+/**
+ * 全览视图 - 教育局查看模式下：一键适配到所有学区范围
+ */
+function clearAllHighlights() {
+    fitToBounds();
+    showToast('已适配到全览视图');
 }
 
 /**
@@ -1205,6 +1289,9 @@ function loadMockData() {
     // 适配视图
     fitToBounds();
     
+    // 渲染学校列表面板
+    updateSelectedSchoolsPanel();
+    
     hideLoading();
     showToast('已加载模拟数据');
 }
@@ -1262,9 +1349,14 @@ function startEditSchool(schoolId) {
         return;
     }
     
-    // 确保学校已高亮
-    if (!AppState.highlightedSchools || !AppState.highlightedSchools.has(schoolId)) {
-        selectSchool(school);
+    // 飞移到该学校位置（教育局查看模式下默认全局着色，无需额外高亮）
+    if (school.features && school.features.length > 0) {
+        const extent = school.features[0].getGeometry().getExtent();
+        AppState.map.getView().fit(extent, {
+            padding: [150, 150, 250, 150],
+            duration: 500,
+            maxZoom: 16
+        });
     }
     
     // 获取该学校的特征
