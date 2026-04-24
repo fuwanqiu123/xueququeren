@@ -1,0 +1,502 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.94965195337288,
+          27.865929484760613
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "湘纺中学",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true
+      },
+      "id": "assist_point_1776075310455_reimported_1776223282333"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.96971103193381,
+          27.865130669715683
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "湘潭市七中",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true
+      },
+      "id": "assist_point_1776075364007_reimported_1776223282333"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.96969116288818,
+          27.89608171674425
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "湖南师范大学竹埠港实验中学",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true
+      },
+      "id": "assist_point_1776075485502_reimported_1776223282333"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.0194428526665,
+          27.93193953908107
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "湘钢二中教育集团易家湾校区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true
+      },
+      "id": "assist_point_1776075541176_reimported_1776223282333"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.0060638748771,
+          27.850918530935374
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "长郡湘潭高新实验学校初中部",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true
+      },
+      "id": "assist_point_1776075604238_reimported_1776223282333"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.91533504246276,
+          27.815173485404898
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "湘机中学",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true
+      },
+      "id": "assist_point_1776075654591_reimported_1776223282333"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.90990557148125,
+          27.82487865049005
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "湘钢二中教育集团钢二中校区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true
+      },
+      "id": "assist_point_1776075741270_reimported_1776223282334"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.90558605128628,
+          27.8362533776656
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "湘潭市三中",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true
+      },
+      "id": "assist_point_1776075755974_reimported_1776223282334"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.92296983260529,
+          27.830599265861835
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "湘钢一中教育集团十二中校区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true
+      },
+      "id": "assist_point_1776075800607_reimported_1776223282334"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.98103450458251,
+          27.958358258739636
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "九华雅礼中学",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1776223372724"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.96459756868727,
+          27.94186630506333
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "长沙市一中九华中学",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1776223503194"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.95069526611118,
+          27.905860370836734
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "九华江声中学",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1776223557482"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.93901175867795,
+          27.883632484126892
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "风车坪东校区（中学部）",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1776223708858"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.9130320026974,
+          27.87163696678425
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "湘潭市四中",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1776223756554"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.90908945676198,
+          27.86102113716123
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "湘潭市十六中",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1776223820417"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.89755483738047,
+          27.86177658241131
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "湘潭市二中",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1776223917561"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.85138478400783,
+          27.8764656009202
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "长城中学（中学部）",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1776223974506"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.81339367179335,
+          27.85943913666476
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "泉塘子中学",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1776224027354"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.65783811521518,
+          27.849836120547593
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "江南学校（中学部）",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1776224090945"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.75745450577467,
+          27.94619391075105
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "仙女中学",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1776224128169"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.86015870856001,
+          27.96848502393709
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "湘锰中学",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1776224160129"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.8779116549859,
+          27.893363363428662
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "湘潭大学附属实验学校",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1776224194673"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.89577306093585,
+          27.868945696778567
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "湘潭市益智中学",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1776223282333_1",
+        "sourceFileName": "辅助元素图层_岳塘区初中.geojson",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1776224252625"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助元素图层_岳塘区初中.geojson",
+    "exportTime": "2026/4/15 11:37:53",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

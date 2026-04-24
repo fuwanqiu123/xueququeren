@@ -34,6 +34,12 @@ const AppState = {
     // 标签图层
     labelLayer: null,
     
+    // 辅助点位源
+    assistPointSource: null,
+    
+    // 辅助点位图层
+    assistPointLayer: null,
+    
     // 所有学校数据
     schools: [],
     
@@ -154,6 +160,11 @@ function showModeSelector() {
     document.getElementById('legend').style.display = 'none';
     document.getElementById('selected-schools-panel').classList.remove('visible');
     
+    // 清除辅助点位
+    if (AppState.assistPointSource) {
+        AppState.assistPointSource.clear();
+    }
+    
     // 隐藏清除高亮按钮
     const clearBtn = document.getElementById('clear-highlight-btn');
     if (clearBtn) {
@@ -180,6 +191,9 @@ function switchMode() {
     }
     if (AppState.labelLayer) {
         AppState.labelLayer.getSource().clear();
+    }
+    if (AppState.assistPointSource) {
+        AppState.assistPointSource.clear();
     }
     
     AppState.schools = [];
@@ -375,6 +389,41 @@ function initMap() {
         minZoom: CONFIG.labelMinZoom
     });
     
+    // 创建辅助点位源
+    AppState.assistPointSource = new ol.source.Vector();
+    
+    // 创建辅助点位图层
+    AppState.assistPointLayer = new ol.layer.Vector({
+        source: AppState.assistPointSource,
+        style: function(feature) {
+            const iconColor = feature.get('iconColor') || '#e74c3c';
+            const iconSize = parseFloat(feature.get('iconSize')) || 1;
+            const text = feature.get('text') || '';
+            const textColor = feature.get('textColor') || '#333333';
+            return new ol.style.Style({
+                image: new ol.style.Circle({
+                    radius: 8 * iconSize,
+                    fill: new ol.style.Fill({ color: iconColor }),
+                    stroke: new ol.style.Stroke({ color: '#ffffff', width: 2 })
+                }),
+                text: new ol.style.Text({
+                    text: text,
+                    font: 'bold 13px "Microsoft YaHei", sans-serif',
+                    fill: new ol.style.Fill({ color: textColor }),
+                    stroke: new ol.style.Stroke({ color: '#ffffff', width: 3 }),
+                    offsetY: -16 * iconSize,
+                    backgroundFill: new ol.style.Fill({ color: 'rgba(255,255,255,0.85)' }),
+                    padding: [3, 8, 3, 8],
+                    backgroundStroke: new ol.style.Stroke({
+                        color: 'rgba(0,0,0,0.05)',
+                        width: 1
+                    })
+                })
+            });
+        },
+        zIndex: 30
+    });
+    
     // 创建地图视图
     const view = new ol.View({
         center: ol.proj.fromLonLat(CONFIG.defaultCenter),
@@ -393,7 +442,8 @@ function initMap() {
             AppState.baseLayers.imgLabel,
             AppState.boundaryLayer,
             AppState.districtLayer,
-            AppState.labelLayer
+            AppState.labelLayer,
+            AppState.assistPointLayer
         ],
         view: view,
         controls: ol.control.defaults.defaults({
@@ -587,6 +637,9 @@ async function loadData() {
         // 加载学区数据
         await loadDistricts();
         
+        // 加载辅助点位数据
+        await loadAssistPoints();
+        
         // 适配视图到所有学区范围（教育局查看模式：默认全览）
         fitToBounds();
         
@@ -658,6 +711,38 @@ async function loadDistricts() {
     ];
     
     await loadDistrictFiles(dataPath, sampleFiles);
+}
+
+/**
+ * 加载辅助点位数据
+ */
+async function loadAssistPoints() {
+    const filePath = AppState.currentMode === 'middle' 
+        ? CONFIG.middleAssistPointFile 
+        : CONFIG.primaryAssistPointFile;
+    
+    if (!filePath) {
+        console.warn('[辅助点位] 未配置点位文件路径');
+        return;
+    }
+    
+    try {
+        const response = await fetch(filePath);
+        if (!response.ok) throw new Error('辅助点位数据加载失败');
+        
+        const data = await response.json();
+        const format = new ol.format.GeoJSON();
+        const features = format.readFeatures(data, {
+            featureProjection: 'EPSG:3857'
+        });
+        
+        AppState.assistPointSource.clear();
+        AppState.assistPointSource.addFeatures(features);
+        
+        console.log(`[辅助点位] 已加载 ${features.length} 个点位`);
+    } catch (error) {
+        console.warn('辅助点位加载失败:', error);
+    }
 }
 
 /**

@@ -34,8 +34,14 @@ const CONFIG = {
     // 中学学区数据文件夹
     middleDataPath: 'data/middle',
     
+    // 中学辅助点位文件
+    middleAssistPointFile: 'data/middle/辅助元素图层_middle_point.geojson',
+    
     // 小学学区数据文件夹
     primaryDataPath: 'data/primary',
+    
+    // 小学辅助点位文件
+    primaryAssistPointFile: 'data/primary/辅助元素图层_primary_point.geojson',
     
     // 行政区划边界文件
     boundaryFile: 'data/xiangtan_boundary.geojson',
