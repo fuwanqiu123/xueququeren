@@ -24,11 +24,11 @@ import requests
 
 # ==================== 只改这里 ====================
 CONFIG = {
-    "input_geojson": "./merged_polygons_xx.geojson",   # 合并后的学区GeoJSON
+    "input_geojson": "./湘潭市和平小学.geojson",   # 合并后的学区GeoJSON
     "name_field": "name",                       # 学校名称字段
     "output_dir": "./output",       # 每个学校单独输出PDF的目录
     "buffer_meters": 1200,          # 出图视野：向校外扩多少米
-    "dpi": 300,
+    "dpi": 600,
     
     # 字体：Windows用Microsoft YaHei，Mac用PingFang SC或Heiti TC，Linux用DejaVu Sans
     "font": "Microsoft YaHei",
@@ -142,20 +142,41 @@ def build_basemap(minx, miny, maxx, maxy, z, cache_dir):
     
     return composite, (t_minx, t_miny, t_maxx, t_maxy)
 
-def choose_zoom(width_deg, height_deg):
-    """Auto choose zoom level based on viewport width/height in degrees"""
-    target_px = 5000
-    for z in range(18, 14, -1):
+def choose_zoom(width_deg, height_deg, min_px):
+    """Auto choose zoom level so that the stitched basemap has enough resolution.
+
+    min_px : int
+        Minimum required pixel size for the longer side of the basemap image.
+        Should be derived from figsize × dpi so the raster text is not upscaled.
+    """
+    for z in range(19, 13, -1):          # try higher zoom first (19 → 14)
         ncols = 2**z
         nrows = 2**(z - 1)
         tile_w_deg = 360.0 / ncols
         tile_h_deg = 180.0 / nrows
-        px_w = width_deg / (tile_w_deg / 256)
-        px_h = height_deg / (tile_h_deg / 256)
-        px = max(px_w, px_h)
+
         cols = int(width_deg / tile_w_deg) + 3
         rows = int(height_deg / tile_h_deg) + 3
-        if px <= target_px * 3.0 and cols * rows <= 256:
+        map_px_w = cols * 256
+        map_px_h = rows * 256
+
+        # hard cap: avoid OOM (512 tiles ≈ 8k×8k image, still fine on modern PCs)
+        if cols * rows > 512:
+            continue
+
+        # pick the zoom where the basemap is at least as large as the canvas
+        if map_px_w >= min_px and map_px_h >= min_px:
+            return z
+
+    # fallback: return the highest zoom that does not exceed tile cap
+    for z in range(19, 13, -1):
+        ncols = 2**z
+        nrows = 2**(z - 1)
+        tile_w_deg = 360.0 / ncols
+        tile_h_deg = 180.0 / nrows
+        cols = int(width_deg / tile_w_deg) + 3
+        rows = int(height_deg / tile_h_deg) + 3
+        if cols * rows <= 512:
             return z
     return 14
 
@@ -187,19 +208,24 @@ def plot_one(school_row, all_gdf, overlaps, output_dir, cache_dir):
     minx, miny, maxx, maxy = view_4326.bounds
     w, h = maxx - minx, maxy - miny
     
-    # 自动选zoom并下载底图（传入经纬度范围）
-    z = choose_zoom(w, h)
-    print(f"    下载底图 z={z} ...", end="", flush=True)
-    basemap_img, (t_minx, t_miny, t_maxx, t_maxy) = build_basemap(minx, miny, maxx, maxy, z, cache_dir)
-    print(" OK")
-    
-    # 开始画图：figsize按底图宽高比匹配A4页面，最大化利用空间
+    # 先按A4页面算出 figsize，再反推底图需要的分辨率
     page_w, page_h = 11.69, 8.27
     aspect = w / h if h > 0 else 1
     if aspect > page_w / page_h:
         fig_w, fig_h = page_w, page_w / aspect
     else:
         fig_w, fig_h = page_h * aspect, page_h
+
+    # 底图长边至少要有画布长边×dpi 的像素，这样文字不会被强行放大
+    target_px = int(max(fig_w, fig_h) * CONFIG["dpi"])
+
+    # 自动选zoom并下载底图（传入经纬度范围）
+    z = choose_zoom(w, h, target_px)
+    print(f"    下载底图 z={z} ...", end="", flush=True)
+    basemap_img, (t_minx, t_miny, t_maxx, t_maxy) = build_basemap(minx, miny, maxx, maxy, z, cache_dir)
+    print(" OK")
+    
+    # 开始画图：figsize按底图宽高比匹配A4页面，最大化利用空间
     fig, ax = plt.subplots(figsize=(fig_w, fig_h))
     fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
     
