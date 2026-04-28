@@ -117,13 +117,13 @@
       "properties": {
         "name": "湘潭市二中",
         "isAssistFeature": false,
-        "sourceFileId": "file_1776824046365_12_g1",
+        "sourceFileId": "file_1777360798520_12_g1",
         "sourceFileName": "湘潭市二中.geojson",
         "sourceGroupId": 1,
-        "id": "imported_1776824046365_12_0_g1",
+        "id": "imported_1777360798521_12_0_g1",
         "sourceFile": "湘潭市二中.geojson"
       },
-      "id": "imported_1776824046365_12_0_g1"
+      "id": "imported_1777360798521_12_0_g1"
     },
     {
       "type": "Feature",
@@ -188,20 +188,12 @@
               27.86241138299063
             ],
             [
-              112.90388126406557,
-              27.857296930007664
+              112.90443669923056,
+              27.856011613984833
             ],
             [
-              112.89744865469146,
-              27.85418339386858
-            ],
-            [
-              112.89413821015586,
-              27.852293862834458
-            ],
-            [
-              112.89460864978533,
-              27.85158431340038
+              112.89804035483006,
+              27.852902568955926
             ],
             [
               112.89485058405762,
@@ -545,18 +537,18 @@
       "properties": {
         "name": "湘潭市二中",
         "isAssistFeature": false,
-        "sourceFileId": "file_1776824046365_12_g1",
+        "sourceFileId": "file_1777360798520_12_g1",
         "sourceFileName": "湘潭市二中.geojson",
         "sourceGroupId": 1,
-        "id": "imported_1776824046365_12_1_g1",
+        "id": "imported_1777360798521_12_1_g1",
         "sourceFile": "湘潭市二中.geojson"
       },
-      "id": "imported_1776824046365_12_1_g1"
+      "id": "imported_1777360798521_12_1_g1"
     }
   ],
   "properties": {
     "fileName": "湘潭市二中.geojson",
-    "exportTime": "2026/4/22 10:16:51",
+    "exportTime": "2026/4/28 15:28:46",
     "isStarred": false
   }
 }
