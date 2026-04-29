@@ -1,7 +1,7 @@
 {
   "type": "FeatureCollection",
   "features": [
- {
+    {
       "type": "Feature",
       "geometry": {
         "type": "Point",
@@ -11,17 +11,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775801939736_reimported_1775804262161_reimported_1775985401715_reimported_1775986295889_reimported_1776001065921_reimported_1776063371137",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "九华和平小学",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143004735_primary"
       },
-      "id": "assist_point_1775801939736_reimported_1775804262161_reimported_1775985401715_reimported_1775986295889_reimported_1776001065921_reimported_1776063371137"
+      "id": "assist_imported_1777448860348_0"
     },
     {
       "type": "Feature",
@@ -33,17 +35,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775802038112_reimported_1775804262161_reimported_1775985401715_reimported_1775986295890_reimported_1776001065921_reimported_1776063371137",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "风车坪东校区（小学部）",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "3143019755_primary"
       },
-      "id": "assist_point_1775802038112_reimported_1775804262161_reimported_1775985401715_reimported_1775986295890_reimported_1776001065921_reimported_1776063371137"
+      "id": "assist_imported_1777448860348_1"
     },
     {
       "type": "Feature",
@@ -55,17 +59,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775802228048_reimported_1775804262161_reimported_1775985401715_reimported_1775986295890_reimported_1776001065921_reimported_1776063371137",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "九华莲城小学",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143010981_primary"
       },
-      "id": "assist_point_1775802228048_reimported_1775804262161_reimported_1775985401715_reimported_1775986295890_reimported_1776001065921_reimported_1776063371137"
+      "id": "assist_imported_1777448860349_2"
     },
     {
       "type": "Feature",
@@ -77,17 +83,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775802296496_reimported_1775804262161_reimported_1775985401715_reimported_1775986295890_reimported_1776001065921_reimported_1776063371137",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "湖南师范大学附属九华步步高小学",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143011067_primary"
       },
-      "id": "assist_point_1775802296496_reimported_1775804262161_reimported_1775985401715_reimported_1775986295890_reimported_1776001065921_reimported_1776063371137"
+      "id": "assist_imported_1777448860349_3"
     },
     {
       "type": "Feature",
@@ -99,17 +107,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775804287278_reimported_1775985401715_reimported_1775986295890_reimported_1776001065921_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "先锋学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143006267_primary"
       },
-      "id": "assist_point_1775804287278_reimported_1775985401715_reimported_1775986295890_reimported_1776001065921_reimported_1776063371138"
+      "id": "assist_imported_1777448860349_4"
     },
     {
       "type": "Feature",
@@ -121,17 +131,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805010990_reimported_1775985401716_reimported_1775986295890_reimported_1776001065921_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "碑头富利学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143020360_primary"
       },
-      "id": "assist_point_1775805010990_reimported_1775985401716_reimported_1775986295890_reimported_1776001065921_reimported_1776063371138"
+      "id": "assist_imported_1777448860349_5"
     },
     {
       "type": "Feature",
@@ -143,17 +155,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805057791_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "陈蒲学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143020367_primary"
       },
-      "id": "assist_point_1775805057791_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860349_6"
     },
     {
       "type": "Feature",
@@ -165,17 +179,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805082389_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "烧汤河学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143020378_primary"
       },
-      "id": "assist_point_1775805082389_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860349_7"
     },
     {
       "type": "Feature",
@@ -187,17 +203,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805101686_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "南谷小学",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143020375_primary"
       },
-      "id": "assist_point_1775805101686_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860349_8"
     },
     {
       "type": "Feature",
@@ -209,17 +227,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805129837_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "立新学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143020372_primary"
       },
-      "id": "assist_point_1775805129837_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860349_9"
     },
     {
       "type": "Feature",
@@ -231,17 +251,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805155725_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "柴山学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143020298_primary"
       },
-      "id": "assist_point_1775805155725_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860349_10"
     },
     {
       "type": "Feature",
@@ -253,17 +275,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805173525_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "长龙学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143020366_primary"
       },
-      "id": "assist_point_1775805173525_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860349_11"
     },
     {
       "type": "Feature",
@@ -275,17 +299,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805200905_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "仁兴学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143020382_primary"
       },
-      "id": "assist_point_1775805200905_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860349_12"
     },
     {
       "type": "Feature",
@@ -297,17 +323,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805223197_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "进军学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143020324_primary"
       },
-      "id": "assist_point_1775805223197_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860349_13"
     },
     {
       "type": "Feature",
@@ -319,17 +347,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805258446_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "九华和平湘江湾小学",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143011060_primary"
       },
-      "id": "assist_point_1775805258446_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860349_14"
     },
     {
       "type": "Feature",
@@ -341,17 +371,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805277837_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "九华和平将军渡小学",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143010808_primary"
       },
-      "id": "assist_point_1775805277837_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860349_15"
     },
     {
       "type": "Feature",
@@ -363,17 +395,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805303949_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "九华砂子塘潭州小学",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143011292_primary"
       },
-      "id": "assist_point_1775805303949_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860349_16"
     },
     {
       "type": "Feature",
@@ -385,17 +419,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805321957_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "九华风车坪雅爱小学",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143011059_primary"
       },
-      "id": "assist_point_1775805321957_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860349_17"
     },
     {
       "type": "Feature",
@@ -407,17 +443,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805342677_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "响水中心小学",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143004140_primary"
       },
-      "id": "assist_point_1775805342677_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860350_18"
     },
     {
       "type": "Feature",
@@ -429,17 +467,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805477877_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "云塘学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143006427_primary"
       },
-      "id": "assist_point_1775805477877_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860350_19"
     },
     {
       "type": "Feature",
@@ -451,17 +491,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805520399_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "响水乡黄龙学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143013195_primary"
       },
-      "id": "assist_point_1775805520399_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860350_20"
     },
     {
       "type": "Feature",
@@ -473,17 +515,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805552916_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
-        "text": "长城中学(小学部)",
+        "text": "长城中学（小学部）",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "3143001270_primary"
       },
-      "id": "assist_point_1775805552916_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860350_21"
     },
     {
       "type": "Feature",
@@ -495,17 +539,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805580173_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "韶西逸夫小学",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143006221_primary"
       },
-      "id": "assist_point_1775805580173_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860350_22"
     },
     {
       "type": "Feature",
@@ -517,17 +563,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805607588_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "金庭学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143006242_primary"
       },
-      "id": "assist_point_1775805607588_reimported_1775985401716_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860350_23"
     },
     {
       "type": "Feature",
@@ -539,17 +587,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805629030_reimported_1775985401717_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "湘锰小学",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143006332_primary"
       },
-      "id": "assist_point_1775805629030_reimported_1775985401717_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860350_24"
     },
     {
       "type": "Feature",
@@ -561,17 +611,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805771277_reimported_1775985401717_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "九华和平科大小学",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "3143019696_primary"
       },
-      "id": "assist_point_1775805771277_reimported_1775985401717_reimported_1775986295890_reimported_1776001065922_reimported_1776063371138"
+      "id": "assist_imported_1777448860350_25"
     },
     {
       "type": "Feature",
@@ -583,17 +635,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805796238_reimported_1775985401717_reimported_1775986295890_reimported_1776001065922_reimported_1776063371139",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "源湘学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143020368_primary"
       },
-      "id": "assist_point_1775805796238_reimported_1775985401717_reimported_1775986295890_reimported_1776001065922_reimported_1776063371139"
+      "id": "assist_imported_1777448860350_26"
     },
     {
       "type": "Feature",
@@ -605,17 +659,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775805822813_reimported_1775985401717_reimported_1775986295890_reimported_1776001065922_reimported_1776063371139",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "立云中心小学",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143006275_primary"
       },
-      "id": "assist_point_1775805822813_reimported_1775985401717_reimported_1775986295890_reimported_1776001065922_reimported_1776063371139"
+      "id": "assist_imported_1777448860350_27"
     },
     {
       "type": "Feature",
@@ -627,17 +683,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775806030612_reimported_1775985401717_reimported_1775986295890_reimported_1776001065922_reimported_1776063371139",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "九华吉利学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143004706_primary"
       },
-      "id": "assist_point_1775806030612_reimported_1775985401717_reimported_1775986295890_reimported_1776001065922_reimported_1776063371139"
+      "id": "assist_imported_1777448860350_28"
     },
     {
       "type": "Feature",
@@ -649,17 +707,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775985912743_reimported_1775986295890_reimported_1776001065922_reimported_1776063371139",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "月塘实验学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "3143001271_primary"
       },
-      "id": "assist_point_1775985912743_reimported_1775986295890_reimported_1776001065922_reimported_1776063371139"
+      "id": "assist_imported_1777448860350_29"
     },
     {
       "type": "Feature",
@@ -671,17 +731,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775986432637_reimported_1776001065922_reimported_1776063371139",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "青亭学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143020361_primary"
       },
-      "id": "assist_point_1775986432637_reimported_1776001065922_reimported_1776063371139"
+      "id": "assist_imported_1777448860350_30"
     },
     {
       "type": "Feature",
@@ -693,17 +755,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775986862358_reimported_1776001065922_reimported_1776063371139",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "梅花学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143020325_primary"
       },
-      "id": "assist_point_1775986862358_reimported_1776001065922_reimported_1776063371139"
+      "id": "assist_imported_1777448860350_31"
     },
     {
       "type": "Feature",
@@ -715,17 +779,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775986969310_reimported_1776001065922_reimported_1776063371139",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "清联学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143020373_primary"
       },
-      "id": "assist_point_1775986969310_reimported_1776001065922_reimported_1776063371139"
+      "id": "assist_imported_1777448860350_32"
     },
     {
       "type": "Feature",
@@ -737,17 +803,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775987021478_reimported_1776001065922_reimported_1776063371139",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "金陵学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143020321_primary"
       },
-      "id": "assist_point_1775987021478_reimported_1776001065922_reimported_1776063371139"
+      "id": "assist_imported_1777448860350_33"
     },
     {
       "type": "Feature",
@@ -759,17 +827,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775987060547_reimported_1776001065922_reimported_1776063371139",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "奇头学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143020327_primary"
       },
-      "id": "assist_point_1775987060547_reimported_1776001065922_reimported_1776063371139"
+      "id": "assist_imported_1777448860350_34"
     },
     {
       "type": "Feature",
@@ -781,17 +851,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775987081148_reimported_1776001065922_reimported_1776063371139",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "司马学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143020398_primary"
       },
-      "id": "assist_point_1775987081148_reimported_1776001065922_reimported_1776063371139"
+      "id": "assist_imported_1777448860350_35"
     },
     {
       "type": "Feature",
@@ -803,17 +875,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775987162777_reimported_1776001065922_reimported_1776063371139",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "双湖学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "2143020380_primary"
       },
-      "id": "assist_point_1775987162777_reimported_1776001065922_reimported_1776063371139"
+      "id": "assist_imported_1777448860350_36"
     },
     {
       "type": "Feature",
@@ -825,17 +899,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1776003091118_reimported_1776063371139",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "护潭学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint",
-        "isAssistFeature": true
+        "isAssistFeature": true,
+        "sch_code": "3143001278_primary"
       },
-      "id": "assist_point_1776003091118_reimported_1776063371139"
+      "id": "assist_imported_1777448860350_37"
     },
     {
       "type": "Feature",
@@ -847,16 +923,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1776063619890",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "金庭宝庆路学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143010639_primary"
       },
-      "id": "assist_point_1776063619890"
+      "id": "assist_imported_1777448860350_38"
     },
     {
       "type": "Feature",
@@ -868,16 +947,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1776064232220",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "风车坪北校区（小学部）",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "3143003400_primary"
       },
-      "id": "assist_point_1776064232220"
+      "id": "assist_imported_1777448860350_39"
     },
     {
       "type": "Feature",
@@ -889,16 +971,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1776064250306",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "风车坪广场学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143010681_primary"
       },
-      "id": "assist_point_1776064250306"
+      "id": "assist_imported_1777448860350_40"
     },
     {
       "type": "Feature",
@@ -910,16 +995,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1776064309570",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "曙光学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143006362_primary"
       },
-      "id": "assist_point_1776064309570"
+      "id": "assist_imported_1777448860351_41"
     },
     {
       "type": "Feature",
@@ -931,16 +1019,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1776064397323",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "湘潭市和平小学",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143000003_primary"
       },
-      "id": "assist_point_1776064397323"
+      "id": "assist_imported_1777448860351_42"
     },
     {
       "type": "Feature",
@@ -952,16 +1043,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1776064457537",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "熙春路逸夫小学",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143006278_primary"
       },
-      "id": "assist_point_1776064457537"
+      "id": "assist_imported_1777448860351_43"
     },
     {
       "type": "Feature",
@@ -973,16 +1067,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1776064629578",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "风车坪建元学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143009138_primary"
       },
-      "id": "assist_point_1776064629578"
+      "id": "assist_imported_1777448860351_44"
     },
     {
       "type": "Feature",
@@ -994,17 +1091,21 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1776064687730",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "九华杉山学校",
         "textColor": "#333333",
-        "assistFileId": "assist_file_1776063371137_1",
-        "sourceFileName": "辅助元素图层_雨湖小学_导出_导出_导出.geojson",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143004782_primary"
       },
-      "id": "assist_point_1776064687730"
-    },{
+      "id": "assist_imported_1777448860351_45"
+    },
+    {
       "type": "Feature",
       "geometry": {
         "type": "Point",
@@ -1014,16 +1115,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775698176266",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "滴水湖学校教育集团南天校区",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "3143008808_primary"
       },
-      "id": "assist_point_1775698176266"
+      "id": "assist_imported_1777448860351_46"
     },
     {
       "type": "Feature",
@@ -1035,16 +1139,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775698204002",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "昭山和平小学",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143006846_primary"
       },
-      "id": "assist_point_1775698204002"
+      "id": "assist_imported_1777448860351_47"
     },
     {
       "type": "Feature",
@@ -1056,16 +1163,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775698366761",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "育才学校教育集团育才校区",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143010917_primary"
       },
-      "id": "assist_point_1775698366761"
+      "id": "assist_imported_1777448860351_48"
     },
     {
       "type": "Feature",
@@ -1077,16 +1187,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775698413193",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "滴水湖学校教育集团江滨学校小学部",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "3143008807_primary"
       },
-      "id": "assist_point_1775698413193"
+      "id": "assist_imported_1777448860351_49"
     },
     {
       "type": "Feature",
@@ -1098,16 +1211,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775698454330",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "湘纺小学教育集团纺小校区",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143010912_primary"
       },
-      "id": "assist_point_1775698454330"
+      "id": "assist_imported_1777448860351_50"
     },
     {
       "type": "Feature",
@@ -1119,16 +1235,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775698524361",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "育才学校教育集团清水校区",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143010866_primary"
       },
-      "id": "assist_point_1775698524361"
+      "id": "assist_imported_1777448860351_51"
     },
     {
       "type": "Feature",
@@ -1140,16 +1259,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775698569154",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "长郡湘潭高新实验学校教育集团长郡实校小学部",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "3143008806_primary"
       },
-      "id": "assist_point_1775698569154"
+      "id": "assist_imported_1777448860351_52"
     },
     {
       "type": "Feature",
@@ -1161,16 +1283,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775698597073",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "长郡湘潭高新实验学校教育集团高才校区",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143010887_primary"
       },
-      "id": "assist_point_1775698597073"
+      "id": "assist_imported_1777448860351_53"
     },
     {
       "type": "Feature",
@@ -1182,16 +1307,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775698637610",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "滴水湖学校教育集团滴水湖校区",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143009930_primary"
       },
-      "id": "assist_point_1775698637610"
+      "id": "assist_imported_1777448860351_54"
     },
     {
       "type": "Feature",
@@ -1203,16 +1331,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775698707169",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "火炬学校教育集团红旗校区",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143010921_primary"
       },
-      "id": "assist_point_1775698707169"
+      "id": "assist_imported_1777448860351_55"
     },
     {
       "type": "Feature",
@@ -1224,16 +1355,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775698726641",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "大桥学校",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143010957_primary"
       },
-      "id": "assist_point_1775698726641"
+      "id": "assist_imported_1777448860351_56"
     },
     {
       "type": "Feature",
@@ -1245,16 +1379,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775698769641",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "湘钢三校教育集团东坪校区",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143010895_primary"
       },
-      "id": "assist_point_1775698769641"
+      "id": "assist_imported_1777448860351_57"
     },
     {
       "type": "Feature",
@@ -1266,16 +1403,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775698803323",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "湘钢三校教育集团霞光校区",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143010384_primary"
       },
-      "id": "assist_point_1775698803323"
+      "id": "assist_imported_1777448860351_58"
     },
     {
       "type": "Feature",
@@ -1287,16 +1427,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775698835705",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "湘钢一校教育集团钢一校区",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143010974_primary"
       },
-      "id": "assist_point_1775698835705"
+      "id": "assist_imported_1777448860351_59"
     },
     {
       "type": "Feature",
@@ -1308,16 +1451,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775698862833",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "湘钢一校教育集团葩金校区",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143006487_primary"
       },
-      "id": "assist_point_1775698862833"
+      "id": "assist_imported_1777448860351_60"
     },
     {
       "type": "Feature",
@@ -1329,16 +1475,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775698891793",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "湘钢二校",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143010976_primary"
       },
-      "id": "assist_point_1775698891793"
+      "id": "assist_imported_1777448860351_61"
     },
     {
       "type": "Feature",
@@ -1350,16 +1499,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775698929209",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "湘机小学教育集团湘机校区",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143010970_primary"
       },
-      "id": "assist_point_1775698929209"
+      "id": "assist_imported_1777448860351_62"
     },
     {
       "type": "Feature",
@@ -1371,16 +1523,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775698979880",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "湘机小学教育集团一完小校区",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143010966_primary"
       },
-      "id": "assist_point_1775698979880"
+      "id": "assist_imported_1777448860351_63"
     },
     {
       "type": "Feature",
@@ -1392,16 +1547,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775699000248",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "红霞学校",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143010899_primary"
       },
-      "id": "assist_point_1775699000248"
+      "id": "assist_imported_1777448860351_64"
     },
     {
       "type": "Feature",
@@ -1413,16 +1571,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775699028601",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "湖湘学校教育集团湖湘校区",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143010694_primary"
       },
-      "id": "assist_point_1775699028601"
+      "id": "assist_imported_1777448860351_65"
     },
     {
       "type": "Feature",
@@ -1434,16 +1595,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775699099136",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "火炬学校教育集团火炬校区",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143006466_primary"
       },
-      "id": "assist_point_1775699099136"
+      "id": "assist_imported_1777448860351_66"
     },
     {
       "type": "Feature",
@@ -1455,16 +1619,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775699121936",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "建设路学校",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143010959_primary"
       },
-      "id": "assist_point_1775699121936"
+      "id": "assist_imported_1777448860351_67"
     },
     {
       "type": "Feature",
@@ -1476,16 +1643,19 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775699170081",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
         "text": "友谊学校",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
-        "type": "assistPoint"
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143010971_primary"
       },
-      "id": "assist_point_1775699170081"
+      "id": "assist_imported_1777448860351_68"
     },
     {
       "type": "Feature",
@@ -1497,21 +1667,112 @@
         ]
       },
       "properties": {
+        "id": "assist_point_1775699199936",
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
-        "text": "长郡湘潭高新实验小学(万达旁)",
+        "text": "长郡湘潭高新实验小学（万达旁）",
         "textColor": "#333333",
-        "assistFileId": "assist_layer_default",
-        "sourceFileName": "辅助元素图层",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint",
+        "isAssistFeature": true,
+        "sch_code": "2143010883_primary"
+      },
+      "id": "assist_imported_1777448860352_69"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.02500563139961,
+          27.886328630274164
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "湖湘学校教育集团青山校区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sch_code": "2143010863_primary",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
         "type": "assistPoint"
       },
-      "id": "assist_point_1775699199936"
+      "id": "assist_point_1777448925422"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.65781783355102,
+          27.84986882507542
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "江南学校（小学部）",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sch_code": "3443000657_primary",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1777448949855"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.87781338760574,
+          27.893385886311393
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "湘潭大学附属实验学校",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sch_code": "3443000270_union",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1777448963885"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.89800425598764,
+          27.86394599054566
+        ]
+      },
+      "properties": {
+        "iconType": "home",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "风车坪本部",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1777448860348_1",
+        "sch_code": "2143013156_primary",
+        "sourceFileName": "辅助元素图层_primary_point.geojson",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1777449003591"
     }
   ],
   "properties": {
-    "fileName": "辅助元素图层_岳塘区初中.geojson",
-    "exportTime": "2026/4/15 11:37:53",
+    "fileName": "辅助元素图层_primary_point.geojson",
+    "exportTime": "2026/4/29 15:50:14",
     "source": "GIS-APP 辅助元素导出"
   }
 }
