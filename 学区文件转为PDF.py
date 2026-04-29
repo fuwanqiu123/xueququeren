@@ -24,9 +24,9 @@ import requests
 
 # ==================== 只改这里 ====================
 CONFIG = {
-    "input_geojson": "./湘潭市和平小学.geojson",   # 合并后的学区GeoJSON
+    "input_geojson": "./merged_middle.geojson",   # 合并后的学区GeoJSON
     "name_field": "name",                       # 学校名称字段
-    "output_dir": "./output",       # 每个学校单独输出PDF的目录
+    "output_dir": "./output/middle",       # 每个学校单独输出PDF的目录
     "buffer_meters": 1200,          # 出图视野：向校外扩多少米
     "dpi": 600,
     
@@ -200,6 +200,8 @@ def detect_overlaps(gdf):
 def plot_one(school_row, all_gdf, overlaps, output_dir, cache_dir):
     name = school_row[CONFIG["name_field"]]
     sid = school_row.name
+    fragment_num = school_row.get('__fragment_num', 1)
+    fragment_total = school_row.get('__fragment_total', 1)
     
     # 缓冲出视野：先在3857下按米buffer，再转回4326（WGS84经纬度）
     school_geom_3857 = gpd.GeoDataFrame([school_row], crs='EPSG:4326').to_crs(epsg=3857).iloc[0].geometry
@@ -269,12 +271,6 @@ def plot_one(school_row, all_gdf, overlaps, output_dir, cache_dir):
     ax.set_ylim(miny, maxy)
     ax.axis('off')
     
-    # 重叠提示（简洁，放在角落）
-    if ov_count:
-        fig.text(0.02, 0.98, f'检测到 {ov_count} 处重叠区域',
-                 ha='left', va='top', fontsize=10, color='darkred',
-                 bbox=dict(boxstyle='round,pad=0.3', facecolor='white', edgecolor='darkred', alpha=0.9))
-    
     # 图例（半透明，不遮挡地图）
     legend_elements = [
         mpatches.Patch(facecolor='#1f77b4', edgecolor='#d62728', linewidth=2.5, label=f'本校学区：{name}'),
@@ -286,11 +282,14 @@ def plot_one(school_row, all_gdf, overlaps, output_dir, cache_dir):
     
     # 输出：按figsize直接保存，避免bbox_inches='tight'导致二次缩放模糊
     safe_name = "".join(c for c in name if c.isalnum() or c in (' ', '-', '_')).strip()
+    if fragment_total > 1:
+        safe_name = f"{safe_name}-分片{fragment_num}"
     pdf_path = os.path.join(output_dir, f"{safe_name}.pdf")
     with PdfPages(pdf_path) as pdf:
         pdf.savefig(fig, dpi=CONFIG["dpi"])
     plt.close(fig)
-    print(f"  [OK] {name} -> {pdf_path}（邻校{len(neighbors)}所{'，重叠'+str(ov_count)+'处' if ov_count else ''}）")
+    frag_info = f"（分片{fragment_num}/{fragment_total}）" if fragment_total > 1 else ""
+    print(f"  [OK] {name}{frag_info} -> {pdf_path}（邻校{len(neighbors)}所{'，重叠'+str(ov_count)+'处' if ov_count else ''}）")
 
 # ---------- 主流程 ----------
 def main():
@@ -327,6 +326,12 @@ def main():
     print(f"[*] 共 {len(gdf)} 个学区，检测重叠中...")
     overlaps = detect_overlaps(gdf)
     print(f"[!] 发现 {len(overlaps)} 组重叠" if overlaps else "[OK] 无重叠")
+    
+    # 把 MultiPolygon 拆成独立 Polygon，同名学校按分片编号
+    gdf = gdf.explode(index_parts=False).reset_index(drop=True)
+    gdf['__fragment_num'] = gdf.groupby(CONFIG["name_field"]).cumcount() + 1
+    fragment_counts = gdf.groupby(CONFIG["name_field"]).size()
+    gdf['__fragment_total'] = gdf[CONFIG["name_field"]].map(fragment_counts)
     
     print(f"[*] 开始出图，输出目录：{CONFIG['output_dir']}")
     print(f"[*] 瓦片缓存目录：{os.path.abspath(CONFIG['tile_cache_dir'])}")
