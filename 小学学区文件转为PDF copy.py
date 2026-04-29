@@ -24,9 +24,9 @@ import requests
 
 # ==================== 只改这里 ====================
 CONFIG = {
-    "input_geojson": "./merged_middle.geojson",   # 合并后的学区GeoJSON
+    "input_geojson": "./merged_primary.geojson",   # 合并后的学区GeoJSON
     "name_field": "name",                       # 学校名称字段
-    "output_dir": "./output/middle",       # 每个学校单独输出PDF的目录
+    "output_dir": "./output/primary",       # 每个学校单独输出PDF的目录
     "buffer_meters": 1200,          # 出图视野：向校外扩多少米
     "dpi": 600,
     
@@ -36,6 +36,7 @@ CONFIG = {
     # 天地图配置（必须填服务端Key，支持多Key轮换防限流）
     # 去 https://console.tianditu.gov.cn/api/key 申请，Key类型必须选"服务端"
     "tianditu_keys": [
+        "cacc8bb34c1a5799407fb0e21b2695e4",
         "0a80ce2522a6dbd742e9c1c3d87b9964",
         # "你的服务端Key2",
     ],
@@ -46,6 +47,87 @@ CONFIG = {
     "request_interval": 0.03,       # 下载间隔秒数，防被封
 }
 # ==================================================
+
+# 学校 → 所属区域（用于PDF归类到子文件夹）
+SCHOOL_DISTRICT_MAP = {
+    # 岳塘区
+    "大桥学校": "岳塘区",
+    "滴水湖学校教育集团滴水湖校区": "岳塘区",
+    "滴水湖学校教育集团江滨学校小学部": "岳塘区",
+    "滴水湖学校教育集团南天校区": "岳塘区",
+    "红霞学校": "岳塘区",
+    "湖湘学校教育集团湖湘校区": "岳塘区",
+    "湖湘学校教育集团青山校区": "岳塘区",
+    "火炬学校教育集团红旗校区": "岳塘区",
+    "火炬学校教育集团火炬校区": "岳塘区",
+    "建设路学校": "岳塘区",
+    "湘纺小学教育集团纺小校区": "岳塘区",
+    "湘钢二校": "岳塘区",
+    "湘钢三校教育集团东坪校区": "岳塘区",
+    "湘钢三校教育集团霞光校区": "岳塘区",
+    "湘钢一校教育集团钢一校区": "岳塘区",
+    "湘钢一校教育集团葩金校区": "岳塘区",
+    "湘机小学教育集团湘机校区": "岳塘区",
+    "湘机小学教育集团一完小校区": "岳塘区",
+    "友谊学校": "岳塘区",
+    "育才学校教育集团清水校区": "岳塘区",
+    "育才学校教育集团育才校区": "岳塘区",
+    "长郡湘潭高新实验小学（万达旁）": "岳塘区",
+    "长郡湘潭高新实验学校教育集团高才校区": "岳塘区",
+    "长郡湘潭高新实验学校教育集团长郡实校小学部": "岳塘区",
+    # 市直
+    "湘潭大学附属实验学校": "市直",
+    "湘潭市和平小学": "市直",
+    # 雨湖区
+    "昭山和平小学": "雨湖区",
+    "长龙学校": "雨湖区",
+    "长城中学（小学部）": "雨湖区",
+    "云塘学校": "雨湖区",
+    "月塘实验学校": "雨湖区",
+    "源湘学校": "雨湖区",
+    "响水中心小学": "雨湖区",
+    "响水乡黄龙学校": "雨湖区",
+    "湘锰小学": "雨湖区",
+    "先锋学校": "雨湖区",
+    "熙春路逸夫小学": "雨湖区",
+    "司马学校": "雨湖区",  
+    "双湖学校": "雨湖区",
+    "曙光学校": "雨湖区",
+    "韶西逸夫小学": "雨湖区",
+    "烧汤河学校": "雨湖区",
+    "仁兴学校": "雨湖区",
+    "清联学校": "雨湖区",
+    "青亭学校": "雨湖区",
+    "奇头学校": "雨湖区",
+    "南谷小学": "雨湖区",
+    "梅花学校": "雨湖区",
+    "立云中心小学": "雨湖区",
+    "立新学校": "雨湖区",
+    "九华杉山学校": "雨湖区",
+    "九华砂子塘潭州小学": "雨湖区",
+    "九华莲城小学": "雨湖区",
+    "九华吉利学校": "雨湖区",
+    "九华和平小学": "雨湖区",
+    "九华和平湘江湾小学": "雨湖区",
+    "九华和平科大小学": "雨湖区",
+    "九华和平将军渡小学": "雨湖区",
+    "九华风车坪雅爱小学": "雨湖区",
+    "进军学校": "雨湖区",
+    "金庭学校": "雨湖区",
+    "金庭宝庆路学校": "雨湖区",
+    "金陵学校": "雨湖区",
+    "江南学校（小学部）": "雨湖区",
+    "护潭学校": "雨湖区",
+    "湖南师范大学附属九华步步高小学": "雨湖区",
+    "风车坪建元学校": "雨湖区",
+    "风车坪广场学校": "雨湖区",
+    "风车坪东校区（小学部）": "雨湖区",
+    "风车坪本部": "雨湖区",
+    "风车坪北校区（小学部）": "雨湖区",
+    "陈蒲学校": "雨湖区",
+    "柴山学校": "雨湖区",
+    "碑头富利学校": "雨湖区",
+}
 
 plt.rcParams['font.sans-serif'] = [CONFIG["font"], 'Arial Unicode MS', 'DejaVu Sans']
 plt.rcParams['axes.unicode_minus'] = False
@@ -263,7 +345,7 @@ def plot_one(school_row, all_gdf, overlaps, output_dir, cache_dir):
     for ov in overlaps:
         if ov['a'] == name or ov['b'] == name:
             gpd.GeoDataFrame(geometry=[ov['geom']], crs='EPSG:4326').plot(
-                ax=ax, facecolor='red', edgecolor='darkred', hatch='///', alpha=0.35, zorder=4)
+                ax=ax, facecolor='none', edgecolor='darkred', hatch='///', linewidth=1.5, zorder=4)
             ov_count += 1
     
     # 锁定视野（经纬度范围）
@@ -277,14 +359,22 @@ def plot_one(school_row, all_gdf, overlaps, output_dir, cache_dir):
         mpatches.Patch(facecolor='none', edgecolor='#888888', linestyle='--', linewidth=1.2, label='相邻学区边界'),
     ]
     if ov_count:
-        legend_elements.append(mpatches.Patch(facecolor='red', hatch='///', edgecolor='darkred', label='重叠区域'))
+        legend_elements.append(mpatches.Patch(facecolor='none', hatch='///', edgecolor='darkred', label='重叠区域'))
     ax.legend(handles=legend_elements, loc='upper left', fontsize=9, framealpha=0.85, edgecolor='#cccccc')
+    
+    # 按区域归类到子目录
+    district = SCHOOL_DISTRICT_MAP.get(name)
+    if district:
+        sub_dir = os.path.join(output_dir, district)
+    else:
+        sub_dir = output_dir
+    os.makedirs(sub_dir, exist_ok=True)
     
     # 输出：按figsize直接保存，避免bbox_inches='tight'导致二次缩放模糊
     safe_name = "".join(c for c in name if c.isalnum() or c in (' ', '-', '_')).strip()
     if fragment_total > 1:
         safe_name = f"{safe_name}-分片{fragment_num}"
-    pdf_path = os.path.join(output_dir, f"{safe_name}.pdf")
+    pdf_path = os.path.join(sub_dir, f"{safe_name}.pdf")
     with PdfPages(pdf_path) as pdf:
         pdf.savefig(fig, dpi=CONFIG["dpi"])
     plt.close(fig)
