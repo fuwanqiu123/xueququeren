@@ -1,0 +1,16 @@
+Shapefile字段名对照表
+==================================================
+
+原始名称 → Shapefile字段名（10字符限制）
+
+name            → sch_name
+学校编码            → sch_code
+学校类型            → sch_type
+标准名称            → std_name
+招生服务范围          → srv_range
+所属行政区           → district
+备注              → remark
+original_feature_count → feat_cnt
+
+坐标系: EPSG:4544
+学校总数: 24
