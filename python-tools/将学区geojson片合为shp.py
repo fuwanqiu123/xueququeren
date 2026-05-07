@@ -38,9 +38,9 @@ def merge_school_geojson_to_shp(geojson_folder, excel_path, output_shp_path):
     
     print(f"📁 扫描GeoJSON文件夹: {geojson_folder}")
     
-    # 1. 获取所有geojson文件
-    geojson_pattern = os.path.join(geojson_folder, "*.geojson")
-    geojson_files = glob(geojson_pattern)
+    # 1. 递归获取所有geojson文件（包含子文件夹）
+    geojson_pattern = os.path.join(geojson_folder, "**/*.geojson")
+    geojson_files = glob(geojson_pattern, recursive=True)
     
     if not geojson_files:
         print(f"❌ 未找到任何.geojson文件，请检查路径: {geojson_folder}")
@@ -175,6 +175,7 @@ def merge_school_geojson_to_shp(geojson_folder, excel_path, output_shp_path):
         '招生服务范围': 'srv_range',  # 招生服务范围
         '所属行政区': 'district',     # 所属行政区
         '备注': 'remark',             # 备注
+        '序号': 'seq_num',
         'original_feature_count': 'feat_cnt'  # 原始多边形数量（调试用）
     }
     
@@ -273,11 +274,11 @@ def merge_school_geojson_to_shp(geojson_folder, excel_path, output_shp_path):
 if __name__ == "__main__":
     EXCEL_FILE = r"./tmp_data/全市学区招生服务范围描述.xlsx"  # Excel路径
     #小学
-    #GEOJSON_FOLDER = r"./data/primary"  # GeoJSON文件夹路径
-    #OUTPUT_SHP = r"./output/primary-shp/primary.shp"   # 输出Shapefile路径
+    GEOJSON_FOLDER = r"./data/primary"  # GeoJSON文件夹路径
+    OUTPUT_SHP = r"./output/primary-shp/primary.shp"   # 输出Shapefile路径
     #中学
-    GEOJSON_FOLDER = r"./data/middle"  # GeoJSON文件夹路径
-    OUTPUT_SHP = r"./output/middle-shp/middle.shp"   # 输出Shapefile路径
+    #GEOJSON_FOLDER = r"./data/middle"  # GeoJSON文件夹路径
+    #OUTPUT_SHP = r"./output/middle-shp/middle.shp"   # 输出Shapefile路径
 
     print("="*60)
     print("学校GeoJSON合并工具（支持文件内多边形合并）")

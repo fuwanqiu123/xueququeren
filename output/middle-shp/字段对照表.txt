@@ -10,7 +10,8 @@ name            → sch_name
 招生服务范围          → srv_range
 所属行政区           → district
 备注              → remark
+序号              → seq_num
 original_feature_count → feat_cnt
 
 坐标系: EPSG:4544
-学校总数: 24
+学校总数: 26
