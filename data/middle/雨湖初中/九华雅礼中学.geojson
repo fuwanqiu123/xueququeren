@@ -77,13 +77,13 @@
       "properties": {
         "name": "九华雅礼中学",
         "isAssistFeature": false,
-        "sourceFileId": "file_1778051533783_g1",
+        "sourceFileId": "file_1778146324709_3_g1",
         "sourceFileName": "九华雅礼中学.geojson",
         "sourceGroupId": 1,
-        "id": "imported_1778039439013_3_0_g1_imported_1778051533783_g1",
+        "id": "imported_1778146324709_3_0_g1",
         "sourceFile": "九华雅礼中学.geojson"
       },
-      "id": "imported_1778039439013_3_0_g1_imported_1778051533783_g1"
+      "id": "imported_1778146324709_3_0_g1"
     },
     {
       "type": "Feature",
@@ -433,13 +433,13 @@
       "properties": {
         "name": "九华雅礼中学",
         "isAssistFeature": false,
-        "sourceFileId": "file_1778051533783_g1",
+        "sourceFileId": "file_1778146324709_3_g1",
         "sourceFileName": "九华雅礼中学.geojson",
         "sourceGroupId": 1,
-        "id": "imported_1778039439014_3_1_g1_imported_1778051533784_g1",
+        "id": "imported_1778146324709_3_1_g1",
         "sourceFile": "九华雅礼中学.geojson"
       },
-      "id": "imported_1778039439014_3_1_g1_imported_1778051533784_g1"
+      "id": "imported_1778146324709_3_1_g1"
     },
     {
       "type": "Feature",
@@ -456,20 +456,28 @@
               27.996872788102593
             ],
             [
-              112.95717867055433,
-              27.99601314417859
+              112.94866993796515,
+              28.003191385684616
             ],
             [
-              112.96888840231125,
-              27.9865976238615
+              112.93893855395791,
+              28.00182446035039
             ],
             [
-              112.97048911524652,
-              27.98560815435573
+              112.94357057649447,
+              27.989360172432797
             ],
             [
-              112.97224989947524,
-              27.98433596593452
+              112.94675315020613,
+              27.972724366071844
+            ],
+            [
+              112.96280086566858,
+              27.980155003570232
+            ],
+            [
+              112.97037977225494,
+              27.985495038351573
             ],
             [
               112.97848914177189,
@@ -1353,18 +1361,18 @@
       "properties": {
         "name": "九华雅礼中学",
         "isAssistFeature": false,
-        "sourceFileId": "file_1778051533783_g1",
+        "sourceFileId": "file_1778146324709_3_g1",
         "sourceFileName": "九华雅礼中学.geojson",
         "sourceGroupId": 1,
-        "id": "imported_1778039439014_3_2_g1_imported_1778051533784_g1",
+        "id": "imported_1778146324710_3_2_g1",
         "sourceFile": "九华雅礼中学.geojson"
       },
-      "id": "imported_1778039439014_3_2_g1_imported_1778051533784_g1"
+      "id": "imported_1778146324710_3_2_g1"
     }
   ],
   "properties": {
     "fileName": "九华雅礼中学.geojson",
-    "exportTime": "2026/5/6 15:17:16",
+    "exportTime": "2026/5/7 17:33:28",
     "isStarred": false
   }
 }
