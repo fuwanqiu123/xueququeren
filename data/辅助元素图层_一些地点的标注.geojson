@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.95243200346738,
+          27.84562376146367
+        ]
+      },
+      "properties": {
+        "text": "云盘安置区",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistText",
+        "font-size": 16,
+        "font-color": "#e67e22",
+        "font-family": "Arial, sans-serif",
+        "font-weight": "bold",
+        "background-color": "#ffffff",
+        "background-opacity": 0.7
+      },
+      "id": "assist_text_1778576585024"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助元素图层",
+    "exportTime": "2026/5/12 17:06:50",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}
