@@ -181,7 +181,7 @@ def plot_one(gdf, output_pdf, cache_dir):
     
     # 绘制所有多边形（同一学校，蓝填充+红边）
     gdf.plot(ax=ax, facecolor='#1f77b4', edgecolor='#d62728',
-             linewidth=3.5, alpha=0.32, zorder=5)
+             linewidth=0.5, alpha=0.32, zorder=5)
     
     # 每个多边形中心标注名称
     for _, row in gdf.iterrows():
@@ -198,7 +198,7 @@ def plot_one(gdf, output_pdf, cache_dir):
     
     # 图例
     legend_elements = [
-        mpatches.Patch(facecolor='#1f77b4', edgecolor='#d62728', linewidth=2.5,
+        mpatches.Patch(facecolor='#1f77b4', edgecolor='#d62728', linewidth=0.5,
                        label=f'学区范围：{school_name}'),
     ]
     ax.legend(handles=legend_elements, loc='upper left', fontsize=9,
