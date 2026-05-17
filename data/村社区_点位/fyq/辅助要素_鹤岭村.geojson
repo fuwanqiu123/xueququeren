@@ -1,0 +1,31 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.87544953590094,
+          27.992293347875616
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "鹤岭村",
+        "textColor": "#333333",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774169580765"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助元素图层",
+    "exportTime": "2026/3/22 16:53:16",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.89175000817922,
+          27.894594486463035
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "桐梓村",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1774018534496",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1774018546681"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/20 22:55:58",
+    "assistElements": {
+      "lines": 0,
+      "polygons": 2,
+      "texts": 0,
+      "points": 1
+    },
+    "fileCount": 1
+  }
+}

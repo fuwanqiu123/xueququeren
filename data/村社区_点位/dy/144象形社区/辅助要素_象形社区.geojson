@@ -1,0 +1,55 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.97651311242772,
+          27.910699986139164
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "商城社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773995241124"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.996747329142,
+          27.830669831167825
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "象形社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_2"
+      },
+      "id": "assist_point_1773995886485"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/20 16:38:12",
+    "assistElements": {
+      "lines": 0,
+      "polygons": 2,
+      "texts": 0,
+      "points": 2
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.01399054232786,
+          27.96184109811152
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "大塘社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773890505028",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773890506564"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.01440696636534,
+          27.962665030603176
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "大塘社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773890505028",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_2"
+      },
+      "id": "assist_point_1773890623461"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/19 11:23:46",
+    "assistElements": {
+      "lines": 3,
+      "polygons": 1,
+      "texts": 0,
+      "points": 2
+    },
+    "fileCount": 1
+  }
+}

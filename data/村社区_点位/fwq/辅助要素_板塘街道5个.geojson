@@ -1,0 +1,126 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.96414631376065,
+          27.866140933664198
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "桥湾社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773885463466",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773885621097"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.97905503263462,
+          27.861474645518058
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "新农村",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773885463466",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_2"
+      },
+      "id": "assist_point_1773885625090"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.98896331163782,
+          27.850503983890647
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "农联村",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773885463466",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_3"
+      },
+      "id": "assist_point_1773885628185"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.96544272409751,
+          27.851404602415045
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "摇钱社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773885463466",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_4"
+      },
+      "id": "assist_point_1773885631227"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.96710953738776,
+          27.84067856868039
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "西塘村",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773885463466",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_5"
+      },
+      "id": "assist_point_1773885634273"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/19 10:00:35",
+    "assistElements": {
+      "lines": 0,
+      "polygons": 5,
+      "texts": 0,
+      "points": 5
+    },
+    "fileCount": 1
+  }
+}

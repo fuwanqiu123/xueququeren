@@ -1,0 +1,60 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.00751410740921,
+          27.921313808943196
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "双建社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773890704787",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773890706348"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.00695110270254,
+          27.91967552854581
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "双建社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773890704787",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_2"
+      },
+      "id": "assist_point_1773890859142"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/19 11:27:45",
+    "assistElements": {
+      "lines": 2,
+      "polygons": 1,
+      "texts": 0,
+      "points": 2
+    },
+    "fileCount": 1
+  }
+}

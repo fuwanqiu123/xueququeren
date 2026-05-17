@@ -1,0 +1,112 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              113.01717353274694,
+              27.96248796166867
+            ],
+            [
+              113.01927725139588,
+              27.960035982268565
+            ],
+            [
+              113.0218364142884,
+              27.96101294948636
+            ],
+            [
+              113.02328949830363,
+              27.963062636282856
+            ],
+            [
+              113.0231593713769,
+              27.96478664176543
+            ],
+            [
+              113.02185810210952,
+              27.96783231747709
+            ],
+            [
+              113.01958088089158,
+              27.97064805439365
+            ],
+            [
+              113.01762897699051,
+              27.97066720881493
+            ],
+            [
+              113.01496137499237,
+              27.969862720193916
+            ],
+            [
+              113.01381192047285,
+              27.969498782894775
+            ],
+            [
+              113.0161108295119,
+              27.963254193807586
+            ],
+            [
+              113.01630601990199,
+              27.961913283994548
+            ],
+            [
+              113.01717353274694,
+              27.96248796166867
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "assistFileId": "assist_file_default_1773899348860",
+        "sourceFileName": "辅助元素_1.geojson",
+        "name": "昭山村",
+        "type": "assistPolygon",
+        "fill": "#9b59b6",
+        "fill-opacity": 0.2,
+        "stroke": "#9b59b6",
+        "stroke-width": 2,
+        "stroke-opacity": 0.8
+      },
+      "id": "assist_polygon_1773899383966"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.01864830458331,
+          27.965878497659716
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "昭山村",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773899348860",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773899392757"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/19 13:49:56",
+    "assistElements": {
+      "lines": 1,
+      "polygons": 1,
+      "texts": 0,
+      "points": 1
+    },
+    "fileCount": 1
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.75022839975826,
+          27.86387493275498
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "联映村",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_姜畲镇_联映村.geojson",
+        "assistFileId": "assist_file_1773973292060_6"
+      },
+      "id": "assist_point_1773797870429_reimported_1773973292061"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助要素_姜畲镇_联映村.geojson",
+    "exportTime": "2026/3/20 10:34:41",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

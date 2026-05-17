@@ -1,0 +1,125 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.66221702767972,
+          27.84538280301092
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "永丰社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_楠竹山镇5社区.geojson",
+        "assistFileId": "assist_file_1773972073866_4"
+      },
+      "id": "assist_point_1773828312600_reimported_1773972073867"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.65512209431945,
+          27.844464174198265
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "爱国社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_2",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_楠竹山镇5社区.geojson",
+        "assistFileId": "assist_file_1773972073866_4"
+      },
+      "id": "assist_point_1773828519951_reimported_1773972073867"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.65487704096977,
+          27.850150719758375
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "楠竹社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_3",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_楠竹山镇5社区.geojson",
+        "assistFileId": "assist_file_1773972073866_4"
+      },
+      "id": "assist_point_1773828564399_reimported_1773972073867"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.66082102950934,
+          27.85545469004552
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "罗金塘村",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_4",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_楠竹山镇5社区.geojson",
+        "assistFileId": "assist_file_1773972073866_4"
+      },
+      "id": "assist_point_1773828743223_reimported_1773972073867"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.65057047279815,
+          27.84230362725374
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "新桥社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_5",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_楠竹山镇5社区.geojson",
+        "assistFileId": "assist_file_1773972073866_4"
+      },
+      "id": "assist_point_1773828802137_reimported_1773972073867"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助要素_楠竹山镇5社区.geojson",
+    "exportTime": "2026/3/20 10:02:31",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

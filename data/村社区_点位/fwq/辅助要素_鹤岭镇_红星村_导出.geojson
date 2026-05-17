@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.81262898331401,
+          28.007618947061943
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "红星村",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_鹤岭镇_红星村.geojson",
+        "assistFileId": "assist_file_1773974656201_12"
+      },
+      "id": "assist_imported_1773974656202_1"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助要素_鹤岭镇_红星村.geojson",
+    "exportTime": "2026/3/20 10:50:59",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

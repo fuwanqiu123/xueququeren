@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.82132680067375,
+          27.856983449673535
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "泉塘子村",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_姜畲镇_泉塘子村.geojson",
+        "assistFileId": "assist_file_1773973309604_9"
+      },
+      "id": "assist_point_1773804636909_reimported_1773973309604"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助要素_姜畲镇_泉塘子村.geojson",
+    "exportTime": "2026/3/20 10:34:45",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

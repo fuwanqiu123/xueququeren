@@ -1,0 +1,148 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.90855282323848,
+          27.844415436681075
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "三角坪社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773887204078",
+        "sourceFileName": "辅助元素_2.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773887582332"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.90214978721372,
+          27.831576792846548
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "泗神庙社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773887204078",
+        "sourceFileName": "辅助元素_2.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_2"
+      },
+      "id": "assist_point_1773887873595"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.89778913574563,
+          27.84482042703148
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "顺江村",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773887204078",
+        "sourceFileName": "辅助元素_2.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_3"
+      },
+      "id": "assist_point_1773887900555"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.89640459587493,
+          27.846254920796838
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "横街社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773887204078",
+        "sourceFileName": "辅助元素_2.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_4"
+      },
+      "id": "assist_point_1773888021763"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.89307547796348,
+          27.83351913245447
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "联合村",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773887204078",
+        "sourceFileName": "辅助元素_2.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_5"
+      },
+      "id": "assist_point_1773888056437"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.90046127635165,
+          27.84079030127974
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "和平村",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773887204078",
+        "sourceFileName": "辅助元素_2.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_6"
+      },
+      "id": "assist_point_1773888092514"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/19 10:42:51",
+    "assistElements": {
+      "lines": 1,
+      "polygons": 8,
+      "texts": 0,
+      "points": 6
+    },
+    "fileCount": 1
+  }
+}

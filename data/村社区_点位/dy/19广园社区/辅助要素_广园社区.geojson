@@ -1,0 +1,37 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.88924918965027,
+          27.86253514243758
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "广园社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_广园社区.geojson"
+      },
+      "id": "assist_point_1773740145265_reimported_1773798179444_reimported_1773798356814"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/18 09:46:47",
+    "assistElements": {
+      "lines": 0,
+      "polygons": 4,
+      "texts": 0,
+      "points": 1
+    }
+  }
+}

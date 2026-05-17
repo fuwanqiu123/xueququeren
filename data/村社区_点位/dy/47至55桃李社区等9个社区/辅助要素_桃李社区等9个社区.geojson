@@ -1,0 +1,157 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.93932636740556,
+          27.943230995533227
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "桃李社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773817990037"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.92750150605929,
+          27.905347756935342
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "乐塘社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_2"
+      },
+      "id": "assist_point_1773819282581"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.92652216410475,
+          27.934638658501797
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "杉杉社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_3"
+      },
+      "id": "assist_point_1773821431234"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.93214131533688,
+          27.92278685366915
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "民乐社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_4"
+      },
+      "id": "assist_point_1773821578097"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.9143630584206,
+          27.925450745578402
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "吉利社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_5",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_吉利社区.geojson"
+      },
+      "id": "assist_point_1773825908232_reimported_1773826007871"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.91211873487943,
+          27.90795447005334
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "科大社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_6"
+      },
+      "id": "assist_point_1773826409460"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.92039920548453,
+          27.895984096647
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "石码村",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_7"
+      },
+      "id": "assist_point_1773826818453"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/18 17:40:48",
+    "assistElements": {
+      "lines": 1,
+      "polygons": 10,
+      "texts": 0,
+      "points": 7
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.78365817196668,
+          27.8726309828332
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "清泉村",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_姜畲镇_清泉村.geojson",
+        "assistFileId": "assist_file_1773973304580_8"
+      },
+      "id": "assist_point_1773798756381_reimported_1773973304581"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助要素_姜畲镇_清泉村.geojson",
+    "exportTime": "2026/3/20 10:34:43",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

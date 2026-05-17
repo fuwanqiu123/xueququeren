@@ -1,0 +1,56 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.95286917522225,
+          27.989341673533488
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "船形山社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_将军渡社区.geojson",
+        "assistFileId": "assist_file_1774020088176_1"
+      },
+      "id": "assist_point_1773801460104_reimported_1774020088178"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.97257215964198,
+          27.947253569951485
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "将军渡社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_2",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_将军渡社区.geojson",
+        "assistFileId": "assist_file_1774020088176_1"
+      },
+      "id": "assist_point_1773802641062_reimported_1774020088178"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助要素_将军渡社区.geojson",
+    "exportTime": "2026/3/20 23:21:39",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

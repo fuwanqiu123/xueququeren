@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.79417875913617,
+          27.94953541097742
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "双泉村",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_鹤岭镇_双泉村.geojson",
+        "assistFileId": "assist_file_1773974655604_6"
+      },
+      "id": "assist_imported_1773974655604_1"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助要素_鹤岭镇_双泉村.geojson",
+    "exportTime": "2026/3/20 10:50:52",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

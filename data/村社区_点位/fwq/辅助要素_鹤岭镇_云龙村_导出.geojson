@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.76698096010435,
+          27.984952797817897
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "云龙村",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_鹤岭镇_云龙村.geojson",
+        "assistFileId": "assist_file_1773974654989_0"
+      },
+      "id": "assist_imported_1773974654991_1"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助要素_鹤岭镇_云龙村.geojson",
+    "exportTime": "2026/3/20 10:50:43",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

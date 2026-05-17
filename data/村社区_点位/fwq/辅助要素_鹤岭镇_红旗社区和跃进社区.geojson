@@ -1,0 +1,52 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.85506515227753,
+          27.96909945262476
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "红旗社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774169990520"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.85553207310835,
+          27.963542967198592
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "跃进社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774169995823"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助元素图层",
+    "exportTime": "2026/3/22 17:00:05",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

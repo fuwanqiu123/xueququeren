@@ -1,0 +1,112 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              112.92745338842,
+              27.8185149005337
+            ],
+            [
+              112.9276317947111,
+              27.81226237441024
+            ],
+            [
+              112.93820236745694,
+              27.812351135186233
+            ],
+            [
+              112.93859263121865,
+              27.81264700391573
+            ],
+            [
+              112.93854802964589,
+              27.812962596338878
+            ],
+            [
+              112.93818006667055,
+              27.814205232590794
+            ],
+            [
+              112.93828042020927,
+              27.814382750894737
+            ],
+            [
+              112.93811316431137,
+              27.81486599369653
+            ],
+            [
+              112.9375556446518,
+              27.815980402572933
+            ],
+            [
+              112.93667476358964,
+              27.817637201709857
+            ],
+            [
+              112.93623989825515,
+              27.818011950390144
+            ],
+            [
+              112.93616184550282,
+              27.81831766546094
+            ],
+            [
+              112.92745338842,
+              27.8185149005337
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "assistFileId": "assist_file_default_1773900417922",
+        "sourceFileName": "辅助元素_1.geojson",
+        "name": "飞机坪社区",
+        "type": "assistPolygon",
+        "fill": "#9b59b6",
+        "fill-opacity": 0.2,
+        "stroke": "#9b59b6",
+        "stroke-width": 2,
+        "stroke-opacity": 0.8
+      },
+      "id": "assist_polygon_1773900476241"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.932530538443,
+          27.815264234082306
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "飞机坪社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773900417922",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773900482481"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/19 14:08:05",
+    "assistElements": {
+      "lines": 4,
+      "polygons": 1,
+      "texts": 0,
+      "points": 1
+    },
+    "fileCount": 1
+  }
+}

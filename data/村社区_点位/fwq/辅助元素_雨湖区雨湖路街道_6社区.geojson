@@ -1,0 +1,135 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.89931417690558,
+          27.86389923226207
+        ]
+      },
+      "properties": {
+        "iconType": "star",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "风车坪社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773542967252"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.90143283527793,
+          27.859139232350373
+        ]
+      },
+      "properties": {
+        "iconType": "flag",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "古梁巷社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_2"
+      },
+      "id": "assist_point_1773543082779"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.90261648241932,
+          27.86542657338984
+        ]
+      },
+      "properties": {
+        "iconType": "car",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "车站路社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_3"
+      },
+      "id": "assist_point_1773543187354"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.90569762965261,
+          27.864331481520765
+        ]
+      },
+      "properties": {
+        "iconType": "bus",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "雨湖路社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_4"
+      },
+      "id": "assist_point_1773543250818"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.90914049599638,
+          27.867132467070803
+        ]
+      },
+      "properties": {
+        "iconType": "star",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "和平桥社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_5"
+      },
+      "id": "assist_point_1773543367647"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.90841372766579,
+          27.861481498531276
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "关圣殿社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_6"
+      },
+      "id": "assist_point_1773543495016"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/15 11:00:57",
+    "assistElements": {
+      "lines": 0,
+      "polygons": 6,
+      "texts": 0,
+      "points": 6
+    }
+  }
+}

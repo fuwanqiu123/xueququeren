@@ -1,0 +1,38 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.91493041229872,
+          27.817155118700356
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "纯冲塘社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773901299399",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773901401687"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/19 14:23:45",
+    "assistElements": {
+      "lines": 2,
+      "polygons": 1,
+      "texts": 0,
+      "points": 1
+    },
+    "fileCount": 1
+  }
+}

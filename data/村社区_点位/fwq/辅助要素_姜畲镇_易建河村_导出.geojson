@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.75222391193563,
+          27.842292540846174
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "易建河村",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_姜畲镇_易建河村.geojson",
+        "assistFileId": "assist_file_1773973350213_15"
+      },
+      "id": "assist_point_1773803141214_reimported_1773973350213"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助要素_姜畲镇_易建河村.geojson",
+    "exportTime": "2026/3/20 10:34:53",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

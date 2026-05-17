@@ -1,0 +1,38 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.92652358612743,
+          27.844555970990612
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "盘龙社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773905450307",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773905638747"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/19 15:34:22",
+    "assistElements": {
+      "lines": 1,
+      "polygons": 3,
+      "texts": 0,
+      "points": 1
+    },
+    "fileCount": 1
+  }
+}

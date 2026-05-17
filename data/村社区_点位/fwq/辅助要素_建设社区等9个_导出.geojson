@@ -1,0 +1,217 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.89135044440656,
+          27.86626919740843
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "韶山路社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_建设社区等10个.geojson",
+        "assistFileId": "assist_file_1774167534510_2"
+      },
+      "id": "assist_point_1773740163177_reimported_1774167534511"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.89274367109073,
+          27.869570340114194
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "福利社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_2",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_建设社区等10个.geojson",
+        "assistFileId": "assist_file_1774167534510_2"
+      },
+      "id": "assist_point_1773740603113_reimported_1774167534511"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.89281479084526,
+          27.872582417334343
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "和平社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_3",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_建设社区等10个.geojson",
+        "assistFileId": "assist_file_1774167534510_2"
+      },
+      "id": "assist_point_1773655550161_reimported_1773739547809_reimported_1774167534512"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.89581236822475,
+          27.87375575661376
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "建设社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_4",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_建设社区等10个.geojson",
+        "assistFileId": "assist_file_1774167534510_2"
+      },
+      "id": "assist_point_1773656671231_reimported_1773739547809_reimported_1774167534512"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.89765739927732,
+          27.869173458904427
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "杉树巷社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_5",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_建设社区等10个.geojson",
+        "assistFileId": "assist_file_1774167534510_2"
+      },
+      "id": "assist_point_1773741009488_reimported_1774167534512"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.90237214416612,
+          27.876121677441873
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "公园社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_6",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_建设社区等10个.geojson",
+        "assistFileId": "assist_file_1774167534510_2"
+      },
+      "id": "assist_point_1773741159255_reimported_1774167534512"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.8840613746176,
+          27.86756279358154
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "南盘岭社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_8",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_建设社区等10个.geojson",
+        "assistFileId": "assist_file_1774167534510_2"
+      },
+      "id": "assist_point_1773740863663_reimported_1774167534512"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.88710494997899,
+          27.871828469593197
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "中心社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_9",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_建设社区等10个.geojson",
+        "assistFileId": "assist_file_1774167534510_2"
+      },
+      "id": "assist_point_1773739917690_reimported_1774167534512"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.88138735661401,
+          27.863958615076314
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "烟竹社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_10",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_建设社区等10个.geojson",
+        "assistFileId": "assist_file_1774167534510_2"
+      },
+      "id": "assist_point_1773741389055_reimported_1774167534512"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助要素_建设社区等10个.geojson",
+    "exportTime": "2026/3/22 16:19:27",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

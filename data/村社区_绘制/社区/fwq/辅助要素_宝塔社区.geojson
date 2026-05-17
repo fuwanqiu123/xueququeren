@@ -1,0 +1,112 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              112.93506010006831,
+              27.857834581125942
+            ],
+            [
+              112.93465990319345,
+              27.857367841535876
+            ],
+            [
+              112.93320386775525,
+              27.85540299638774
+            ],
+            [
+              112.93298248225,
+              27.85511692400948
+            ],
+            [
+              112.93280367088042,
+              27.85477815311164
+            ],
+            [
+              112.93173080266277,
+              27.85374677741686
+            ],
+            [
+              112.93161159508304,
+              27.853159566433874
+            ],
+            [
+              112.93122842786244,
+              27.852323914552045
+            ],
+            [
+              112.93116030924544,
+              27.852030305605197
+            ],
+            [
+              112.92994268896668,
+              27.84938026067961
+            ],
+            [
+              112.93013852999054,
+              27.84877044003936
+            ],
+            [
+              112.93893434640975,
+              27.852414255606533
+            ],
+            [
+              112.93506010006831,
+              27.857834581125942
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "assistFileId": "assist_file_default_1773905762171",
+        "sourceFileName": "辅助元素_1.geojson",
+        "name": "宝塔社区",
+        "type": "assistPolygon",
+        "fill": "#9b59b6",
+        "fill-opacity": 0.2,
+        "stroke": "#9b59b6",
+        "stroke-width": 2,
+        "stroke-opacity": 0.8
+      },
+      "id": "assist_polygon_1773905829762"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.93492386283428,
+          27.853769362391148
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "宝塔社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773905762171",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773905834178"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/19 15:37:17",
+    "assistElements": {
+      "lines": 3,
+      "polygons": 1,
+      "texts": 0,
+      "points": 1
+    },
+    "fileCount": 1
+  }
+}

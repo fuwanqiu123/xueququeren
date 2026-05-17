@@ -1,0 +1,108 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              112.91733472693663,
+              27.82606584395998
+            ],
+            [
+              112.9173765215794,
+              27.825749027432977
+            ],
+            [
+              112.91798552923079,
+              27.823589370140056
+            ],
+            [
+              112.91823032642404,
+              27.82319334030251
+            ],
+            [
+              112.91837959300526,
+              27.822966282544073
+            ],
+            [
+              112.91889307004467,
+              27.82246464162681
+            ],
+            [
+              112.9193468404516,
+              27.82170953566512
+            ],
+            [
+              112.92344868610371,
+              27.82356296819583
+            ],
+            [
+              112.92351644253677,
+              27.823598673618122
+            ],
+            [
+              112.92034667783162,
+              27.827786731332182
+            ],
+            [
+              112.92016639847176,
+              27.827713013805905
+            ],
+            [
+              112.91733472693663,
+              27.82606584395998
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "assistFileId": "assist_file_default_1773900574906",
+        "sourceFileName": "辅助元素_1.geojson",
+        "name": "晓塘社区",
+        "type": "assistPolygon",
+        "fill": "#9b59b6",
+        "fill-opacity": 0.2,
+        "stroke": "#9b59b6",
+        "stroke-width": 2,
+        "stroke-opacity": 0.8
+      },
+      "id": "assist_polygon_1773900682209"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.92004101454351,
+          27.824914478292897
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "晓塘社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773900574906",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773900693241"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/19 14:11:36",
+    "assistElements": {
+      "lines": 6,
+      "polygons": 1,
+      "texts": 0,
+      "points": 1
+    },
+    "fileCount": 1
+  }
+}

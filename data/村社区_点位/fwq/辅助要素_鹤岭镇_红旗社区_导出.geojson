@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.93430886046204,
+          27.847022497046282
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "红旗社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1773974656093_11",
+        "sourceFileName": "辅助要素_鹤岭镇_红旗社区.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_1",
+        "isAssistFeature": true
+      },
+      "id": "assist_imported_1773974656094_1"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助要素_鹤岭镇_红旗社区.geojson",
+    "exportTime": "2026/3/20 10:50:58",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

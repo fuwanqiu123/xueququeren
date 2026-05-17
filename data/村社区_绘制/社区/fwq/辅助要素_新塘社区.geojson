@@ -1,0 +1,108 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              112.92377855189349,
+              27.823673099881717
+            ],
+            [
+              112.92750068614198,
+              27.818717379081548
+            ],
+            [
+              112.94338044366953,
+              27.818019624052795
+            ],
+            [
+              112.95561422314805,
+              27.817500777663355
+            ],
+            [
+              112.95634246680534,
+              27.817661799221924
+            ],
+            [
+              112.96233024798768,
+              27.824907522218083
+            ],
+            [
+              112.95749551926285,
+              27.827215317629026
+            ],
+            [
+              112.95539170425282,
+              27.827716227981824
+            ],
+            [
+              112.9522157527473,
+              27.827930903139688
+            ],
+            [
+              112.94293540587903,
+              27.827501552399383
+            ],
+            [
+              112.92859305162807,
+              27.825855692162108
+            ],
+            [
+              112.92377855189349,
+              27.823673099881717
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "assistFileId": "assist_file_default_1773900738536",
+        "sourceFileName": "辅助元素_1.geojson",
+        "name": "新塘社区",
+        "type": "assistPolygon",
+        "fill": "#9b59b6",
+        "fill-opacity": 0.2,
+        "stroke": "#9b59b6",
+        "stroke-width": 2,
+        "stroke-opacity": 0.8
+      },
+      "id": "assist_polygon_1773900909792"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.94287463905354,
+          27.822807371155008
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "新塘社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773900738536",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773900915969"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/19 14:15:18",
+    "assistElements": {
+      "lines": 5,
+      "polygons": 1,
+      "texts": 0,
+      "points": 1
+    },
+    "fileCount": 1
+  }
+}

@@ -1,0 +1,325 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.87174302775472,
+          27.81986919074987
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "犁头村",
+        "textColor": "#333333",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774172246527"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.86796935112527,
+          27.837389714852662
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "新石村",
+        "textColor": "#333333",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774172290801"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.86073647091881,
+          27.845592797452056
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "高坪村",
+        "textColor": "#333333",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774172317372"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.85287464460745,
+          27.860746013154085
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "繁白村",
+        "textColor": "#333333",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774172355677"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.86372396491711,
+          27.86269214425863
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "立洪村",
+        "textColor": "#333333",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774172391129"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.87300091996454,
+          27.867140312705104
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "砂子村",
+        "textColor": "#333333",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774172419429"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.82535825251765,
+          27.885348098403668
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "花园村",
+        "textColor": "#333333",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774172462296"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.84422663566494,
+          27.888961493361663
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "上新村",
+        "textColor": "#333333",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774172483859"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.85020162366158,
+          27.8839582990028
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "卫星村",
+        "textColor": "#333333",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774172510996"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.86042199786634,
+          27.890629173437574
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "湘大社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774172542960"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.8313332405143,
+          27.877426002893642
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "花园社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774172577603"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.85974007159167,
+          27.880589989762413
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "红旗村",
+        "textColor": "#333333",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774172743452"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.84947713177769,
+          27.873403111725196
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "羊牯村",
+        "textColor": "#333333",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774172784922"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.87560097857695,
+          27.85266452913237
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "工农村",
+        "textColor": "#333333",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774172834229"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.87146914566483,
+          27.85348943489194
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "和平村",
+        "textColor": "#333333",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774172861087"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助元素图层",
+    "exportTime": "2026/3/22 17:49:53",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

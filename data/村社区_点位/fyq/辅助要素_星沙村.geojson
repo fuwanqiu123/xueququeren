@@ -1,0 +1,31 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.86419087168257,
+          27.90924713795681
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "星沙村",
+        "textColor": "#333333",
+        "assistFileId": "assist_layer_default",
+        "sourceFileName": "辅助元素图层",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774168408311"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助元素图层",
+    "exportTime": "2026/3/22 16:33:36",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

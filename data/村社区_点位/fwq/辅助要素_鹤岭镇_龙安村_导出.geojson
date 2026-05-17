@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7834577860649,
+          27.9219429992678
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "龙安村",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_鹤岭镇_龙安村.geojson",
+        "assistFileId": "assist_file_1773974656692_17"
+      },
+      "id": "assist_imported_1773974656694_1"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助要素_鹤岭镇_龙安村.geojson",
+    "exportTime": "2026/3/20 10:51:05",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

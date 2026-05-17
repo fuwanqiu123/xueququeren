@@ -1,0 +1,104 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              112.93877963780214,
+              27.852229511389282
+            ],
+            [
+              112.93398776976456,
+              27.85026848074493
+            ],
+            [
+              112.9352610375574,
+              27.849493742816364
+            ],
+            [
+              112.93593189908266,
+              27.84923953072753
+            ],
+            [
+              112.93657537850484,
+              27.8489247911252
+            ],
+            [
+              112.93684919953556,
+              27.848743210169914
+            ],
+            [
+              112.93724624003012,
+              27.84854952348249
+            ],
+            [
+              112.93678074427788,
+              27.845607864396044
+            ],
+            [
+              112.94166844967623,
+              27.84824688734085
+            ],
+            [
+              112.93894393042058,
+              27.852350561501467
+            ],
+            [
+              112.93877963780214,
+              27.852229511389282
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "assistFileId": "assist_file_default_1773904749605",
+        "sourceFileName": "辅助元素_1.geojson",
+        "name": "阳光社区",
+        "type": "assistPolygon",
+        "fill": "#9b59b6",
+        "fill-opacity": 0.2,
+        "stroke": "#9b59b6",
+        "stroke-width": 2,
+        "stroke-opacity": 0.8
+      },
+      "id": "assist_polygon_1773904973397"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.93839628835912,
+          27.84932426815665
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "阳光社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773904749605",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773904982045"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/19 15:23:12",
+    "assistElements": {
+      "lines": 1,
+      "polygons": 1,
+      "texts": 0,
+      "points": 1
+    },
+    "fileCount": 1
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              112.91681863467205,
+              27.832988307673645
+            ],
+            [
+              112.92050753792509,
+              27.82793857229575
+            ],
+            [
+              112.9266346546296,
+              27.831178473777996
+            ],
+            [
+              112.9247902030031,
+              27.836161030059785
+            ],
+            [
+              112.9170839325088,
+              27.833189398465592
+            ],
+            [
+              112.91681863467205,
+              27.832988307673645
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "assistFileId": "assist_file_default_1773900333737",
+        "sourceFileName": "辅助元素_1.geojson",
+        "name": "芙蓉社区",
+        "type": "assistPolygon",
+        "fill": "#9b59b6",
+        "fill-opacity": 0.2,
+        "stroke": "#9b59b6",
+        "stroke-width": 2,
+        "stroke-opacity": 0.8
+      },
+      "id": "assist_polygon_1773900366994"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.92208669171494,
+          27.83231800234263
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "芙蓉社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773900333737",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773900373394"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/19 14:06:15",
+    "assistElements": {
+      "lines": 4,
+      "polygons": 1,
+      "texts": 0,
+      "points": 1
+    },
+    "fileCount": 1
+  }
+}

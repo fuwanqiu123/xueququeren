@@ -1,0 +1,84 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              112.94231462915874,
+              27.839562667706787
+            ],
+            [
+              112.94267319146672,
+              27.832865730459574
+            ],
+            [
+              112.95110483846618,
+              27.833740102971163
+            ],
+            [
+              112.95111570399071,
+              27.83750655017073
+            ],
+            [
+              112.95109397294173,
+              27.841330513310723
+            ],
+            [
+              112.94231462915874,
+              27.839562667706787
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "assistFileId": "assist_file_default_1773905138972",
+        "sourceFileName": "辅助元素_1.geojson",
+        "name": "长塘社区",
+        "type": "assistPolygon",
+        "fill": "#9b59b6",
+        "fill-opacity": 0.2,
+        "stroke": "#9b59b6",
+        "stroke-width": 2,
+        "stroke-opacity": 0.8
+      },
+      "id": "assist_polygon_1773905220188"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.94658478028092,
+          27.836930061624543
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "长塘社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773905138972",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773905227420"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/19 15:27:21",
+    "assistElements": {
+      "lines": 1,
+      "polygons": 1,
+      "texts": 0,
+      "points": 1
+    },
+    "fileCount": 1
+  }
+}

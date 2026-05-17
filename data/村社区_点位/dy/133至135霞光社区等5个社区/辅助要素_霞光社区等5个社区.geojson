@@ -1,0 +1,115 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.91504721593445,
+          27.835513246073333
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "霞光社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773886961502"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.9210516962417,
+          27.837401815882487
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "曙光社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_2"
+      },
+      "id": "assist_point_1773887182215"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.92775384089597,
+          27.83577120987671
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "湖湘社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_3"
+      },
+      "id": "assist_point_1773893167204"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.91699727752926,
+          27.841931418021417
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "建设路社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_4"
+      },
+      "id": "assist_point_1773900413499"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.91549681271059,
+          27.848924142733082
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "大桥社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_5"
+      },
+      "id": "assist_point_1773901489356"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/19 14:25:02",
+    "assistElements": {
+      "lines": 1,
+      "polygons": 5,
+      "texts": 0,
+      "points": 5
+    }
+  }
+}

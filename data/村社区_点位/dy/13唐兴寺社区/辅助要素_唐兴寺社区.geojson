@@ -1,0 +1,77 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.87426810122905,
+          27.83923239498256
+        ]
+      },
+      "properties": {
+        "text": "杨梅洲大桥",
+        "type": "assistText",
+        "name": "辅助文字_1",
+        "font-size": 16,
+        "font-color": "#e67e22",
+        "font-family": "Arial, sans-serif",
+        "font-weight": "bold",
+        "background-color": "#ffffff",
+        "background-opacity": 0.7
+      },
+      "id": "assist_text_1773732254633"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.88712525090033,
+          27.85055899111113
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "潭宝汽车站",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773732221035"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.88324748598967,
+          27.849307195857932
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "唐兴寺社区",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_2"
+      },
+      "id": "assist_point_1773732610255"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/17 15:30:14",
+    "assistElements": {
+      "lines": 1,
+      "polygons": 3,
+      "texts": 1,
+      "points": 2
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.74945880929998,
+          27.908513480809916
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "新泉村",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_鹤岭镇_新泉村.geojson",
+        "assistFileId": "assist_file_1773974655905_9"
+      },
+      "id": "assist_imported_1773974655905_1"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助要素_鹤岭镇_新泉村.geojson",
+    "exportTime": "2026/3/20 10:50:56",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

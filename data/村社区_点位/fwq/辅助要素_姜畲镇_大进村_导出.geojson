@@ -1,0 +1,77 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.80644603414723,
+          27.87252265262657
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "白鹭湖村",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_姜畲镇_大进村.geojson",
+        "assistFileId": "assist_file_1773973273531_2"
+      },
+      "id": "assist_point_1773795682509_reimported_1773973273532"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.73754633688057,
+          27.871077632181127
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "type": "assistPoint",
+        "name": "辅助点_2",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_姜畲镇_大进村.geojson",
+        "assistFileId": "assist_file_1773973273531_2"
+      },
+      "id": "assist_point_1773796040020_reimported_1773973273532"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.73301653228512,
+          27.877670047152876
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "大进村",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_3",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_姜畲镇_大进村.geojson",
+        "assistFileId": "assist_file_1773973273531_2"
+      },
+      "id": "assist_point_1773796382949_reimported_1773973273532"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助要素_姜畲镇_大进村.geojson",
+    "exportTime": "2026/3/20 10:34:37",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

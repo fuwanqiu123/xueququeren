@@ -1,0 +1,200 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              112.9171346600565,
+              27.850851555115497
+            ],
+            [
+              112.91767957896934,
+              27.84937173332858
+            ],
+            [
+              112.91734873534368,
+              27.848167212315175
+            ],
+            [
+              112.91760173341036,
+              27.84697988565172
+            ],
+            [
+              112.91943110404634,
+              27.847048716537856
+            ],
+            [
+              112.92079340132842,
+              27.847650984928265
+            ],
+            [
+              112.9213967044105,
+              27.8480123443571
+            ],
+            [
+              112.92155239552847,
+              27.851384974296337
+            ],
+            [
+              112.92147454996949,
+              27.852382977329185
+            ],
+            [
+              112.9171346600565,
+              27.850851555115497
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "assistFileId": "assist_file_default_1773905450307",
+        "sourceFileName": "辅助元素_1.geojson",
+        "name": "盘龙社区",
+        "type": "assistPolygon",
+        "fill": "#9b59b6",
+        "fill-opacity": 0.2,
+        "stroke": "#9b59b6",
+        "stroke-width": 2,
+        "stroke-opacity": 0.8
+      },
+      "id": "assist_polygon_1773905606316"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              112.92165508842129,
+              27.845824673620015
+            ],
+            [
+              112.92190028656728,
+              27.843754155756542
+            ],
+            [
+              112.92201062573298,
+              27.8427676647581
+            ],
+            [
+              112.92334695562862,
+              27.840718770172316
+            ],
+            [
+              112.93012668436526,
+              27.842203951588104
+            ],
+            [
+              112.93092357833972,
+              27.84668105427039
+            ],
+            [
+              112.93180629166532,
+              27.848187834188778
+            ],
+            [
+              112.93276256443467,
+              27.849748792745984
+            ],
+            [
+              112.92165508842129,
+              27.845824673620015
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "assistFileId": "assist_file_default_1773905450307",
+        "sourceFileName": "辅助元素_1.geojson",
+        "name": "盘龙社区",
+        "type": "assistPolygon",
+        "fill": "#9b59b6",
+        "fill-opacity": 0.2,
+        "stroke": "#9b59b6",
+        "stroke-width": 2,
+        "stroke-opacity": 0.8
+      },
+      "id": "assist_polygon_1773905626890"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              112.9252240359537,
+              27.84058830068375
+            ],
+            [
+              112.92594737048437,
+              27.838940482388296
+            ],
+            [
+              112.92930658508443,
+              27.839796917389222
+            ],
+            [
+              112.92859551046107,
+              27.841477244897206
+            ],
+            [
+              112.9252240359537,
+              27.84058830068375
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "assistFileId": "assist_file_default_1773905450307",
+        "sourceFileName": "辅助元素_1.geojson",
+        "name": "盘龙社区",
+        "type": "assistPolygon",
+        "fill": "#9b59b6",
+        "fill-opacity": 0.2,
+        "stroke": "#9b59b6",
+        "stroke-width": 2,
+        "stroke-opacity": 0.8
+      },
+      "id": "assist_polygon_1773905632419"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.92652358612743,
+          27.844555970990612
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "盘龙社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_default_1773905450307",
+        "sourceFileName": "辅助元素_1.geojson",
+        "type": "assistPoint",
+        "name": "辅助点_1"
+      },
+      "id": "assist_point_1773905638747"
+    }
+  ],
+  "properties": {
+    "description": "GIS-APP 辅助要素导出",
+    "exportTime": "2026/3/19 15:34:22",
+    "assistElements": {
+      "lines": 1,
+      "polygons": 3,
+      "texts": 0,
+      "points": 1
+    },
+    "fileCount": 1
+  }
+}

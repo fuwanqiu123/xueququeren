@@ -1,0 +1,31 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.77893277855793,
+          27.8554113829705
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "姜畲社区",
+        "textColor": "#333333",
+        "assistFileId": "assist_file_1774027383798_43",
+        "sourceFileName": "辅助要素_姜畲镇_姜畲社区_导出.geojson",
+        "type": "assistPoint"
+      },
+      "id": "assist_point_1774027507405"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助要素_姜畲镇_姜畲社区_导出.geojson",
+    "exportTime": "2026/3/21 01:25:20",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

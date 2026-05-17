@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.81895684066215,
+          27.935587406330086
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "双丰村",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_鹤岭镇_双丰村.geojson",
+        "assistFileId": "assist_file_1773974655493_5"
+      },
+      "id": "assist_imported_1773974655495_1"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助要素_鹤岭镇_双丰村.geojson",
+    "exportTime": "2026/3/20 10:50:51",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

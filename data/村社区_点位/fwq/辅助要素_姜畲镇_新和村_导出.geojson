@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.75689313401051,
+          27.879687616973058
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "新和村",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_姜畲镇_新和村.geojson",
+        "assistFileId": "assist_file_1773973345422_14"
+      },
+      "id": "assist_point_1773802910934_reimported_1773973345422"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助要素_姜畲镇_新和村.geojson",
+    "exportTime": "2026/3/20 10:34:51",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}

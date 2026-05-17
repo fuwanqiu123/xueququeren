@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.76945928568452,
+          27.893986611593533
+        ]
+      },
+      "properties": {
+        "iconType": "default",
+        "iconColor": "#e74c3c",
+        "iconSize": 1,
+        "text": "石龙村",
+        "textColor": "#333333",
+        "type": "assistPoint",
+        "name": "辅助点_1",
+        "isAssistFeature": true,
+        "sourceFileName": "辅助要素_姜畲镇_石龙村.geojson",
+        "assistFileId": "assist_file_1773973328678_11"
+      },
+      "id": "assist_point_1773801888221_reimported_1773973328678"
+    }
+  ],
+  "properties": {
+    "fileName": "辅助要素_姜畲镇_石龙村.geojson",
+    "exportTime": "2026/3/20 10:34:47",
+    "source": "GIS-APP 辅助元素导出"
+  }
+}
