@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>台账关联系统</title>
+    <!-- OpenLayers 8.2.0 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/openlayers/8.2.0/ol.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: #f0f2f5;
+            overflow: hidden;
+            touch-action: none;
+        }
+
+        #app {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 顶部导航栏 */
+        .top-header {
+            height: 56px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            z-index: 1000;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .header-subtitle {
+            font-size: 12px;
+            opacity: 0.85;
+            background: rgba(255,255,255,0.15);
+            padding: 2px 10px;
+            border-radius: 10px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-btn {
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .header-btn:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        /* 主体区域 */
+        .main-container {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 左侧台账面板 */
+        .ledger-panel {
+            width: 320px;
+            background: white;
+            border-right: 1px solid #e8e8e8;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            z-index: 100;
+        }
+
+        .panel-header {
+            padding: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .panel-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .panel-count {
+            font-size: 12px;
+            color: #999;
+            font-weight: normal;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 8px 12px 8px 32px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            background: #f8f8f8;
+            font-size: 13px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: #667eea;
+            background: white;
+        }
+
+        .search-box .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 13px;
+        }
+
+        .panel-tabs {
+            display: flex;
+            border-bottom: 1px solid #f0f0f0;
+            padding: 0 16px;
+        }
+
+        .panel-tab {
+            flex: 1;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .panel-tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            font-weight: 500;
+        }
+
+        .panel-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px;
+        }
+
+        .ledger-item {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .ledger-item:hover {
+            background: #f5f7ff;
+            border-color: #e0e5ff;
+        }
+
+        .ledger-item.active {
+            background: #eef0ff;
+            border-color: #667eea;
+        }
+
+        .ledger-item-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .ledger-item-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .ledger-item-tag {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            flex-shrink: 0;
+            margin-left: 8px;
+        }
+
+        .ledger-item-tag.unlinked {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .ledger-item-info {
+            font-size: 12px;
+            color: #999;
+            display: flex;
+            gap: 12px;
+        }
+
+        .ledger-item-info span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* 地图区域 */
+        .map-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        #map-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 地图类型切换 */
+        .map-type-switch {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .map-type-btn {
+            padding: 10px 15px;
+            border: none;
+            background: white;
+            font-size: 13px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .map-type-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .map-type-btn:first-child {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        /* 右下工具按钮 */
+        .map-tools {
+            position: absolute;
+            right: 15px;
+            bottom: 30px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .tool-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: white;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .tool-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .tool-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* OpenLayers 自定义样式 */
+        .ol-zoom {
+            left: auto !important;
+            right: 15px !important;
+            bottom: 140px !important;
+            top: auto !important;
+        }
+
+        .ol-zoom button {
+            background: white !important;
+            color: #333 !important;
+            border-radius: 50% !important;
+            width: 40px !important;
+            height: 40px !important;
+            font-size: 18px !important;
+            margin-bottom: 8px !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15) !important;
+        }
+
+        .ol-attribution {
+            display: none !important;
+        }
+
+        /* 底部信息栏 */
+        .bottom-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 32px;
+            background: rgba(255,255,255,0.95);
+            border-top: 1px solid #e8e8e8;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            font-size: 12px;
+            color: #999;
+            z-index: 1000;
+        }
+
+        .bottom-bar .coords {
+            font-family: 'Courier New', monospace;
+        }
+
+        /* 提示消息 */
+        .toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 14px;
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .toast.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* 楼栋搜索框 */
+        .building-search-box {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 280px;
+            z-index: 1000;
+        }
+
+        .building-search-input {
+            width: 100%;
+            padding: 10px 36px 10px 14px;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            background: white;
+            font-size: 14px;
+            outline: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: all 0.2s;
+        }
+
+        .building-search-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 2px 15px rgba(102, 126, 234, 0.15);
+        }
+
+        .building-search-clear {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            border: none;
+            color: #999;
+            font-size: 12px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .building-search-clear.visible {
+            display: flex;
+        }
+
+        .building-search-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            margin-top: 8px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+            max-height: 320px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1001;
+        }
+
+        .building-search-dropdown.active {
+            display: block;
+        }
+
+        .building-search-item {
+            padding: 10px 14px;
+            border-bottom: 1px solid #f5f5f5;
+            cursor: pointer;
+            font-size: 13px;
+            color: #333;
+            transition: background 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .building-search-item:last-child {
+            border-bottom: none;
+        }
+
+        .building-search-item:hover {
+            background: #f5f7ff;
+        }
+
+        .building-search-item-icon {
+            color: #667eea;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .building-search-empty {
+            padding: 20px;
+            text-align: center;
+            color: #999;
+            font-size: 13px;
+        }
+
+        .building-search-loading {
+            padding: 16px;
+            text-align: center;
+            color: #667eea;
+            font-size: 13px;
+        }
+
+        /* 楼栋属性面板 */
+        .building-panel {
+            position: absolute;
+            top: 15px;
+            left: 335px;
+            width: 300px;
+            max-height: 70vh;
+            background: rgba(255,255,255,0.98);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .building-panel.active {
+            display: flex;
+        }
+
+        .building-panel-header {
+            padding: 14px 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .building-panel-title {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .building-panel-close {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .building-panel-content {
+            overflow-y: auto;
+            padding: 8px 0;
+            max-height: 60vh;
+        }
+
+        .building-attr-row {
+            display: flex;
+            padding: 8px 16px;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .building-attr-row:last-child {
+            border-bottom: none;
+        }
+
+        .building-attr-key {
+            width: 110px;
+            font-size: 12px;
+            color: #999;
+            flex-shrink: 0;
+            word-break: break-all;
+        }
+
+        .building-attr-value {
+            flex: 1;
+            font-size: 13px;
+            color: #333;
+            margin-left: 10px;
+            word-break: break-all;
+        }
+
+        /* 关联弹窗 */
+        .link-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10002;
+            padding: 20px;
+        }
+
+        .link-modal.visible {
+            display: flex;
+        }
+
+        .link-modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .link-modal-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .link-modal-body {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .link-modal-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .link-modal-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .link-modal-btn.cancel {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .link-modal-btn.confirm {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        /* 加载提示 */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.9);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9998;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #f0f0f0;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 12px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* 折叠按钮 */
+        .panel-toggle {
+            position: absolute;
+            left: 320px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 60px;
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-left: none;
+            border-radius: 0 6px 6px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 101;
+            font-size: 12px;
+            color: #999;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+        }
+
+        .ledger-panel.collapsed {
+            width: 0;
+            overflow: hidden;
+        }
+
+        .ledger-panel.collapsed + .panel-toggle {
+            left: 0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .ledger-panel {
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                z-index: 200;
+                box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+            }
+
+            .ledger-panel.collapsed {
+                transform: translateX(-100%);
+                width: 320px;
+            }
+
+            .ledger-panel.collapsed + .panel-toggle {
+                left: 0;
+            }
+
+            .panel-toggle {
+                left: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 顶部导航栏 -->
+        <div class="top-header">
+            <div class="header-left">
+                <div class="header-title">台账关联系统</div>
+                <div class="header-subtitle">基于天地图的空间关联平台</div>
+            </div>
+            <div class="header-right">
+                <button class="header-btn" onclick="goToBeijing()">&#127961; 跳转北京</button>
+                <button class="header-btn" onclick="importLedger()">导入台账</button>
+                <button class="header-btn" onclick="exportResults()">导出结果</button>
+                <button class="header-btn" onclick="window.location.href='index.html'">返回主系统</button>
+            </div>
+        </div>
+
+        <!-- 主体区域 -->
+        <div class="main-container">
+            <!-- 左侧台账面板 -->
+            <div class="ledger-panel" id="ledger-panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        台账列表
+                        <span class="panel-count" id="ledger-count">共 0 条</span>
+                    </div>
+                    <div class="search-box">
+                        <span class="search-icon">&#128269;</span>
+                        <input type="text" id="ledger-search" placeholder="搜索台账名称/编号..." oninput="handleSearch(this.value)">
+                    </div>
+                </div>
+                <div class="panel-tabs">
+                    <div class="panel-tab active" data-tab="all" onclick="switchTab('all')">全部</div>
+                    <div class="panel-tab" data-tab="linked" onclick="switchTab('linked')">已关联</div>
+                    <div class="panel-tab" data-tab="unlinked" onclick="switchTab('unlinked')">未关联</div>
+                </div>
+                <div class="panel-content" id="ledger-list">
+                    <!-- 动态生成台账列表 -->
+                </div>
+            </div>
+
+            <!-- 面板折叠按钮 -->
+            <div class="panel-toggle" id="panel-toggle" onclick="togglePanel()">&#9664;</div>
+
+            <!-- 地图区域 -->
+            <div class="map-wrapper">
+                <div id="map-container"></div>
+
+                <!-- 楼栋地址搜索 -->
+                <div class="building-search-box" id="building-search-box">
+                    <input type="text" 
+                           class="building-search-input" 
+                           id="building-search-input" 
+                           placeholder="搜索楼栋地址（如：朝阳门）..." 
+                           oninput="handleBuildingSearch(this.value)"
+                           autocomplete="off">
+                    <button class="building-search-clear" id="building-search-clear" onclick="clearBuildingSearch()">&#10005;</button>
+                    <div class="building-search-dropdown" id="building-search-dropdown"></div>
+                </div>
+
+                <!-- 地图类型切换 -->
+                <div class="map-type-switch">
+                    <button class="map-type-btn active" id="btn-vec" onclick="switchMapType('vec')">矢量</button>
+                    <button class="map-type-btn" id="btn-img" onclick="switchMapType('img')">影像</button>
+                </div>
+
+                <!-- 地图工具按钮 -->
+                <div class="map-tools">
+                    <button class="tool-btn" id="btn-buildings" title="切换北京市楼栋图层" onclick="toggleBuildingsLayer()">&#127968;</button>
+                    <button class="tool-btn" title="定位" onclick="locatePosition()">&#128205;</button>
+                    <button class="tool-btn" title="全览" onclick="fitToExtent()">&#128269;</button>
+                    <button class="tool-btn" title="绘制关联区域" onclick="startDraw()">&#9998;</button>
+                </div>
+
+                <!-- 底部坐标栏 -->
+                <div class="bottom-bar">
+                    <span id="map-scale">比例尺: 计算中...</span>
+                    <span class="coords" id="mouse-coords">经度: --  纬度: --</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 加载提示 -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text" id="loading-text">正在加载...</div>
+    </div>
+
+    <!-- 提示消息 -->
+    <div class="toast" id="toast"></div>
+
+    <!-- 楼栋属性面板 -->
+    <div class="building-panel" id="building-panel">
+        <div class="building-panel-header">
+            <div class="building-panel-title">&#127968; 楼栋属性</div>
+            <button class="building-panel-close" onclick="hideBuildingPanel()">&#10005;</button>
+        </div>
+        <div class="building-panel-content" id="building-panel-content">
+            <!-- 动态填充属性 -->
+        </div>
+    </div>
+
+    <!-- 关联确认弹窗 -->
+    <div class="link-modal" id="link-modal">
+        <div class="link-modal-content">
+            <div class="link-modal-title">确认关联</div>
+            <div class="link-modal-body" id="link-modal-body">
+                是否将该区域与选中的台账进行关联？
+            </div>
+            <div class="link-modal-actions">
+                <button class="link-modal-btn cancel" onclick="closeLinkModal()">取消</button>
+                <button class="link-modal-btn confirm" onclick="confirmLink()">确认关联</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- OpenLayers 8.2.0 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/8.2.0/dist/ol.min.js"></script>
+    <!-- 配置文件 -->
+    <script src="config.js"></script>
+    <!-- 主逻辑 -->
+    <script src="app_relative.js"></script>
+</body>
+</html>
