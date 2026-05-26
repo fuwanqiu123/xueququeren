@@ -424,18 +424,18 @@
       },
       "properties": {
         "sourceFileId": "file_1779759071502_5_g1",
-        "sourceFileName": "保利学校.geojson",
+        "sourceFileName": "保利学校（中学）.geojson",
         "sourceGroupId": 1,
-        "name": "保利学校",
+        "name": "保利学校（中学）",
         "id": "imported_1779759071502_5_0_g1",
-        "sourceFile": "保利学校.geojson",
+        "sourceFile": "保利学校（中学）.geojson",
         "isAssistFeature": false
       },
       "id": "imported_1779759071502_5_0_g1"
     }
   ],
   "properties": {
-    "fileName": "保利学校.geojson",
+    "fileName": "保利学校（中学）.geojson",
     "exportTime": "2026/5/26 09:40:11",
     "isStarred": false
   }

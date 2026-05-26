@@ -707,19 +707,19 @@
         ]
       },
       "properties": {
-        "name": "湘潭大学附属实验学校",
+        "name": "湘潭大学附属实验学校（小学）",
         "isAssistFeature": false,
         "sourceFileId": "file_1778748541492_28_g1",
-        "sourceFileName": "湘潭大学附属实验学校.geojson",
+        "sourceFileName": "湘潭大学附属实验学校（小学）.geojson",
         "sourceGroupId": 1,
         "id": "imported_1778748541492_28_0_g1",
-        "sourceFile": "湘潭大学附属实验学校.geojson"
+        "sourceFile": "湘潭大学附属实验学校（小学）.geojson"
       },
       "id": "imported_1778748541492_28_0_g1"
     }
   ],
   "properties": {
-    "fileName": "湘潭大学附属实验学校.geojson",
+    "fileName": "湘潭大学附属实验学校（小学）.geojson",
     "exportTime": "2026/5/14 16:51:29",
     "isStarred": false
   }
