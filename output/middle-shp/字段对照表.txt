@@ -14,4 +14,4 @@ name            → sch_name
 original_feature_count → feat_cnt
 
 坐标系: EPSG:4544
-学校总数: 26
+学校总数: 25

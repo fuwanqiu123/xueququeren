@@ -274,11 +274,11 @@ def merge_school_geojson_to_shp(geojson_folder, excel_path, output_shp_path):
 if __name__ == "__main__":
     EXCEL_FILE = r"./tmp_data/全市学区招生服务范围描述.xlsx"  # Excel路径
     #小学
-    GEOJSON_FOLDER = r"./data/primary"  # GeoJSON文件夹路径
-    OUTPUT_SHP = r"./output/primary-shp/primary.shp"   # 输出Shapefile路径
+    #GEOJSON_FOLDER = r"./data/primary"  # GeoJSON文件夹路径
+    #OUTPUT_SHP = r"./output/primary-shp/primary.shp"   # 输出Shapefile路径
     #中学
-    #GEOJSON_FOLDER = r"./data/middle"  # GeoJSON文件夹路径
-    #OUTPUT_SHP = r"./output/middle-shp/middle.shp"   # 输出Shapefile路径
+    GEOJSON_FOLDER = r"./data/middle"  # GeoJSON文件夹路径
+    OUTPUT_SHP = r"./output/middle-shp/middle.shp"   # 输出Shapefile路径
 
     print("="*60)
     print("学校GeoJSON合并工具（支持文件内多边形合并）")
