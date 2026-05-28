@@ -519,13 +519,13 @@
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
-        "text": "湘潭大学附属实验学校",
+        "text": "湘潭大学附属实验学校（中学）",
         "textColor": "#333333",
         "assistFileId": "assist_file_1778048659115_2",
         "sourceFileName": "辅助元素图层_middle_point.geojson",
         "type": "assistPoint",
         "isAssistFeature": true,
-        "sch_code": "3443000270_union"
+        "sch_code": "3443000270_middle"
       },
       "id": "assist_imported_1777447339714_21_reimported_1778048659117"
     },
@@ -589,11 +589,12 @@
         "iconType": "home",
         "iconColor": "#e74c3c",
         "iconSize": 1,
-        "text": "保利学校",
+        "text": "保利学校（中学）",
         "textColor": "#333333",
         "assistFileId": "assist_file_1778048659115_2",
         "sourceFileName": "辅助元素图层_middle_point.geojson",
-        "type": "assistPoint"
+        "type": "assistPoint",
+		"sch_code": "10000000_middle"
       },
       "id": "assist_point_1778048760434"
     },
@@ -614,7 +615,8 @@
         "textColor": "#333333",
         "assistFileId": "assist_file_1778048659115_2",
         "sourceFileName": "辅助元素图层_middle_point.geojson",
-        "type": "assistPoint"
+        "type": "assistPoint",
+		"sch_code": "10000001_middle"
       },
       "id": "assist_point_1778049114274"
     }
