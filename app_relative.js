@@ -622,27 +622,42 @@ function togglePanel() {
 }
 
 function locatePosition() {
-    if (navigator.geolocation) {
-        showLoading('\u6b63\u5728\u83b7\u53d6\u4f4d\u7f6e...');
-        navigator.geolocation.getCurrentPosition(
-            function(position) {
-                const coords = [position.coords.longitude, position.coords.latitude];
-                AppState.map.getView().animate({
-                    center: ol.proj.fromLonLat(coords),
-                    zoom: 15,
-                    duration: 1000
-                });
-                hideLoading();
-                showToast('\u5df2\u5b9a\u4f4d\u5230\u5f53\u524d\u4f4d\u7f6e');
-            },
-            function(error) {
-                hideLoading();
-                showToast('\u5b9a\u4f4d\u5931\u8d25\uff0c\u8bf7\u68c0\u67e5\u6743\u9650\u8bbe\u7f6e');
-            }
-        );
-    } else {
-        showToast('\u6d4f\u89c8\u5668\u4e0d\u652f\u6301\u5b9a\u4f4d');
+    const input = prompt('\u8bf7\u8f93\u5165\u7ecf\u7eac\u5ea6\u5750\u6807\uff08\u683c\u5f0f\uff1a113.1231,32.122 \u6216 113.1231 32.122\uff09\uff1a');
+    if (!input || !input.trim()) return;
+
+    const trimmed = input.trim();
+    const parts = trimmed.split(/,|\s+/).filter(s => s.length > 0);
+
+    let lon = NaN, lat = NaN;
+    if (parts.length >= 2) {
+        lon = parseFloat(parts[0]);
+        lat = parseFloat(parts[1]);
     }
+
+    if (isNaN(lon) || isNaN(lat)) {
+        showToast('\u5750\u6807\u683c\u5f0f\u9519\u8bef\uff0c\u8bf7\u6309\u6b63\u786e\u683c\u5f0f\u8f93\u5165');
+        return;
+    }
+
+    if (lon < -180 || lon > 180 || lat < -90 || lat > 90) {
+        showToast('\u5750\u6807\u6570\u503c\u8d85\u51fa\u6709\u6548\u8303\u56f4');
+        return;
+    }
+
+    // \u6e05\u9664\u65e7\u9ad8\u4eae\uff0c\u6dfb\u52a0\u65b0\u9ad8\u4eae
+    AppState.highlightSource.clear();
+    const highlightFeature = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.fromLonLat([lon, lat]))
+    });
+    AppState.highlightSource.addFeature(highlightFeature);
+
+    AppState.map.getView().animate({
+        center: ol.proj.fromLonLat([lon, lat]),
+        zoom: 18,
+        duration: 1000
+    });
+
+    showToast(`\u5df2\u5b9a\u4f4d\u5230\uff1a${lon.toFixed(4)}, ${lat.toFixed(4)}`);
 }
 
 function fitToExtent() {
