@@ -14,6 +14,7 @@ const CONFIG = {
     // 天地图密钥列表 - 支持多KEY轮换
     // 申请地址：https://console.tianditu.gov.cn/
     TIANDITU_KEYS: [
+        '8a0f9bb6aa0f510af5a5885159e077e6',
         'f14e4bb40aa997803b046bcfbbd7aaa4',
         '8fd8de7a161f3164a6da3f6615ecb386',
         'a7097827e4299ac41d3d50b45da1c193',

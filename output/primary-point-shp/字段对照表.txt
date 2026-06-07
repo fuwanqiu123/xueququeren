@@ -21,7 +21,6 @@ sch_code        → sch_code
 举办者类型分组         → hld_grp
 举办者类型           → hld_typ
 班数合计            → cls_ttl
-毕业生数            → grad_stu
 毕业生女            → grad_f
 招生数             → enroll
 招生女             → enroll_f
@@ -34,4 +33,4 @@ sch_code        → sch_code
 大班额占比           → lrg_pct
 
 坐标系: EPSG:4544
-学校总数: 74
+学校总数: 75

@@ -122,14 +122,15 @@ def merge_middle_point_to_shp(geojson_path, excel_path, output_shp_path):
 
 
 if __name__ == "__main__":
-    GEOJSON_FILE = r"./data/middle/辅助元素图层_middle_point.geojson"
-    EXCEL_FILE = r"./tmp_data/湘潭市初中分校_精简后.xlsx"
-    OUTPUT_SHP = r"./output/middle-point-shp/middle_point.shp"
+    #中学
+    #GEOJSON_FILE = r"./data/middle/辅助元素图层_middle_point.geojson"
+    #EXCEL_FILE = r"./tmp_data/湘潭市初中分校_精简后.xlsx"
+    #OUTPUT_SHP = r"./output/middle-point-shp/middle_point.shp"
 
     #小学
-    #GEOJSON_FILE = r"./data/primary/辅助元素图层_primary_point.geojson"
-    #EXCEL_FILE = r"./tmp_data/湘潭市小学分校_精简后.xlsx"
-    #OUTPUT_SHP = r"./output/primary-point-shp/primary_point.shp"
+    GEOJSON_FILE = r"./data/primary/辅助元素图层_primary_point.geojson"
+    EXCEL_FILE = r"./tmp_data/湘潭市小学分校_精简后.xlsx"
+    OUTPUT_SHP = r"./output/primary-point-shp/primary_point.shp"
     
     print("="*60)
     print("学校点位转SHP并关联属性")
