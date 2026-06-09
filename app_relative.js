@@ -752,8 +752,8 @@ async function doBuildingSearch(keyword) {
     
     const params = new URLSearchParams({
         f: 'json',
-        where: `ADRESS LIKE '%${safeKeyword}%'`,
-        outFields: 'ADRESS,OBJECTID',
+        where: `ADRESS LIKE '%${safeKeyword}%' OR PFHOUSEID = '${safeKeyword}'`,
+        outFields: 'ADRESS,OBJECTID,PFHOUSEID',
         returnGeometry: 'true',
         outSR: '4326',
         resultRecordCount: '20'
@@ -794,12 +794,14 @@ function renderBuildingSearchResults(features) {
     
     dropdown.innerHTML = features.map((f, idx) => {
         const addr = f.attributes.ADRESS || f.attributes.address || '\u672a\u77e5\u5730\u5740';
-        // 将几何信息序列化后存入 data 属性，便于点击时定位
-        const geomJson = JSON.stringify(f.geometry);
+        const houseId = f.attributes.PFHOUSEID || '';
         return `
             <div class="building-search-item" onclick="locateToBuilding('${addr.replace(/'/g, "\\'")}', ${idx})">
                 <span class="building-search-item-icon">&#127968;</span>
-                <span>${addr}</span>
+                <div style="flex:1;min-width:0;">
+                    <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${addr}</div>
+                    ${houseId ? `<div style="font-size:11px;color:#999;">房屋编码: ${houseId}</div>` : ''}
+                </div>
             </div>
         `;
     }).join('');
