@@ -91,7 +91,7 @@
 
         /* 左侧台账面板 */
         .ledger-panel {
-            width: 320px;
+            width: 400px;
             background: white;
             border-right: 1px solid #e8e8e8;
             display: flex;
@@ -230,6 +230,27 @@
             color: #c62828;
         }
 
+        .ledger-item-tag.location-linked {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .ledger-link-btn {
+            padding: 3px 10px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 11px;
+            border: none;
+            cursor: pointer;
+            margin-left: 8px;
+            flex-shrink: 0;
+        }
+
+        .ledger-link-btn:hover {
+            opacity: 0.9;
+        }
+
         .ledger-item-info {
             font-size: 12px;
             color: #999;
@@ -319,6 +340,12 @@
 
         .tool-btn:active {
             transform: scale(0.95);
+        }
+
+        .tool-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
 
         /* OpenLayers 自定义样式 */
@@ -499,7 +526,7 @@
         .building-panel {
             position: absolute;
             top: 15px;
-            left: 335px;
+            left: 415px;
             width: 300px;
             max-height: 70vh;
             background: rgba(255,255,255,0.98);
@@ -641,6 +668,587 @@
             color: white;
         }
 
+        /* 导入字段映射弹窗 */
+        .import-map-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10003;
+            padding: 20px;
+        }
+
+        .import-map-modal.visible {
+            display: flex;
+        }
+
+        .import-map-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            gap: 12px;
+        }
+
+        .import-map-label {
+            width: 90px;
+            font-size: 14px;
+            color: #333;
+            flex-shrink: 0;
+        }
+
+        .import-map-select {
+            flex: 1;
+            padding: 9px 12px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            background: white;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .import-map-select:focus {
+            border-color: #667eea;
+        }
+
+        .import-map-required {
+            color: #c62828;
+            margin-left: 2px;
+        }
+
+        /* 自动匹配进度弹窗 */
+        .match-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10004;
+            padding: 20px;
+        }
+
+        .match-modal.visible {
+            display: flex;
+        }
+
+        .match-modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 680px;
+            width: 100%;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .match-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .match-modal-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .match-adopt-all-btn {
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .match-adopt-all-btn:hover {
+            opacity: 0.9;
+        }
+
+        .match-adopt-all-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .match-progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .match-progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+
+        .match-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .match-result-list {
+            flex: 1;
+            overflow-y: auto;
+            max-height: 45vh;
+            border: 1px solid #f0f0f0;
+            border-radius: 10px;
+            padding: 8px;
+            margin-bottom: 16px;
+        }
+
+        .match-result-item {
+            padding: 8px 10px;
+            border-bottom: 1px solid #f5f5f5;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .match-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .match-result-status {
+            flex-shrink: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .match-result-status.matched {
+            background: #2ecc71;
+        }
+
+        .match-result-status.unmatched {
+            background: #e74c3c;
+        }
+
+        .match-result-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .match-result-address {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #333;
+        }
+
+        .match-result-detail {
+            color: #999;
+            font-size: 11px;
+            margin-top: 2px;
+        }
+
+        .match-result-main {
+            flex: 1;
+            min-width: 0;
+            cursor: pointer;
+        }
+
+        .match-result-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .match-adopt-btn {
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: none;
+            background: #667eea;
+            color: white;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .match-adopt-btn:hover {
+            opacity: 0.9;
+        }
+
+        .match-adopt-btn.adopted {
+            background: #95a5a6;
+            cursor: default;
+        }
+
+        .match-details {
+            margin-top: 8px;
+            padding: 10px;
+            background: #f8f9ff;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .match-details.visible {
+            display: block;
+        }
+
+        .match-details-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .match-attr-table {
+            width: 100%;
+            font-size: 11px;
+            border-collapse: collapse;
+        }
+
+        .match-attr-table td {
+            padding: 4px 6px;
+            border: 1px solid #e8e8e8;
+            vertical-align: top;
+        }
+
+        .match-attr-table td:first-child {
+            width: 110px;
+            color: #666;
+            background: #fff;
+        }
+
+        .match-attr-table td:last-child {
+            color: #333;
+            word-break: break-all;
+        }
+
+        /* 坐标匹配侧栏 */
+        .coord-match-panel {
+            position: fixed;
+            top: 56px;
+            right: 0;
+            bottom: 0;
+            width: 400px;
+            background: white;
+            box-shadow: -2px 0 15px rgba(0,0,0,0.12);
+            display: none;
+            flex-direction: column;
+            z-index: 10005;
+        }
+
+        .coord-match-panel.visible {
+            display: flex;
+        }
+
+        .coord-match-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+        }
+
+        .coord-match-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .coord-match-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .coord-match-batch-btn {
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .coord-match-batch-btn:hover {
+            opacity: 0.9;
+        }
+
+        .coord-match-batch-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .coord-match-tip {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 16px;
+            line-height: 1.5;
+            background: #f5f7ff;
+            padding: 10px 12px;
+            border-radius: 8px;
+        }
+
+        .coord-match-list {
+            flex: 1;
+            overflow-y: auto;
+            max-height: 60vh;
+        }
+
+        .coord-match-item {
+            border: 1px solid #f0f0f0;
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 12px;
+            background: #fafafa;
+        }
+
+        .coord-match-item.resolved {
+            background: #e8f5e9;
+            border-color: #a5d6a7;
+        }
+
+        .coord-match-item-header {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .coord-match-input {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .coord-match-input:focus {
+            border-color: #667eea;
+        }
+
+        .coord-match-item-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .coord-match-small-btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+            font-size: 12px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .coord-match-small-btn.search {
+            background: #667eea;
+            color: white;
+        }
+
+        .coord-match-small-btn.search:hover {
+            opacity: 0.9;
+        }
+
+        .coord-match-small-btn.pick {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .coord-match-small-btn.pick:hover {
+            background: #e0e0e0;
+        }
+
+        .coord-match-small-btn:disabled {
+            background: #ddd !important;
+            cursor: not-allowed;
+        }
+
+        .coord-match-status {
+            font-size: 12px;
+            color: #2e7d32;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .coord-candidates {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .coord-candidate {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #e8e8e8;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .coord-candidate:hover {
+            border-color: #667eea;
+            background: #f5f7ff;
+        }
+
+        .coord-candidate.selected {
+            border-color: #667eea;
+            background: #eef0ff;
+        }
+
+        .coord-candidate-radio {
+            margin-top: 3px;
+        }
+
+        .coord-candidate-info {
+            flex: 1;
+            font-size: 12px;
+        }
+
+        .coord-candidate-name {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 2px;
+        }
+
+        .coord-candidate-address {
+            color: #666;
+            margin-bottom: 2px;
+        }
+
+        .coord-candidate-coord {
+            color: #999;
+            font-size: 11px;
+        }
+
+        .coord-locate-btn {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            border: none;
+            background: #f0f0f0;
+            color: #667eea;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 4px;
+        }
+
+        .coord-locate-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .coord-match-adopt-btn {
+            margin-top: 10px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            background: #2ecc71;
+            color: white;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .coord-match-adopt-btn:hover {
+            opacity: 0.9;
+        }
+
+        .coord-match-adopt-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* 地图拾取提示 */
+        .map-pick-overlay {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(102, 126, 234, 0.08);
+            z-index: 10006;
+            display: none;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 20px;
+            pointer-events: none;
+        }
+
+        .map-pick-overlay.visible {
+            display: flex;
+        }
+
+        .map-pick-tip {
+            background: rgba(0,0,0,0.75);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            pointer-events: auto;
+        }
+
+        /* 分页 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .pagination button {
+            padding: 5px 12px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            background: white;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .pagination button:disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .pagination button:hover:not(:disabled) {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .import-map-tip {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            background: #f5f7ff;
+            padding: 10px 12px;
+            border-radius: 8px;
+        }
+
         /* 加载提示 */
         .loading-overlay {
             position: fixed;
@@ -682,7 +1290,7 @@
         /* 折叠按钮 */
         .panel-toggle {
             position: absolute;
-            left: 320px;
+            left: 400px;
             top: 50%;
             transform: translateY(-50%);
             width: 20px;
@@ -723,7 +1331,7 @@
 
             .ledger-panel.collapsed {
                 transform: translateX(-100%);
-                width: 320px;
+                width: 400px;
             }
 
             .ledger-panel.collapsed + .panel-toggle {
@@ -731,7 +1339,7 @@
             }
 
             .panel-toggle {
-                left: 320px;
+                left: 400px;
             }
         }
     </style>
@@ -745,10 +1353,10 @@
                 <div class="header-subtitle">基于天地图的空间关联平台</div>
             </div>
             <div class="header-right">
-                <button class="header-btn" onclick="goToBeijing()">&#127961; 跳转北京</button>
                 <button class="header-btn" onclick="importLedger()">导入台账</button>
+                <button class="header-btn" onclick="startAutoMatch()">自动匹配</button>
+                <button class="header-btn" onclick="startCoordMatch()">匹配坐标</button>
                 <button class="header-btn" onclick="exportResults()">导出结果</button>
-                <button class="header-btn" onclick="window.location.href='index.html'">返回主系统</button>
             </div>
         </div>
 
@@ -768,8 +1376,9 @@
                 </div>
                 <div class="panel-tabs">
                     <div class="panel-tab active" data-tab="all" onclick="switchTab('all')">全部</div>
-                    <div class="panel-tab" data-tab="linked" onclick="switchTab('linked')">已关联</div>
-                    <div class="panel-tab" data-tab="unlinked" onclick="switchTab('unlinked')">未关联</div>
+                    <div class="panel-tab" data-tab="mapped" onclick="switchTab('mapped')">已上图</div>
+                    <div class="panel-tab" data-tab="located" onclick="switchTab('located')">有位置</div>
+                    <div class="panel-tab" data-tab="unmapped" onclick="switchTab('unmapped')">未上图</div>
                 </div>
                 <div class="panel-content" id="ledger-list">
                     <!-- 动态生成台账列表 -->
@@ -783,12 +1392,12 @@
             <div class="map-wrapper">
                 <div id="map-container"></div>
 
-                <!-- 楼栋地址搜索 -->
+                <!-- 天地图兴趣点搜索 -->
                 <div class="building-search-box" id="building-search-box">
                     <input type="text" 
                            class="building-search-input" 
                            id="building-search-input" 
-                           placeholder="搜索楼栋地址或房屋编码..." 
+                           placeholder="搜索兴趣点名称、地址..." 
                            oninput="handleBuildingSearch(this.value)"
                            autocomplete="off">
                     <button class="building-search-clear" id="building-search-clear" onclick="clearBuildingSearch()">&#10005;</button>
@@ -803,6 +1412,7 @@
 
                 <!-- 地图工具按钮 -->
                 <div class="map-tools">
+                    <button class="tool-btn" id="btn-copy-coord" title="拾取坐标到剪贴板" onclick="toggleCopyPickMode()">&#128203;</button>
                     <button class="tool-btn" id="btn-buildings" title="切换北京市楼栋图层" onclick="toggleBuildingsLayer()">&#127968;</button>
                     <button class="tool-btn" title="定位" onclick="locatePosition()">&#128205;</button>
                     <button class="tool-btn" title="全览" onclick="fitToExtent()">&#128269;</button>
@@ -852,8 +1462,90 @@
         </div>
     </div>
 
+    <!-- 导入字段映射弹窗 -->
+    <div class="import-map-modal" id="import-map-modal">
+        <div class="link-modal-content">
+            <div class="link-modal-title">导入字段映射</div>
+            <div class="import-map-tip">
+                已读取 EXCEL，请指定字段含义。房屋地址为必填，房屋名称为选填。
+            </div>
+            <div class="import-map-row">
+                <div class="import-map-label">房屋地址<span class="import-map-required">*</span></div>
+                <select class="import-map-select" id="import-address-field"></select>
+            </div>
+            <div class="import-map-row">
+                <div class="import-map-label">房屋名称</div>
+                <select class="import-map-select" id="import-name-field"></select>
+            </div>
+            <div class="link-modal-actions">
+                <button class="link-modal-btn cancel" onclick="closeImportMapModal()">取消</button>
+                <button class="link-modal-btn confirm" onclick="confirmImportMap()">确认导入</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 隐藏的文件上传输入 -->
+    <input type="file" id="ledger-file-input" accept=".xlsx,.xls" style="display:none;" onchange="handleLedgerFileSelect(event)">
+
+    <!-- 坐标匹配侧栏 -->
+    <div class="coord-match-panel" id="coord-match-panel">
+        <div class="coord-match-content">
+            <div class="coord-match-header">
+                <div class="coord-match-title">坐标匹配（天地图）</div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                    <button class="coord-match-batch-btn" id="coord-batch-search-btn" onclick="batchSearchCoords()">本页搜索</button>
+                    <button class="coord-match-batch-btn" id="coord-batch-adopt-btn" onclick="adoptAllCoords()" disabled>本页采纳</button>
+                    <button class="coord-match-batch-btn" style="background:#f0f0f0;color:#333;" onclick="closeCoordMatchPanel()">关闭</button>
+                </div>
+            </div>
+            <div class="coord-match-tip">
+                对未上图台账进行天地图地名地址搜索，选择候选坐标后点击“采纳坐标”，也可点击“地图拾取”在地图上手动选点。
+            </div>
+            <div class="coord-match-list" id="coord-match-list">
+                <!-- 动态填充 -->
+            </div>
+            <div class="pagination" id="coord-pagination"></div>
+            <div class="link-modal-actions">
+                <button class="link-modal-btn cancel" onclick="closeCoordMatchPanel()">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 地图拾取提示 -->
+    <div class="map-pick-overlay" id="map-pick-overlay">
+        <div class="map-pick-tip">地图拾取模式：点击地图任意位置选择坐标，按 ESC 取消</div>
+    </div>
+
+    <!-- 自动匹配进度弹窗 -->
+    <div class="match-modal" id="match-modal">
+        <div class="match-modal-content">
+            <div class="match-modal-header">
+                <div class="match-modal-title">自动匹配房屋编码</div>
+                <button class="match-adopt-all-btn" id="match-adopt-all-btn" onclick="adoptAllMatchResults()" disabled>本页采纳</button>
+            </div>
+            <div class="match-progress-bar">
+                <div class="match-progress-fill" id="match-progress-fill" style="width: 0%;"></div>
+            </div>
+            <div class="match-stats" id="match-stats">
+                <span>总台账: 0</span>
+                <span>已处理: 0</span>
+                <span>命中: 0</span>
+                <span>未命中: 0</span>
+            </div>
+            <div class="match-result-list" id="match-result-list">
+                <!-- 动态填充匹配结果 -->
+            </div>
+            <div class="pagination" id="match-pagination"></div>
+            <div class="link-modal-actions">
+                <button class="link-modal-btn cancel" id="match-close-btn" onclick="closeMatchModal()" disabled>关闭</button>
+            </div>
+        </div>
+    </div>
+
     <!-- OpenLayers 8.2.0 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/8.2.0/dist/ol.min.js"></script>
+    <!-- SheetJS EXCEL 解析 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <!-- 配置文件 -->
     <script src="config.js"></script>
     <!-- 主逻辑 -->

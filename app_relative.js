@@ -56,6 +56,25 @@ const AppState = {
     highlightLayer: null
 };
 
+// 北京范围（经纬度）：严格限制天地图搜索结果
+const BEIJING_BOUNDS = {
+    minLon: 115.7,
+    minLat: 39.4,
+    maxLon: 117.4,
+    maxLat: 41.6,
+    toMapBound: function() {
+        return `${this.minLon},${this.minLat},${this.maxLon},${this.maxLat}`;
+    }
+};
+
+/**
+ * 判断坐标是否在北京范围内
+ */
+function isInBeijing(lon, lat) {
+    return lon >= BEIJING_BOUNDS.minLon && lon <= BEIJING_BOUNDS.maxLon &&
+           lat >= BEIJING_BOUNDS.minLat && lat <= BEIJING_BOUNDS.maxLat;
+}
+
 // ============================================
 // 初始化
 // ============================================
@@ -292,6 +311,20 @@ function switchMapType(type) {
 function setupMapEvents() {
     // 点击事件
     AppState.map.on('click', function(event) {
+        // 坐标复制到剪贴板模式
+        if (isCopyPickMode) {
+            const coord = ol.proj.toLonLat(event.coordinate);
+            finishCopyPickMode(coord[0], coord[1]);
+            return;
+        }
+        
+        // 地图拾取模式优先
+        if (currentPickLedgerId) {
+            const coord = ol.proj.toLonLat(event.coordinate);
+            finishMapPick(coord[0], coord[1]);
+            return;
+        }
+        
         const feature = AppState.map.forEachFeatureAtPixel(event.pixel, function(f) {
             return f;
         }, {
@@ -317,6 +350,11 @@ function setupMapEvents() {
     
     // 鼠标移动事件
     AppState.map.on('pointermove', function(event) {
+        if (isCopyPickMode || currentPickLedgerId) {
+            AppState.map.getTargetElement().style.cursor = 'crosshair';
+            return;
+        }
+        
         const feature = AppState.map.forEachFeatureAtPixel(event.pixel, function(f) {
             return f;
         }, {
@@ -348,32 +386,11 @@ function setupMapEvents() {
 // ============================================
 
 /**
- * 加载演示数据
+ * 初始化台账数据（默认空，需用户导入）
  */
 function loadDemoData() {
-    showLoading('\u6b63\u5728\u52a0\u8f7d\u53f0\u8d26\u6570\u636e...');
-    
-    // 模拟台账数据（北京市）
-    const demoLedgers = [
-        { id: 'T001', name: '\u5317\u4eac\u5e02\u7b2c\u4e00\u4e2d\u5b66\u6821\u4ea7', type: '\u6821\u4ea7', address: '\u4e1c\u57ce\u533a\u666f\u5c71\u524d\u88571\u53f7', linked: true, area: 12500 },
-        { id: 'T002', name: '\u5317\u4eac\u5e02\u7b2c\u56db\u4e2d\u5b66\u6821\u4ea7', type: '\u6821\u4ea7', address: '\u897f\u57ce\u533a\u6587\u660e\u8def88\u53f7', linked: true, area: 9800 },
-        { id: 'T003', name: '\u6d77\u6dc0\u533a\u5b9e\u9a8c\u5c0f\u5b66\u6559\u5b66\u697c', type: '\u6821\u4ea7', address: '\u6d77\u6dc0\u533a\u4e2d\u5173\u6751202\u53f7', linked: false, area: 7600 },
-        { id: 'T004', name: '\u671d\u9633\u533a\u6559\u80b2\u57fa\u5730\u571f\u5730', type: '\u571f\u5730', address: '\u671d\u9633\u533a\u671d\u9633\u516c\u56ed\u8def', linked: false, area: 35000 },
-        { id: 'T005', name: '\u5317\u4eac\u5e02\u6559\u80b2\u59d4\u529e\u516c\u697c', type: '\u529e\u516c', address: '\u897f\u57ce\u533a\u666f\u5c71\u524d\u8857', linked: true, area: 5400 },
-        { id: 'T006', name: '\u4e30\u53f0\u533a\u7b2c\u4e8c\u4e2d\u5b66\u8fd0\u52a8\u573a', type: '\u8fd0\u52a8\u573a', address: '\u4e30\u53f0\u533a\u4e30\u53f0\u8def', linked: false, area: 8200 },
-        { id: 'T007', name: '\u660c\u5e73\u533a\u7b2c\u4e00\u4e2d\u5b66\u6821\u4ea7', type: '\u6821\u4ea7', address: '\u660c\u5e73\u533a\u660c\u5e73\u9547', linked: true, area: 11000 },
-        { id: 'T008', name: '\u77f3\u666f\u5c71\u533a\u5b9e\u9a8c\u5c0f\u5b66\u6821\u4ea7', type: '\u6821\u4ea7', address: '\u77f3\u666f\u5c71\u533a\u53e4\u57ce\u8def', linked: false, area: 6300 },
-        { id: 'T009', name: '\u5317\u4eac\u5e08\u8303\u5927\u5b66\u9644\u5c5e\u4e2d\u5b66', type: '\u6821\u4ea7', address: '\u6d77\u6dc0\u533a\u65b0\u8857\u53e3\u5927\u8857', linked: true, area: 15800 },
-        { id: 'T010', name: '\u987a\u4e49\u533a\u804c\u4e1a\u6559\u80b2\u4e2d\u5fc3\u571f\u5730', type: '\u571f\u5730', address: '\u987a\u4e49\u533a\u987a\u5e73\u5357\u5927\u8857', linked: false, area: 42000 },
-    ];
-    
-    setTimeout(() => {
-        AppState.ledgers = demoLedgers;
-        renderLedgerList();
-        
-        hideLoading();
-        showToast(`\u5df2\u52a0\u8f7d ${demoLedgers.length} \u6761\u53f0\u8d26\u6570\u636e`);
-    }, 800);
+    AppState.ledgers = [];
+    renderLedgerList();
 }
 
 /**
@@ -417,43 +434,69 @@ function renderLedgerList() {
     let filtered = AppState.ledgers;
     
     // 标签过滤
-    if (AppState.currentTab === 'linked') {
-        filtered = filtered.filter(l => l.linked);
-    } else if (AppState.currentTab === 'unlinked') {
-        filtered = filtered.filter(l => !l.linked);
+    if (AppState.currentTab === 'mapped') {
+        filtered = filtered.filter(l => !!l.fwbm);
+    } else if (AppState.currentTab === 'located') {
+        filtered = filtered.filter(l => !l.fwbm && !!l.kjwz && l.lon !== null && l.lat !== null);
+    } else if (AppState.currentTab === 'unmapped') {
+        filtered = filtered.filter(l => !l.fwbm && (!l.kjwz || l.lon === null || l.lat === null));
     }
     
     // 搜索过滤
     if (AppState.searchKeyword) {
         const kw = AppState.searchKeyword.toLowerCase();
         filtered = filtered.filter(l => 
-            l.name.toLowerCase().includes(kw) || 
-            l.id.toLowerCase().includes(kw) ||
-            l.address.toLowerCase().includes(kw)
+            (l.name || '').toLowerCase().includes(kw) || 
+            (l.id || '').toLowerCase().includes(kw) ||
+            (l.address || '').toLowerCase().includes(kw) ||
+            (l.fwbm || '').toLowerCase().includes(kw)
         );
     }
     
-    countEl.textContent = `\u5171 ${filtered.length} \u6761`;
+    countEl.textContent = `共 ${filtered.length} 条`;
     
     if (filtered.length === 0) {
-        listEl.innerHTML = '<div style="text-align:center;padding:40px 20px;color:#999;font-size:13px;">\u6682\u65e0\u53f0\u8d26\u6570\u636e</div>';
+        listEl.innerHTML = '<div style="text-align:center;padding:40px 20px;color:#999;font-size:13px;">暂无台账数据</div>';
         return;
     }
     
-    listEl.innerHTML = filtered.map(ledger => `
-        <div class="ledger-item ${AppState.selectedLedger?.id === ledger.id ? 'active' : ''}" 
-             data-id="${ledger.id}" 
-             onclick="selectLedger('${ledger.id}')">
-            <div class="ledger-item-header">
-                <div class="ledger-item-name">${ledger.name}</div>
-                <div class="ledger-item-tag ${ledger.linked ? '' : 'unlinked'}">${ledger.linked ? '\u5df2\u5173\u8054' : '\u672a\u5173\u8054'}</div>
+    listEl.innerHTML = filtered.map(ledger => {
+        const hasFwbm = !!ledger.fwbm;
+        const hasKjwz = !!ledger.kjwz && ledger.lon !== null && ledger.lat !== null;
+        
+        let tagClass = 'unlinked';
+        let tagText = '未上图';
+        let subInfo = '';
+        
+        if (hasFwbm) {
+            tagClass = '';
+            tagText = '已上图';
+            subInfo = `<span>房屋编码: ${ledger.fwbm}</span>`;
+        } else if (hasKjwz) {
+            tagClass = 'location-linked';
+            tagText = '有位置';
+            subInfo = `<span>坐标: ${ledger.lon.toFixed(4)}, ${ledger.lat.toFixed(4)}</span>`;
+        } else {
+            tagClass = 'unlinked';
+            tagText = '未上图';
+            subInfo = `<button class="ledger-link-btn" onclick="event.stopPropagation(); startLinkLedger('${ledger.id}')">关联</button>`;
+        }
+        
+        return `
+            <div class="ledger-item ${AppState.selectedLedger?.id === ledger.id ? 'active' : ''}" 
+                 data-id="${ledger.id}" 
+                 onclick="selectLedger('${ledger.id}')">
+                <div class="ledger-item-header">
+                    <div class="ledger-item-name">${ledger.name || '未命名台账'}</div>
+                    <div class="ledger-item-tag ${tagClass}">${tagText}</div>
+                </div>
+                <div class="ledger-item-info">
+                    <span>&#128205; ${ledger.address || '-'}</span>
+                    ${subInfo}
+                </div>
             </div>
-            <div class="ledger-item-info">
-                <span>&#128205; ${ledger.address}</span>
-                <span>&#128208; ${(ledger.area / 10000).toFixed(2)}\u4ea9</span>
-            </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 function switchTab(tab) {
@@ -740,32 +783,35 @@ function handleBuildingSearch(keyword) {
 }
 
 /**
- * 执行楼栋地址搜索（ArcGIS Query）
+ * 执行兴趣点搜索（天地图 POI 搜索）
  */
 async function doBuildingSearch(keyword) {
     const dropdown = document.getElementById('building-search-dropdown');
-    dropdown.innerHTML = '<div class="building-search-loading">\u641c\u7d22\u4e2d...</div>';
+    dropdown.innerHTML = '<div class="building-search-loading">搜索中...</div>';
     dropdown.classList.add('active');
-    
-    // 转义 SQL 中的单引号，防止注入
-    const safeKeyword = keyword.replace(/'/g, "''");
-    
-    const params = new URLSearchParams({
-        f: 'json',
-        where: `ADRESS LIKE '%${safeKeyword}%' OR PFHOUSEID = '${safeKeyword}'`,
-        outFields: 'ADRESS,OBJECTID,PFHOUSEID',
-        returnGeometry: 'true',
-        outSR: '4326',
-        resultRecordCount: '20'
-    });
-    
-    // 尝试图层 0，如果失败则说明图层 ID 不对
-    const url = `https://fwaq.zjw.beijing.gov.cn/feature/arcgis/rest/services/sde_ywzt_build_2000/MapServer/0/query?${params.toString()}`;
     
     if (buildingSearchAbort) buildingSearchAbort.abort();
     buildingSearchAbort = new AbortController();
     
     try {
+        // 限制在北京范围内搜索
+        const mapBound = BEIJING_BOUNDS.toMapBound();
+        
+        // 使用 TiandituKeyManager 获取当前 KEY（参考 app.js）
+        let key = TiandituKeyManager.getCurrentKey();
+        key = TiandituKeyManager.recordUsage(key);
+        
+        const postStr = JSON.stringify({
+            keyWord: keyword,
+            level: 12,
+            mapBound: mapBound,
+            queryType: 1,
+            start: 0,
+            count: 20
+        });
+        
+        const url = `https://api.tianditu.gov.cn/v2/search?postStr=${encodeURIComponent(postStr)}&type=query&tk=${key}`;
+        
         const response = await fetch(url, { 
             mode: 'cors',
             signal: buildingSearchAbort.signal
@@ -774,69 +820,61 @@ async function doBuildingSearch(keyword) {
         
         const data = await response.json();
         
-        if (data.features && data.features.length > 0) {
-            renderBuildingSearchResults(data.features);
+        // 严格过滤：只保留北京范围内的结果
+        const filteredPois = (data.pois || []).filter(poi => {
+            const center = parseTiandituPoint(poi.point || poi.lonlat);
+            if (!center) return false;
+            return isInBeijing(center[0], center[1]);
+        });
+        
+        if (filteredPois.length > 0) {
+            renderBuildingSearchResults(filteredPois);
         } else {
-            dropdown.innerHTML = '<div class="building-search-empty">\u672a\u627e\u5230\u5339\u914d\u7684\u697c\u680b\u5730\u5740</div>';
+            dropdown.innerHTML = '<div class="building-search-empty">未在北京范围内找到匹配的兴趣点</div>';
         }
     } catch (error) {
         if (error.name === 'AbortError') return;
-        console.warn('[\u641c\u7d22] \u67e5\u8be2\u5931\u8d25:', error);
-        dropdown.innerHTML = '<div class="building-search-empty">\u641c\u7d22\u5931\u8d25\uff0c\u8bf7\u68c0\u67e5\u7f51\u7edc\u6216\u670d\u52a1\u8bbf\u95ee</div>';
+        console.warn('[搜索] 天地图 POI 查询失败:', error);
+        dropdown.innerHTML = '<div class="building-search-empty">搜索失败，请检查网络或服务访问</div>';
     }
 }
 
 /**
  * 渲染搜索结果下拉列表
  */
-function renderBuildingSearchResults(features) {
+function renderBuildingSearchResults(pois) {
     const dropdown = document.getElementById('building-search-dropdown');
     
-    dropdown.innerHTML = features.map((f, idx) => {
-        const addr = f.attributes.ADRESS || f.attributes.address || '\u672a\u77e5\u5730\u5740';
-        const houseId = f.attributes.PFHOUSEID || '';
+    dropdown.innerHTML = pois.map((poi, idx) => {
+        const name = poi.name || '未知兴趣点';
+        const addr = poi.address || '';
         return `
-            <div class="building-search-item" onclick="locateToBuilding('${addr.replace(/'/g, "\\'")}', ${idx})">
-                <span class="building-search-item-icon">&#127968;</span>
+            <div class="building-search-item" onclick="locateToBuilding(${idx})">
+                <span class="building-search-item-icon">&#128205;</span>
                 <div style="flex:1;min-width:0;">
-                    <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${addr}</div>
-                    ${houseId ? `<div style="font-size:11px;color:#999;">房屋编码: ${houseId}</div>` : ''}
+                    <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500;">${name}</div>
+                    ${addr ? `<div style="font-size:11px;color:#999;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${addr}</div>` : ''}
                 </div>
             </div>
         `;
     }).join('');
     
     // 缓存结果供定位使用
-    AppState._searchResults = features;
+    AppState._searchResults = pois;
 }
 
 /**
- * 定位到指定楼栋
+ * 定位到指定兴趣点
  */
-function locateToBuilding(address, resultIndex) {
-    const features = AppState._searchResults;
-    if (!features || !features[resultIndex]) return;
+function locateToBuilding(resultIndex) {
+    const pois = AppState._searchResults;
+    if (!pois || !pois[resultIndex]) return;
     
-    const feature = features[resultIndex];
-    const geom = feature.geometry;
+    const poi = pois[resultIndex];
+    let center = parseTiandituPoint(poi.point || poi.lonlat);
     
-    let center;
-    if (geom.x !== undefined && geom.y !== undefined) {
-        // 点几何
-        center = [geom.x, geom.y];
-    } else if (geom.rings && geom.rings.length > 0) {
-        // 多边形几何 - 计算第一个环的中心
-        const ring = geom.rings[0];
-        let sumX = 0, sumY = 0;
-        ring.forEach(p => { sumX += p[0]; sumY += p[1]; });
-        center = [sumX / ring.length, sumY / ring.length];
-    } else if (geom.paths && geom.paths.length > 0) {
-        // 线几何
-        const path = geom.paths[0];
-        const mid = Math.floor(path.length / 2);
-        center = path[mid];
-    } else {
-        showToast('\u65e0\u6cd5\u83b7\u53d6\u697c\u680b\u4f4d\u7f6e');
+    if (!center) {
+        showToast('无法获取兴趣点位置');
         return;
     }
     
@@ -857,7 +895,34 @@ function locateToBuilding(address, resultIndex) {
         duration: 800
     });
     
-    showToast(`\u5df2\u5b9a\u4f4d\u5230\uff1a${address}`);
+    const name = poi.name || '选定位置';
+    showToast(`已定位到：${name}`);
+}
+
+/**
+ * 解析天地图返回的坐标字符串
+ */
+function parseTiandituPoint(pointValue) {
+    if (!pointValue) return null;
+    
+    // 处理 "lon,lat" 字符串
+    if (typeof pointValue === 'string') {
+        const parts = pointValue.split(',').map(s => parseFloat(s.trim()));
+        if (parts.length >= 2 && !isNaN(parts[0]) && !isNaN(parts[1])) {
+            return [parts[0], parts[1]];
+        }
+    }
+    
+    // 处理 { lon: ..., lat: ... } 对象
+    if (typeof pointValue === 'object') {
+        const lon = parseFloat(pointValue.lon);
+        const lat = parseFloat(pointValue.lat);
+        if (!isNaN(lon) && !isNaN(lat)) {
+            return [lon, lat];
+        }
+    }
+    
+    return null;
 }
 
 /**
@@ -968,29 +1033,1070 @@ function goToBeijing() {
 }
 
 function importLedger() {
-    showToast('\u5bfc\u5165\u529f\u80fd\u5f00\u53d1\u4e2d...');
+    document.getElementById('ledger-file-input').click();
+}
+
+// 当前待导入的 EXCEL 数据缓存
+let pendingExcelData = null;
+
+/**
+ * 处理台账文件选择
+ */
+function handleLedgerFileSelect(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    
+    // 重置 input，允许重复选择同一文件
+    event.target.value = '';
+    
+    showLoading('正在读取 EXCEL...');
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const { headers, rows } = parseExcel(e.target.result);
+            validateExcelColumns(headers);
+            
+            if (rows.length === 0) {
+                throw new Error('EXCEL 没有数据行');
+            }
+            
+            pendingExcelData = { headers, rows };
+            showImportMapModal(headers);
+            hideLoading();
+        } catch (error) {
+            hideLoading();
+            console.error('[导入] 失败:', error);
+            showToast(error.message || 'EXCEL 解析失败');
+        }
+    };
+    reader.onerror = function() {
+        hideLoading();
+        showToast('文件读取失败');
+    };
+    reader.readAsArrayBuffer(file);
+}
+
+/**
+ * 解析 EXCEL 文件
+ */
+function parseExcel(arrayBuffer) {
+    const data = new Uint8Array(arrayBuffer);
+    const workbook = XLSX.read(data, { type: 'array' });
+    const firstSheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[firstSheetName];
+    const json = XLSX.utils.sheet_to_json(worksheet, { header: 1, defval: '' });
+    
+    if (json.length < 1) {
+        throw new Error('EXCEL 工作表为空');
+    }
+    
+    const headers = json[0].map(h => String(h).trim());
+    const rows = json.slice(1)
+        .filter(row => row.some(cell => cell !== '' && cell !== null && cell !== undefined))
+        .map(row => {
+            const obj = {};
+            headers.forEach((h, idx) => {
+                obj[h] = row[idx] !== undefined ? row[idx] : '';
+            });
+            return obj;
+        });
+    
+    return { headers, rows };
+}
+
+/**
+ * 校验必填字段
+ */
+function validateExcelColumns(headers) {
+    const lowerHeaders = headers.map(h => String(h).toLowerCase());
+    const missing = [];
+    if (!lowerHeaders.includes('fwbm')) missing.push('fwbm');
+    if (!lowerHeaders.includes('kjwz')) missing.push('kjwz');
+    if (missing.length > 0) {
+        throw new Error(`EXCEL 缺少必填字段：${missing.join('、')}`);
+    }
+}
+
+/**
+ * 显示字段映射弹窗
+ */
+function showImportMapModal(headers) {
+    const addressSelect = document.getElementById('import-address-field');
+    const nameSelect = document.getElementById('import-name-field');
+    addressSelect.innerHTML = '';
+    nameSelect.innerHTML = '';
+    
+    const emptyOption = document.createElement('option');
+    emptyOption.value = '';
+    emptyOption.textContent = '-- 不指定 --';
+    nameSelect.appendChild(emptyOption);
+    
+    headers.forEach(h => {
+        const optAddr = document.createElement('option');
+        optAddr.value = h;
+        optAddr.textContent = h;
+        addressSelect.appendChild(optAddr);
+        
+        const optName = document.createElement('option');
+        optName.value = h;
+        optName.textContent = h;
+        nameSelect.appendChild(optName);
+    });
+    
+    // 自动匹配常见字段名
+    const lowerHeaders = headers.map(h => String(h).toLowerCase());
+    const addressIdx = lowerHeaders.findIndex(h => h.includes('地址') || h.includes('位置'));
+    const nameIdx = lowerHeaders.findIndex(h => h.includes('名称') || h.includes('名字') || h.includes('姓名'));
+    
+    if (addressIdx >= 0) addressSelect.value = headers[addressIdx];
+    if (nameIdx >= 0) nameSelect.value = headers[nameIdx];
+    
+    document.getElementById('import-map-modal').classList.add('visible');
+}
+
+/**
+ * 关闭字段映射弹窗
+ */
+function closeImportMapModal() {
+    document.getElementById('import-map-modal').classList.remove('visible');
+    pendingExcelData = null;
+}
+
+/**
+ * 解析空间位置字符串
+ */
+function parseKjwz(kjwz) {
+    if (!kjwz) return null;
+    const parts = String(kjwz).split(/[,，]/).map(s => parseFloat(s.trim()));
+    if (parts.length >= 2 && !isNaN(parts[0]) && !isNaN(parts[1])) {
+        return [parts[0], parts[1]];
+    }
+    return null;
+}
+
+/**
+ * 确认字段映射并导入
+ */
+function confirmImportMap() {
+    if (!pendingExcelData) return;
+    
+    const addressField = document.getElementById('import-address-field').value;
+    if (!addressField) {
+        showToast('请选择房屋地址字段');
+        return;
+    }
+    
+    const nameField = document.getElementById('import-name-field').value;
+    const { headers, rows } = pendingExcelData;
+    
+    const fwbmIdx = headers.findIndex(h => String(h).toLowerCase() === 'fwbm');
+    const kjwzIdx = headers.findIndex(h => String(h).toLowerCase() === 'kjwz');
+    const fwbmKey = headers[fwbmIdx];
+    const kjwzKey = headers[kjwzIdx];
+    
+    AppState.ledgers = rows.map((row, idx) => {
+        const fwbm = String(row[fwbmKey] || '').trim();
+        const kjwz = String(row[kjwzKey] || '').trim();
+        const coords = parseKjwz(kjwz);
+        
+        return {
+            id: `IMP${String(idx + 1).padStart(4, '0')}`,
+            fwbm: fwbm || undefined,
+            kjwz: kjwz || undefined,
+            lon: coords ? coords[0] : null,
+            lat: coords ? coords[1] : null,
+            address: String(row[addressField] || '').trim() || '-',
+            name: nameField ? String(row[nameField] || '').trim() : `台账${idx + 1}`,
+            linked: !!(fwbm || coords),
+            raw: row  // 保留原始 EXCEL 行，用于导出保持表结构
+        };
+    });
+    
+    pendingExcelData = null;
+    closeImportMapModal();
+    renderLedgerList();
+    showToast(`已导入 ${AppState.ledgers.length} 条台账数据`);
+}
+
+// ============================================
+// 自动匹配房屋编码（调用 Python 后端）
+// ============================================
+
+const API_BASE_URL = 'http://127.0.0.1:5000/api';
+
+let matchPollTimer = null;
+let currentMatchResults = [];
+let lastMatchProgress = null;
+let matchCurrentPage = 1;
+const MATCH_PAGE_SIZE = 100;
+
+/**
+ * 启动自动匹配
+ */
+async function startAutoMatch() {
+    if (AppState.ledgers.length === 0) {
+        showToast('请先导入台账数据');
+        return;
+    }
+    
+    // 只匹配没有 fwbm 的台账
+    const targets = AppState.ledgers
+        .filter(l => !l.fwbm)
+        .map(l => ({ id: l.id, address: l.address || '' }));
+    
+    if (targets.length === 0) {
+        showToast('所有台账已匹配房屋编码');
+        return;
+    }
+    
+    if (!confirm(`将对 ${targets.length} 条未上图台账进行地址匹配，是否继续？`)) {
+        return;
+    }
+    
+    openMatchModal();
+    currentMatchResults = [];
+    lastMatchProgress = null;
+    matchCurrentPage = 1;
+    updateMatchProgress({ status: 'pending', total: targets.length, processed: 0, matched: 0, unmatched: 0, progress: 0, results: [] });
+    
+    try {
+        const response = await fetch(`${API_BASE_URL}/match`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ addresses: targets })
+        });
+        
+        if (!response.ok) {
+            const err = await response.json();
+            throw new Error(err.error || `HTTP ${response.status}`);
+        }
+        
+        const { task_id, total } = await response.json();
+        pollMatchProgress(task_id);
+    } catch (error) {
+        console.error('[自动匹配] 启动失败:', error);
+        updateMatchProgress({ status: 'error', error: error.message, results: [] });
+        document.getElementById('match-close-btn').disabled = false;
+    }
+}
+
+/**
+ * 轮询匹配进度
+ */
+function pollMatchProgress(taskId) {
+    if (matchPollTimer) clearInterval(matchPollTimer);
+    
+    matchPollTimer = setInterval(async () => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/match/${taskId}`);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            
+            const data = await response.json();
+            updateMatchProgress(data);
+            
+            if (data.status === 'completed' || data.status === 'error') {
+                clearInterval(matchPollTimer);
+                matchPollTimer = null;
+                document.getElementById('match-close-btn').disabled = false;
+                
+                if (data.status === 'completed') {
+                    showToast(`匹配完成：命中 ${data.matched} 条，未命中 ${data.unmatched} 条，请采纳结果`);
+                }
+            }
+        } catch (error) {
+            console.error('[自动匹配] 轮询失败:', error);
+            clearInterval(matchPollTimer);
+            matchPollTimer = null;
+            updateMatchProgress({ status: 'error', error: error.message });
+            document.getElementById('match-close-btn').disabled = false;
+        }
+    }, 500);
+}
+
+/**
+ * 更新匹配弹窗进度
+ */
+function updateMatchProgress(data) {
+    lastMatchProgress = data;
+    const total = data.total || 0;
+    const processed = data.processed || 0;
+    const matched = data.matched || 0;
+    const unmatched = data.unmatched || 0;
+    const progress = data.progress || 0;
+    const results = data.results || [];
+    
+    // 合并新结果并保留采纳状态
+    currentMatchResults = results.map(r => {
+        const existing = currentMatchResults.find(x => x.id === r.id);
+        return { ...r, adopted: existing ? existing.adopted : false };
+    });
+    
+    // 按相似度降序排序（命中的在前，未命中的在后）
+    currentMatchResults.sort((a, b) => {
+        const simA = a.matched ? (a.similarity || 0) : -1;
+        const simB = b.matched ? (b.similarity || 0) : -1;
+        return simB - simA;
+    });
+    
+
+    document.getElementById('match-progress-fill').style.width = `${progress}%`;
+    document.getElementById('match-stats').innerHTML = `
+        <span>总台账: ${total}</span>
+        <span>已处理: ${processed}</span>
+        <span>命中: ${matched}</span>
+        <span>未命中: ${unmatched}</span>
+    `;
+    
+    const listEl = document.getElementById('match-result-list');
+    if (currentMatchResults.length === 0) {
+        listEl.innerHTML = '<div style="text-align:center;padding:20px;color:#999;font-size:13px;">等待匹配结果...</div>';
+    } else {
+        const pageResults = getMatchPageResults();
+        
+        listEl.innerHTML = pageResults.map((r) => {
+            if (!r.matched) {
+                return `
+                    <div class="match-result-item">
+                        <div class="match-result-status unmatched"></div>
+                        <div class="match-result-main">
+                            <div class="match-result-address">${r.address || '-'}</div>
+                            <div class="match-result-detail">未命中</div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            const attrs = r.attributes || {};
+            const attrRows = Object.entries(attrs)
+                .filter(([k, v]) => v !== null && v !== undefined && v !== '')
+                .map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`)
+                .join('');
+            
+            return `
+                <div class="match-result-item">
+                    <div class="match-result-status matched"></div>
+                    <div class="match-result-main" onclick="toggleMatchDetails('${r.id}')">
+                        <div class="match-result-address">${r.address || '-'}</div>
+                        <div class="match-result-detail">
+                            命中编码: ${r.pfhouseid || '-'} | 相似度: ${(r.similarity * 100).toFixed(1)}%
+                            ${r.matched_address ? ` | 匹配地址: ${r.matched_address}` : ''}
+                        </div>
+                        <div class="match-details" id="match-details-${r.id}">
+                            <div class="match-details-title">房屋底账属性（点击收起）</div>
+                            <table class="match-attr-table">${attrRows}</table>
+                        </div>
+                    </div>
+                    <div class="match-result-actions">
+                        <button class="match-adopt-btn ${r.adopted ? 'adopted' : ''}" 
+                                onclick="event.stopPropagation(); adoptMatchResult('${r.id}')"
+                                ${r.adopted ? 'disabled' : ''}>
+                            ${r.adopted ? '已采纳' : '采纳'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+    
+    if (data.status === 'error') {
+        listEl.innerHTML = `<div style="text-align:center;padding:20px;color:#c62828;font-size:13px;">匹配失败：${data.error || '未知错误'}</div>`;
+    }
+    
+    // 更新本页采纳按钮状态
+    const pageResults = getMatchPageResults();
+    const hasAdoptable = pageResults.some(r => r.matched && !r.adopted);
+    const adoptAllBtn = document.getElementById('match-adopt-all-btn');
+    adoptAllBtn.disabled = !hasAdoptable || data.status === 'running' || data.status === 'pending';
+    
+    renderMatchPagination();
+}
+
+/**
+ * 渲染房屋编码匹配分页
+ */
+function renderMatchPagination() {
+    const total = currentMatchResults.length;
+    const totalPages = Math.max(1, Math.ceil(total / MATCH_PAGE_SIZE));
+    const paginationEl = document.getElementById('match-pagination');
+    if (!paginationEl) return;
+    
+    if (total <= MATCH_PAGE_SIZE) {
+        paginationEl.innerHTML = '';
+        return;
+    }
+    
+    paginationEl.innerHTML = `
+        <button onclick="changeMatchPage(-1)" ${matchCurrentPage <= 1 ? 'disabled' : ''}>上一页</button>
+        <span>第 ${matchCurrentPage}/${totalPages} 页，共 ${total} 条</span>
+        <button onclick="changeMatchPage(1)" ${matchCurrentPage >= totalPages ? 'disabled' : ''}>下一页</button>
+    `;
+}
+
+/**
+ * 切换房屋编码匹配页码
+ */
+function changeMatchPage(delta) {
+    const totalPages = Math.max(1, Math.ceil(currentMatchResults.length / MATCH_PAGE_SIZE));
+    const newPage = matchCurrentPage + delta;
+    if (newPage < 1 || newPage > totalPages) return;
+    matchCurrentPage = newPage;
+    updateMatchProgress(lastMatchProgress);
+}
+
+/**
+ * 批量采纳当前页命中结果
+ */
+function adoptAllMatchResults() {
+    const pageResults = getMatchPageResults();
+    let count = 0;
+    pageResults.forEach(r => {
+        if (!r.matched || r.adopted) return;
+        const ledger = AppState.ledgers.find(l => l.id === r.id);
+        if (!ledger) return;
+        ledger.fwbm = r.pfhouseid;
+        ledger.linked = true;
+        r.adopted = true;
+        count++;
+    });
+    
+    if (count > 0) {
+        renderLedgerList();
+        updateMatchProgress(lastMatchProgress);
+        showToast(`本页采纳 ${count} 条房屋编码`);
+    }
+}
+
+/**
+ * 获取房屋编码匹配当前页结果
+ */
+function getMatchPageResults() {
+    const start = (matchCurrentPage - 1) * MATCH_PAGE_SIZE;
+    const end = Math.min(start + MATCH_PAGE_SIZE, currentMatchResults.length);
+    return currentMatchResults.slice(start, end);
+}
+
+/**
+ * 展开/收起匹配详情
+ */
+function toggleMatchDetails(id) {
+    const el = document.getElementById(`match-details-${id}`);
+    if (el) el.classList.toggle('visible');
+}
+
+/**
+ * 采纳单条匹配结果
+ */
+function adoptMatchResult(id) {
+    const result = currentMatchResults.find(r => r.id === id);
+    if (!result || !result.matched || result.adopted) return;
+    
+    const ledger = AppState.ledgers.find(l => l.id === id);
+    if (!ledger) return;
+    
+    ledger.fwbm = result.pfhouseid;
+    ledger.linked = true;
+    result.adopted = true;
+    
+    renderLedgerList();
+    updateMatchProgress(lastMatchProgress);
+    showToast(`已采纳房屋编码：${result.pfhouseid}`);
+}
+
+/**
+ * 打开匹配弹窗
+ */
+function openMatchModal() {
+    document.getElementById('match-modal').classList.add('visible');
+    document.getElementById('match-close-btn').disabled = true;
+    document.getElementById('match-adopt-all-btn').disabled = true;
+}
+
+/**
+ * 关闭匹配弹窗
+ */
+function closeMatchModal() {
+    document.getElementById('match-modal').classList.remove('visible');
+    if (matchPollTimer) {
+        clearInterval(matchPollTimer);
+        matchPollTimer = null;
+    }
+}
+
+// ============================================
+// 坐标匹配（天地图 POI 搜索 + 地图拾取）
+// ============================================
+
+let coordMatchItems = [];
+let currentPickLedgerId = null;
+let isCopyPickMode = false;
+let coordCurrentPage = 1;
+const COORD_PAGE_SIZE = 100;
+
+/**
+ * 启动坐标匹配
+ */
+function startCoordMatch() {
+    if (AppState.ledgers.length === 0) {
+        showToast('请先导入台账数据');
+        return;
+    }
+    
+    // 未上图台账：无 fwbm 且无 kjwz
+    const targets = AppState.ledgers.filter(l => !l.fwbm && !l.kjwz);
+    if (targets.length === 0) {
+        showToast('没有需要匹配坐标的未上图台账');
+        return;
+    }
+    
+    coordMatchItems = targets.map(ledger => ({
+        ledgerId: ledger.id,
+        query: ledger.address || '',
+        candidates: [],
+        selectedIndex: -1,
+        searching: false,
+        resolved: false
+    }));
+    
+    coordCurrentPage = 1;
+    openCoordMatchPanel();
+    renderCoordMatchPanel();
+}
+
+function openCoordMatchPanel() {
+    document.getElementById('coord-match-panel').classList.add('visible');
+}
+
+function closeCoordMatchPanel() {
+    document.getElementById('coord-match-panel').classList.remove('visible');
+    if (!currentPickLedgerId) {
+        coordMatchItems = [];
+    }
+}
+
+/**
+ * 渲染坐标匹配侧栏
+ */
+function renderCoordMatchPanel() {
+    const listEl = document.getElementById('coord-match-list');
+    
+    if (coordMatchItems.length === 0) {
+        listEl.innerHTML = '<div style="text-align:center;padding:40px 20px;color:#999;">暂无未上图台账</div>';
+        return;
+    }
+    
+    const start = (coordCurrentPage - 1) * COORD_PAGE_SIZE;
+    const pageItems = getCoordPageItems();
+    
+    listEl.innerHTML = pageItems.map((item, pageIdx) => {
+        const idx = start + pageIdx;
+        const ledger = AppState.ledgers.find(l => l.id === item.ledgerId);
+        if (!ledger) return '';
+        
+        const resolvedClass = item.resolved ? 'resolved' : '';
+        const statusText = item.resolved ? `已匹配坐标：${ledger.lon?.toFixed(4)}, ${ledger.lat?.toFixed(4)}` : '';
+        
+        let candidatesHtml = '';
+        if (item.searching) {
+            candidatesHtml = '<div style="padding:10px;color:#667eea;font-size:12px;">搜索中...</div>';
+        } else if (item.candidates.length > 0) {
+            candidatesHtml = `
+                <div class="coord-candidates">
+                    ${item.candidates.map((c, cidx) => `
+                        <div class="coord-candidate ${item.selectedIndex === cidx ? 'selected' : ''}" 
+                             onclick="selectCoordCandidate(${idx}, ${cidx})">
+                            <input type="radio" class="coord-candidate-radio" 
+                                   ${item.selectedIndex === cidx ? 'checked' : ''} 
+                                   onclick="event.stopPropagation(); selectCoordCandidate(${idx}, ${cidx})">
+                            <div class="coord-candidate-info">
+                                <div class="coord-candidate-name">${c.name || '未知地点'}</div>
+                                <div class="coord-candidate-address">${c.address || '-'}</div>
+                                <div class="coord-candidate-coord">坐标: ${c.lon.toFixed(4)}, ${c.lat.toFixed(4)}</div>
+                            </div>
+                            <button class="coord-locate-btn" onclick="event.stopPropagation(); flyToCoord(${c.lon}, ${c.lat})" title="定位到地图">&#128205;</button>
+                        </div>
+                    `).join('')}
+                </div>
+                <button class="coord-match-adopt-btn" 
+                        onclick="adoptCoordCandidate(${idx})"
+                        ${item.selectedIndex < 0 || item.resolved ? 'disabled' : ''}>
+                    ${item.resolved ? '已采纳' : '采纳坐标'}
+                </button>
+            `;
+        } else if (!item.searching && item.query && !item.resolved) {
+            candidatesHtml = '<div style="padding:10px;color:#999;font-size:12px;">未搜索到候选坐标，可尝试修改关键词或点击“地图拾取”</div>';
+        }
+        
+        return `
+            <div class="coord-match-item ${resolvedClass}" id="coord-item-${idx}">
+                <div class="coord-match-item-header">
+                    <input type="text" class="coord-match-input" 
+                           id="coord-query-${idx}" 
+                           value="${escapeHtml(item.query)}" 
+                           placeholder="输入地址关键词..."
+                           oninput="updateCoordQuery(${idx}, this.value)"
+                           ${item.resolved ? 'disabled' : ''}>
+                    <div class="coord-match-item-actions">
+                        <button class="coord-match-small-btn search" 
+                                onclick="searchCoordForItem(${idx})"
+                                ${item.searching || item.resolved ? 'disabled' : ''}>搜索</button>
+                        <button class="coord-match-small-btn pick" 
+                                onclick="startMapPick('${item.ledgerId}')"
+                                ${item.resolved ? 'disabled' : ''}>地图拾取</button>
+                    </div>
+                </div>
+                ${statusText ? `<div class="coord-match-status" onclick="flyToCoord(${ledger.lon}, ${ledger.lat})" style="cursor:pointer;" title="点击定位到地图">${statusText}</div>` : ''}
+                ${candidatesHtml}
+            </div>
+        `;
+    }).join('');
+    
+    // 更新本页采纳按钮状态
+    const pageItemsForAdopt = getCoordPageItems();
+    const hasAdoptableCoord = pageItemsForAdopt.some(i => !i.resolved && i.selectedIndex >= 0);
+    document.getElementById('coord-batch-adopt-btn').disabled = !hasAdoptableCoord;
+    
+    renderCoordPagination();
+}
+
+/**
+ * 渲染坐标匹配分页
+ */
+function renderCoordPagination() {
+    const total = coordMatchItems.length;
+    const totalPages = Math.max(1, Math.ceil(total / COORD_PAGE_SIZE));
+    const paginationEl = document.getElementById('coord-pagination');
+    if (!paginationEl) return;
+    
+    if (total <= COORD_PAGE_SIZE) {
+        paginationEl.innerHTML = '';
+        return;
+    }
+    
+    paginationEl.innerHTML = `
+        <button onclick="changeCoordPage(-1)" ${coordCurrentPage <= 1 ? 'disabled' : ''}>上一页</button>
+        <span>第 ${coordCurrentPage}/${totalPages} 页，共 ${total} 条</span>
+        <button onclick="changeCoordPage(1)" ${coordCurrentPage >= totalPages ? 'disabled' : ''}>下一页</button>
+    `;
+}
+
+/**
+ * 切换坐标匹配页码
+ */
+function changeCoordPage(delta) {
+    const totalPages = Math.max(1, Math.ceil(coordMatchItems.length / COORD_PAGE_SIZE));
+    const newPage = coordCurrentPage + delta;
+    if (newPage < 1 || newPage > totalPages) return;
+    coordCurrentPage = newPage;
+    renderCoordMatchPanel();
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+/**
+ * 飞行定位到指定坐标
+ */
+function flyToCoord(lon, lat) {
+    if (!AppState.map || isNaN(lon) || isNaN(lat)) return;
+    AppState.highlightSource.clear();
+    AppState.highlightSource.addFeature(new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.fromLonLat([lon, lat]))
+    }));
+    AppState.map.getView().animate({
+        center: ol.proj.fromLonLat([lon, lat]),
+        zoom: 18,
+        duration: 800
+    });
+}
+
+/**
+ * 同步输入框内容到状态
+ */
+function updateCoordQuery(idx, value) {
+    const item = coordMatchItems[idx];
+    if (item) item.query = value;
+}
+
+/**
+ * 单条搜索天地图坐标
+ */
+async function searchCoordForItem(idx) {
+    const item = coordMatchItems[idx];
+    const input = document.getElementById(`coord-query-${idx}`);
+    const query = input.value.trim();
+    if (!query) {
+        showToast('请输入地址关键词');
+        return;
+    }
+    
+    item.query = query;
+    item.searching = true;
+    item.candidates = [];
+    item.selectedIndex = -1;
+    renderCoordMatchPanel();
+    
+    try {
+        const candidates = await searchTiandituCoord(query);
+        item.candidates = candidates;
+        if (candidates.length > 0) {
+            item.selectedIndex = 0;
+        }
+    } catch (error) {
+        console.error('[坐标匹配] 搜索失败:', error);
+        showToast('搜索失败：' + error.message);
+    } finally {
+        item.searching = false;
+        renderCoordMatchPanel();
+    }
+}
+
+/**
+ * 批量搜索当前页未上图台账坐标
+ */
+async function batchSearchCoords() {
+    const pageItems = getCoordPageItems();
+    const pending = pageItems.filter(i => !i.resolved && !i.searching);
+    if (pending.length === 0) {
+        showToast('当前页没有待搜索的台账');
+        return;
+    }
+    
+    document.getElementById('coord-batch-search-btn').disabled = true;
+    
+    for (let i = 0; i < pending.length; i++) {
+        const idx = coordMatchItems.indexOf(pending[i]);
+        await searchCoordForItem(idx);
+        // 避免触发天地图频率限制
+        if (i < pending.length - 1) await sleep(150);
+    }
+    
+    document.getElementById('coord-batch-search-btn').disabled = false;
+    showToast('本页坐标搜索完成');
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/**
+ * 调用天地图 POI 搜索接口
+ */
+async function searchTiandituCoord(keyword) {
+    // 限制在北京范围内搜索
+    const mapBound = BEIJING_BOUNDS.toMapBound();
+    
+    let key = TiandituKeyManager.getCurrentKey();
+    key = TiandituKeyManager.recordUsage(key);
+    
+    const postStr = JSON.stringify({
+        keyWord: keyword,
+        level: 12,
+        mapBound: mapBound,
+        queryType: 1,
+        start: 0,
+        count: 3
+    });
+    
+    const url = `https://api.tianditu.gov.cn/v2/search?postStr=${encodeURIComponent(postStr)}&type=query&tk=${key}`;
+    
+    const response = await fetch(url, { mode: 'cors' });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    
+    const data = await response.json();
+    const pois = data.pois || [];
+    
+    return pois.map(poi => {
+        const center = parseTiandituPoint(poi.point || poi.lonlat);
+        return {
+            name: poi.name || '未知地点',
+            address: poi.address || '',
+            lon: center ? center[0] : null,
+            lat: center ? center[1] : null
+        };
+    }).filter(c => c.lon !== null && c.lat !== null && isInBeijing(c.lon, c.lat)).slice(0, 3);
+}
+
+/**
+ * 选择候选坐标
+ */
+function selectCoordCandidate(itemIdx, candidateIdx) {
+    const item = coordMatchItems[itemIdx];
+    if (!item || item.resolved) return;
+    item.selectedIndex = candidateIdx;
+    renderCoordMatchPanel();
+}
+
+/**
+ * 采纳选中的候选坐标
+ */
+function adoptCoordCandidate(itemIdx) {
+    const item = coordMatchItems[itemIdx];
+    if (!item || item.resolved || item.selectedIndex < 0) return;
+    
+    const candidate = item.candidates[item.selectedIndex];
+    const ledger = AppState.ledgers.find(l => l.id === item.ledgerId);
+    if (!ledger || !candidate) return;
+    
+    const lon = parseFloat(candidate.lon.toFixed(4));
+    const lat = parseFloat(candidate.lat.toFixed(4));
+    ledger.kjwz = `${lon},${lat}`;
+    ledger.lon = lon;
+    ledger.lat = lat;
+    ledger.linked = true;
+    item.resolved = true;
+    
+    renderLedgerList();
+    renderCoordMatchPanel();
+    showToast(`已采纳坐标：${candidate.lon.toFixed(4)}, ${candidate.lat.toFixed(4)}`);
+}
+
+/**
+ * 批量采纳当前页已选中的坐标
+ */
+function adoptAllCoords() {
+    const pageItems = getCoordPageItems();
+    let count = 0;
+    pageItems.forEach(item => {
+        if (item.resolved || item.selectedIndex < 0) return;
+        const candidate = item.candidates[item.selectedIndex];
+        const ledger = AppState.ledgers.find(l => l.id === item.ledgerId);
+        if (!ledger || !candidate) return;
+        
+        const lon = parseFloat(candidate.lon.toFixed(4));
+        const lat = parseFloat(candidate.lat.toFixed(4));
+        ledger.kjwz = `${lon},${lat}`;
+        ledger.lon = lon;
+        ledger.lat = lat;
+        ledger.linked = true;
+        item.resolved = true;
+        count++;
+    });
+    
+    if (count > 0) {
+        renderLedgerList();
+        renderCoordMatchPanel();
+        showToast(`本页采纳 ${count} 条坐标`);
+    }
+}
+
+/**
+ * 获取坐标匹配当前页条目
+ */
+function getCoordPageItems() {
+    const start = (coordCurrentPage - 1) * COORD_PAGE_SIZE;
+    const end = Math.min(start + COORD_PAGE_SIZE, coordMatchItems.length);
+    return coordMatchItems.slice(start, end);
+}
+
+/**
+ * 开始地图拾取
+ */
+function startMapPick(ledgerId) {
+    currentPickLedgerId = ledgerId;
+    document.getElementById('map-pick-overlay').classList.add('visible');
+    showToast('请在地图上点击选择坐标，按 ESC 取消');
+}
+
+/**
+ * 完成地图拾取
+ */
+function finishMapPick(lon, lat) {
+    const ledger = AppState.ledgers.find(l => l.id === currentPickLedgerId);
+    if (ledger) {
+        const roundedLon = parseFloat(lon.toFixed(4));
+        const roundedLat = parseFloat(lat.toFixed(4));
+        ledger.kjwz = `${roundedLon},${roundedLat}`;
+        ledger.lon = roundedLon;
+        ledger.lat = roundedLat;
+        ledger.linked = true;
+        
+        const item = coordMatchItems.find(i => i.ledgerId === currentPickLedgerId);
+        if (item) {
+            item.resolved = true;
+            item.candidates = [{
+                name: '地图拾取',
+                address: ledger.address || '',
+                lon: roundedLon,
+                lat: roundedLat
+            }];
+            item.selectedIndex = 0;
+        }
+        
+        renderLedgerList();
+        showToast(`已拾取坐标：${roundedLon.toFixed(4)}, ${roundedLat.toFixed(4)}`);
+    }
+    
+    cancelMapPick();
+    openCoordMatchPanel();
+    renderCoordMatchPanel();
+}
+
+/**
+ * 取消地图拾取
+ */
+function cancelMapPick() {
+    currentPickLedgerId = null;
+    document.getElementById('map-pick-overlay').classList.remove('visible');
+}
+
+/**
+ * 切换坐标复制到剪贴板模式
+ */
+function toggleCopyPickMode() {
+    if (isCopyPickMode) {
+        cancelCopyPickMode();
+        return;
+    }
+    // 如果正在执行台账地图拾取，先取消
+    if (currentPickLedgerId) {
+        cancelMapPick();
+        openCoordMatchPanel();
+        renderCoordMatchPanel();
+    }
+    startCopyPickMode();
+}
+
+/**
+ * 开始坐标复制到剪贴板模式
+ */
+function startCopyPickMode() {
+    isCopyPickMode = true;
+    const overlay = document.getElementById('map-pick-overlay');
+    overlay.querySelector('.map-pick-tip').textContent = '坐标复制模式：点击地图拾取坐标并自动复制到剪贴板，按 ESC 取消';
+    overlay.classList.add('visible');
+    document.getElementById('btn-copy-coord').classList.add('active');
+    showToast('点击地图任意位置，坐标将自动复制到剪贴板');
+}
+
+/**
+ * 完成坐标复制到剪贴板
+ */
+async function finishCopyPickMode(lon, lat) {
+    const roundedLon = parseFloat(lon.toFixed(4));
+    const roundedLat = parseFloat(lat.toFixed(4));
+    const coordText = `${roundedLon},${roundedLat}`;
+    
+    try {
+        await copyToClipboard(coordText);
+        // 高亮显示拾取点
+        AppState.highlightSource.clear();
+        AppState.highlightSource.addFeature(new ol.Feature({
+            geometry: new ol.geom.Point(ol.proj.fromLonLat([roundedLon, roundedLat]))
+        }));
+        showToast(`已复制到剪贴板：${coordText}`);
+    } catch (error) {
+        console.error('[坐标复制] 复制失败:', error);
+        showToast('复制失败，请手动复制');
+    } finally {
+        cancelCopyPickMode();
+    }
+}
+
+/**
+ * 取消坐标复制到剪贴板模式
+ */
+function cancelCopyPickMode() {
+    isCopyPickMode = false;
+    const overlay = document.getElementById('map-pick-overlay');
+    overlay.classList.remove('visible');
+    overlay.querySelector('.map-pick-tip').textContent = '地图拾取模式：点击地图任意位置选择坐标，按 ESC 取消';
+    document.getElementById('btn-copy-coord').classList.remove('active');
+    if (AppState.map) {
+        AppState.map.getTargetElement().style.cursor = '';
+    }
+}
+
+/**
+ * 复制文本到剪贴板（兼容方案）
+ */
+async function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text);
+    }
+    
+    // 降级方案
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.left = '-9999px';
+    textarea.style.top = '-9999px';
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    
+    try {
+        const successful = document.execCommand('copy');
+        document.body.removeChild(textarea);
+        if (!successful) throw new Error('execCommand copy failed');
+    } catch (error) {
+        document.body.removeChild(textarea);
+        throw error;
+    }
+}
+
+// ESC 取消地图拾取或坐标复制模式
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        if (isCopyPickMode) {
+            cancelCopyPickMode();
+            showToast('已取消坐标复制');
+        } else if (currentPickLedgerId) {
+            cancelMapPick();
+            openCoordMatchPanel();
+            renderCoordMatchPanel();
+            showToast('已取消地图拾取');
+        }
+    }
+});
+
+/**
+ * 未关联台账的【关联】按钮占位逻辑
+ */
+function startLinkLedger(id) {
+    const ledger = AppState.ledgers.find(l => l.id === id);
+    if (!ledger) return;
+    AppState.selectedLedger = ledger;
+    renderLedgerList();
+    showToast(`已选中台账：${ledger.name || ledger.id}，关联逻辑待补充`);
 }
 
 function exportResults() {
-    const data = {
-        ledgers: AppState.ledgers,
-        features: AppState.vectorSource.getFeatures().map(f => ({
-            ledgerId: f.get('ledgerId'),
-            linked: f.get('linked'),
-            geometry: new ol.format.GeoJSON().writeGeometry(f.getGeometry())
-        })),
-        exportTime: new Date().toISOString()
-    };
+    if (AppState.ledgers.length === 0) {
+        showToast('暂无台账可导出');
+        return;
+    }
     
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `\u53f0\u8d26\u5173\u8054\u7ed3\u679c_${new Date().toLocaleDateString()}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
+    // 优先使用导入时的原始表结构，只更新 fwbm 和 kjwz 两列
+    const exportData = AppState.ledgers.map(l => {
+        if (l.raw && typeof l.raw === 'object') {
+            return {
+                ...l.raw,
+                fwbm: l.fwbm || '',
+                kjwz: l.kjwz || ''
+            };
+        }
+        //  fallback：无原始数据时使用通用结构
+        return {
+            '台账ID': l.id || '',
+            '房屋名称': l.name || '',
+            '房屋地址': l.address || '',
+            'fwbm': l.fwbm || '',
+            'kjwz': l.kjwz || ''
+        };
+    });
     
-    showToast('\u5bfc\u51fa\u6210\u529f');
+    const ws = XLSX.utils.json_to_sheet(exportData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, '台账数据');
+    
+    const dateStr = new Date().toISOString().slice(0, 10);
+    XLSX.writeFile(wb, `台账导出_${dateStr}.xlsx`);
+    
+    showToast('导出成功');
 }
 
 // ============================================
