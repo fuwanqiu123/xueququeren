@@ -368,7 +368,7 @@ function setupMapEvents() {
         // 更新坐标显示
         const coord = ol.proj.toLonLat(event.coordinate);
         document.getElementById('mouse-coords').textContent = 
-            `\u7ecf\u5ea6: ${coord[0].toFixed(4)}  \u7eac\u5ea6: ${coord[1].toFixed(4)}`;
+            `\u7ecf\u5ea6: ${coord[0].toFixed(5)}  \u7eac\u5ea6: ${coord[1].toFixed(5)}`;
     });
     
     // 比例尺更新
@@ -475,7 +475,7 @@ function renderLedgerList() {
         } else if (hasKjwz) {
             tagClass = 'location-linked';
             tagText = '有位置';
-            subInfo = `<span>坐标: ${ledger.lon.toFixed(4)}, ${ledger.lat.toFixed(4)}</span>`;
+            subInfo = `<span>坐标: ${ledger.lon.toFixed(5)}, ${ledger.lat.toFixed(5)}</span>`;
         } else {
             tagClass = 'unlinked';
             tagText = '未上图';
@@ -700,7 +700,7 @@ function locatePosition() {
         duration: 1000
     });
 
-    showToast(`\u5df2\u5b9a\u4f4d\u5230\uff1a${lon.toFixed(4)}, ${lat.toFixed(4)}`);
+    showToast(`\u5df2\u5b9a\u4f4d\u5230\uff1a${lon.toFixed(5)}, ${lat.toFixed(5)}`);
 }
 
 function fitToExtent() {
@@ -1594,7 +1594,7 @@ function renderCoordMatchPanel() {
         if (!ledger) return '';
         
         const resolvedClass = item.resolved ? 'resolved' : '';
-        const statusText = item.resolved ? `已匹配坐标：${ledger.lon?.toFixed(4)}, ${ledger.lat?.toFixed(4)}` : '';
+        const statusText = item.resolved ? `已匹配坐标：${ledger.lon?.toFixed(5)}, ${ledger.lat?.toFixed(5)}` : '';
         
         let candidatesHtml = '';
         if (item.searching) {
@@ -1611,7 +1611,7 @@ function renderCoordMatchPanel() {
                             <div class="coord-candidate-info">
                                 <div class="coord-candidate-name">${c.name || '未知地点'}</div>
                                 <div class="coord-candidate-address">${c.address || '-'}</div>
-                                <div class="coord-candidate-coord">坐标: ${c.lon.toFixed(4)}, ${c.lat.toFixed(4)}</div>
+                                <div class="coord-candidate-coord">坐标: ${c.lon.toFixed(5)}, ${c.lat.toFixed(5)}</div>
                             </div>
                             <button class="coord-locate-btn" onclick="event.stopPropagation(); flyToCoord(${c.lon}, ${c.lat})" title="定位到地图">&#128205;</button>
                         </div>
@@ -1841,8 +1841,8 @@ function adoptCoordCandidate(itemIdx) {
     const ledger = AppState.ledgers.find(l => l.id === item.ledgerId);
     if (!ledger || !candidate) return;
     
-    const lon = parseFloat(candidate.lon.toFixed(4));
-    const lat = parseFloat(candidate.lat.toFixed(4));
+    const lon = parseFloat(candidate.lon.toFixed(5));
+    const lat = parseFloat(candidate.lat.toFixed(5));
     ledger.kjwz = `${lon},${lat}`;
     ledger.lon = lon;
     ledger.lat = lat;
@@ -1851,7 +1851,7 @@ function adoptCoordCandidate(itemIdx) {
     
     renderLedgerList();
     renderCoordMatchPanel();
-    showToast(`已采纳坐标：${candidate.lon.toFixed(4)}, ${candidate.lat.toFixed(4)}`);
+    showToast(`已采纳坐标：${candidate.lon.toFixed(5)}, ${candidate.lat.toFixed(5)}`);
 }
 
 /**
@@ -1866,8 +1866,8 @@ function adoptAllCoords() {
         const ledger = AppState.ledgers.find(l => l.id === item.ledgerId);
         if (!ledger || !candidate) return;
         
-        const lon = parseFloat(candidate.lon.toFixed(4));
-        const lat = parseFloat(candidate.lat.toFixed(4));
+        const lon = parseFloat(candidate.lon.toFixed(5));
+        const lat = parseFloat(candidate.lat.toFixed(5));
         ledger.kjwz = `${lon},${lat}`;
         ledger.lon = lon;
         ledger.lat = lat;
@@ -1907,8 +1907,8 @@ function startMapPick(ledgerId) {
 function finishMapPick(lon, lat) {
     const ledger = AppState.ledgers.find(l => l.id === currentPickLedgerId);
     if (ledger) {
-        const roundedLon = parseFloat(lon.toFixed(4));
-        const roundedLat = parseFloat(lat.toFixed(4));
+        const roundedLon = parseFloat(lon.toFixed(5));
+        const roundedLat = parseFloat(lat.toFixed(5));
         ledger.kjwz = `${roundedLon},${roundedLat}`;
         ledger.lon = roundedLon;
         ledger.lat = roundedLat;
@@ -1927,7 +1927,7 @@ function finishMapPick(lon, lat) {
         }
         
         renderLedgerList();
-        showToast(`已拾取坐标：${roundedLon.toFixed(4)}, ${roundedLat.toFixed(4)}`);
+        showToast(`已拾取坐标：${roundedLon.toFixed(5)}, ${roundedLat.toFixed(5)}`);
     }
     
     cancelMapPick();
@@ -1976,8 +1976,8 @@ function startCopyPickMode() {
  * 完成坐标复制到剪贴板
  */
 async function finishCopyPickMode(lon, lat) {
-    const roundedLon = parseFloat(lon.toFixed(4));
-    const roundedLat = parseFloat(lat.toFixed(4));
+    const roundedLon = parseFloat(lon.toFixed(5));
+    const roundedLat = parseFloat(lat.toFixed(5));
     const coordText = `${roundedLon},${roundedLat}`;
     
     try {
