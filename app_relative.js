@@ -1531,7 +1531,7 @@ let coordMatchItems = [];
 let currentPickLedgerId = null;
 let isCopyPickMode = false;
 let coordCurrentPage = 1;
-const COORD_PAGE_SIZE = 100;
+const COORD_PAGE_SIZE = 300;
 
 /**
  * 启动坐标匹配
@@ -1600,7 +1600,11 @@ function renderCoordMatchPanel() {
         if (item.searching) {
             candidatesHtml = '<div style="padding:10px;color:#667eea;font-size:12px;">搜索中...</div>';
         } else if (item.candidates.length > 0) {
+            const matchedTip = item.lastMatchedQuery && item.lastMatchedQuery !== item.query
+                ? `<div style="padding:5px 10px;color:#28a745;font-size:12px;">已自动使用关键词“${escapeHtml(item.lastMatchedQuery)}”匹配</div>`
+                : '';
             candidatesHtml = `
+                ${matchedTip}
                 <div class="coord-candidates">
                     ${item.candidates.map((c, cidx) => `
                         <div class="coord-candidate ${item.selectedIndex === cidx ? 'selected' : ''}" 
@@ -1722,12 +1726,72 @@ function updateCoordQuery(idx, value) {
 }
 
 /**
+ * 根据地址生成多级搜索关键词（从完整地址逐级降级到小区名）
+ * @param {string} address
+ * @returns {string[]}
+ */
+function buildAddressQueries(address) {
+    if (!address) return [];
+    const raw = address.trim().replace(/\s+/g, ' ');
+    if (!raw) return [];
+
+    const queries = [raw];
+
+    // 1. 去掉楼栋、单元、门牌号、楼层、房间号等天地图通常不收录的细粒度信息
+    let simplified = raw
+        .replace(/\d+号楼\d+单元?/g, '')
+        .replace(/\d+栋\d+单元?/g, '')
+        .replace(/[一二三四五六七八九十百]+号楼/g, '')
+        .replace(/[一二三四五六七八九十百]+单元/g, '')
+        .replace(/\d+单元/g, '')
+        .replace(/\d+层/g, '')
+        .replace(/\d+室/g, '')
+        .replace(/\d+号/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+    if (simplified && simplified !== raw) {
+        queries.push(simplified);
+    }
+
+    // 2. 提取行政区划
+    const districtMatch = simplified.match(/^([^区]{1,8}区)/);
+    const streetMatch = simplified.match(/([^区]{1,8}(?:街道|镇|乡))/);
+
+    // 3. 去掉行政区划后提取核心 POI 名（小区、社区、村、园、苑、里、公寓、大厦等）
+    let poiSource = simplified;
+    if (districtMatch) {
+        poiSource = poiSource.replace(districtMatch[0], '').trim();
+    }
+    if (streetMatch) {
+        poiSource = poiSource.replace(streetMatch[0], '').trim();
+    }
+
+    const poiMatch = poiSource.match(/^([^\s,，]+(?:小区|社区|村|园|苑|里|公寓|大厦|大楼|广场|城|郡|府|墅|院)(?:东区|西区|南区|北区|一期|二期|三期|四期|五期)?)/);
+    if (poiMatch) {
+        const poiName = poiMatch[1];
+        if (!queries.includes(poiName)) {
+            queries.push(poiName);
+        }
+
+        // 4. 区 + 小区名，避免同名小区
+        if (districtMatch) {
+            const districtPoi = districtMatch[1] + poiName;
+            if (!queries.includes(districtPoi)) {
+                queries.push(districtPoi);
+            }
+        }
+    }
+
+    return [...new Set(queries)].filter(q => q.length >= 2);
+}
+
+/**
  * 单条搜索天地图坐标
  */
-async function searchCoordForItem(idx) {
+async function searchCoordForItem(idx, skipRender = false) {
     const item = coordMatchItems[idx];
     const input = document.getElementById(`coord-query-${idx}`);
-    const query = input.value.trim();
+    const query = input ? input.value.trim() : item.query.trim();
     if (!query) {
         showToast('请输入地址关键词');
         return;
@@ -1737,21 +1801,126 @@ async function searchCoordForItem(idx) {
     item.searching = true;
     item.candidates = [];
     item.selectedIndex = -1;
-    renderCoordMatchPanel();
+    if (!skipRender) renderCoordMatchPanel();
     
     try {
-        const candidates = await searchTiandituCoord(query);
-        item.candidates = candidates;
-        if (candidates.length > 0) {
-            item.selectedIndex = 0;
+        const queries = buildAddressQueries(query);
+        let finalCandidates = [];
+        let matchedQuery = '';
+
+        for (let i = 0; i < queries.length; i++) {
+            const q = queries[i];
+            const candidates = await searchTiandituCoord(q);
+            if (candidates.length > 0) {
+                finalCandidates = candidates.map(c => ({
+                    ...c,
+                    matchedQuery: q
+                }));
+                matchedQuery = q;
+                break;
+            }
+            // 避免触发天地图频率限制
+            if (i < queries.length - 1) await sleep(150);
         }
+
+        item.candidates = finalCandidates;
+        item.selectedIndex = finalCandidates.length > 0 ? 0 : -1;
+        item.lastMatchedQuery = matchedQuery;
     } catch (error) {
         console.error('[坐标匹配] 搜索失败:', error);
         showToast('搜索失败：' + error.message);
     } finally {
         item.searching = false;
-        renderCoordMatchPanel();
+        if (!skipRender) renderCoordMatchPanel();
     }
+}
+
+/**
+ * 自动匹配并采纳所有未上图台账坐标
+ */
+async function autoMatchAndAdoptAll() {
+    const targets = coordMatchItems.filter(i => !i.resolved);
+    if (targets.length === 0) {
+        showToast('没有需要自动匹配的未上图台账');
+        return;
+    }
+    
+    const autoBtn = document.getElementById('coord-auto-match-btn');
+    const searchBtn = document.getElementById('coord-batch-search-btn');
+    autoBtn.disabled = true;
+    if (searchBtn) searchBtn.disabled = true;
+    
+    const total = targets.length;
+    let matched = 0;
+    let unmatched = 0;
+    
+    showAutoMatchProgress(total, 0);
+    
+    for (let i = 0; i < targets.length; i++) {
+        const item = targets[i];
+        const idx = coordMatchItems.indexOf(item);
+        
+        updateAutoMatchProgress(total, i + 1);
+        
+        await searchCoordForItem(idx, true);
+        
+        if (item.candidates.length > 0 && !item.resolved) {
+            const candidate = item.candidates[0];
+            const ledger = AppState.ledgers.find(l => l.id === item.ledgerId);
+            if (ledger && candidate) {
+                const lon = parseFloat(candidate.lon.toFixed(5));
+                const lat = parseFloat(candidate.lat.toFixed(5));
+                ledger.kjwz = `${lon},${lat}`;
+                ledger.lon = lon;
+                ledger.lat = lat;
+                ledger.linked = true;
+                item.resolved = true;
+                matched++;
+            }
+        } else {
+            unmatched++;
+        }
+        
+        // 避免触发天地图频率限制
+        if (i < targets.length - 1) await sleep(200);
+    }
+    
+    hideAutoMatchProgress();
+    
+    renderLedgerList();
+    renderCoordMatchPanel();
+    
+    autoBtn.disabled = false;
+    
+    showToast(`自动匹配完成：${matched} 条成功，${unmatched} 条未匹配，请手动处理未匹配项`);
+}
+
+/**
+ * 显示自动匹配进度
+ */
+function showAutoMatchProgress(total, current) {
+    const el = document.getElementById('coord-match-progress');
+    if (!el) return;
+    el.style.display = 'block';
+    updateAutoMatchProgress(total, current);
+}
+
+/**
+ * 更新自动匹配进度
+ */
+function updateAutoMatchProgress(total, current) {
+    const textEl = document.getElementById('coord-progress-text');
+    const fillEl = document.getElementById('coord-progress-fill');
+    if (textEl) textEl.textContent = `自动匹配中：${current} / ${total}`;
+    if (fillEl) fillEl.style.width = `${(current / total) * 100}%`;
+}
+
+/**
+ * 隐藏自动匹配进度
+ */
+function hideAutoMatchProgress() {
+    const el = document.getElementById('coord-match-progress');
+    if (el) el.style.display = 'none';
 }
 
 /**

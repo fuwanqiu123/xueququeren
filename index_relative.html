@@ -941,7 +941,7 @@
             top: 56px;
             right: 0;
             bottom: 0;
-            width: 400px;
+            width: 700px;
             background: white;
             box-shadow: -2px 0 15px rgba(0,0,0,0.12);
             display: none;
@@ -1005,7 +1005,6 @@
         .coord-match-list {
             flex: 1;
             overflow-y: auto;
-            max-height: 60vh;
         }
 
         .coord-match-item {
@@ -1178,6 +1177,31 @@
         .coord-match-adopt-btn:disabled {
             background: #ccc;
             cursor: not-allowed;
+        }
+
+        .coord-match-progress {
+            margin-bottom: 12px;
+        }
+
+        .coord-progress-text {
+            font-size: 13px;
+            color: #667eea;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .coord-progress-bar {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .coord-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.2s;
         }
 
         /* 地图拾取提示 */
@@ -1493,9 +1517,16 @@
             <div class="coord-match-header">
                 <div class="coord-match-title">坐标匹配（天地图）</div>
                 <div style="display:flex;gap:8px;align-items:center;">
+                    <button class="coord-match-batch-btn" id="coord-auto-match-btn" onclick="autoMatchAndAdoptAll()" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">自动匹配</button>
                     <button class="coord-match-batch-btn" id="coord-batch-search-btn" onclick="batchSearchCoords()">本页搜索</button>
                     <button class="coord-match-batch-btn" id="coord-batch-adopt-btn" onclick="adoptAllCoords()" disabled>本页采纳</button>
                     <button class="coord-match-batch-btn" style="background:#f0f0f0;color:#333;" onclick="closeCoordMatchPanel()">关闭</button>
+                </div>
+            </div>
+            <div class="coord-match-progress" id="coord-match-progress" style="display:none;">
+                <div class="coord-progress-text" id="coord-progress-text">自动匹配中：0 / 0</div>
+                <div class="coord-progress-bar">
+                    <div class="coord-progress-fill" id="coord-progress-fill" style="width:0%;"></div>
                 </div>
             </div>
             <div class="coord-match-tip">
