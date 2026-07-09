@@ -1,0 +1,1 @@
+http://110xdmo484543.vicp.fun:18236/hgis/ows?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetFeature&MAXFEATURES=1000&OUTPUTFORMAT=shape-zip&TYPENAME=ktw:bdcsj
