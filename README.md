@@ -284,3 +284,36 @@ A: 工具会自动识别点击位置的所有学区，并将它们全部添加�
 ## 开源协议
 
 MIT License
+
+
+---
+
+## 📄 中学学区 PDF 批量生成器（Web 图形界面）
+
+项目还提供了一套基于 Flask 的 Web 图形界面，用于把合并后的中学学区 GeoJSON 批量生成带天地图底图的 PDF 确认图（每所学校一页 A4 横版）。
+
+### 快速启动
+
+- **Windows**：双击 `python-tools/启动中学学区PDF生成器.bat`，浏览器将自动打开操作页面。
+- **macOS / Linux**：
+  ```bash
+  bash python-tools/启动中学学区PDF生成器.sh
+  ```
+
+打开后访问 `http://127.0.0.1:5000/` 即可使用。
+
+### 主要功能
+
+- 选择或上传 GeoJSON 学区文件
+- 配置天地图服务端 Key（支持多 Key 轮换）
+- 调整出图参数：视野外扩、DPI、字体、底图类型、注记开关等
+- 实时查看运行日志和进度
+- 完成后一键打包下载所有 PDF
+
+### 环境依赖
+
+```bash
+pip install -r requirements.txt
+```
+
+详细说明见 `python-tools/GUI使用说明.md`。
